@@ -15,12 +15,32 @@ limitations under the License.
 -->
 
 <?properties {
+    "row": {
+        "layoutMargins": 8,
+        "spacing": 0,
+        "layer.borderColor": "#cccccc"
+    },
+
     "label": {
-        "textColor": "#ff0000"
+        "textColor": "lightGray"
     }
 }?>
 
-<LMColumnView layoutMargins="20">
+<?case iOS?>
+<?properties {
+    "row": {
+        "layer.borderWidth": 0.5
+    }
+}?>
+<?case tvOS?>
+<?properties {
+    "row": {
+        "layer.borderWidth": 1
+    }
+}?>
+<?end?>
+
+<LMColumnView layoutMargins="16" spacing="16">
     <?include FirstRowView?>
     <?include SecondRowView?>
     <?include ThirdRowView?>

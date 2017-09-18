@@ -16,7 +16,7 @@ import UIKit
 import MapKit
 import MarkupKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var latitudeTextField: UITextField!
     @IBOutlet var longitudeTextField: UITextField!
@@ -33,22 +33,18 @@ class MapViewController: UIViewController {
         title = "Map View"
 
         edgesForExtendedLayout = UIRectEdge()
+
+        latitudeTextField.delegate = self
+        longitudeTextField.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         let defaultNotificationCenter = NotificationCenter.default
-        
-        defaultNotificationCenter.addObserver(self,
-            selector: #selector(keyboardWillShow(_:)),
-            name: NSNotification.Name.UIKeyboardWillShow,
-            object: nil)
 
-        defaultNotificationCenter.addObserver(self,
-            selector: #selector(keyboardWillHide(_:)),
-            name: NSNotification.Name.UIKeyboardWillHide,
-            object: nil)
+        defaultNotificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        defaultNotificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
 
         latitudeTextField.becomeFirstResponder()
     }
@@ -58,16 +54,29 @@ class MapViewController: UIViewController {
 
         let defaultNotificationCenter = NotificationCenter.default
         
-        defaultNotificationCenter.removeObserver(self, name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        defaultNotificationCenter.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        defaultNotificationCenter.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        defaultNotificationCenter.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
 
-    func keyboardWillShow(_ notification: Notification) {
-        (view as! LMColumnView).bottomSpacing = ((notification as NSNotification).userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size.height
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        showLocation()
+
+        return false
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let layoutView = view as! LMLayoutView
+        let frame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
+
+        layoutView.bottomSpacing = frame.height
     }
     
-    func keyboardWillHide(_ notification: Notification) {
-        (view as! LMColumnView).bottomSpacing = 0
+    @objc func keyboardWillHide(_ notification: Notification) {
+        let layoutView = view as! LMLayoutView
+
+        layoutView.bottomSpacing = 0
     }
     
     @IBAction func showLocation() {

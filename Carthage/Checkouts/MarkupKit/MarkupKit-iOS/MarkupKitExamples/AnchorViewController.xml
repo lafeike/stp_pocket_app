@@ -15,39 +15,41 @@ limitations under the License.
 -->
 
 <?properties {
-    "label": {
+    "cell": {
         "layer.borderColor": "#cccccc"
     }
 }?>
 
 <?case iOS?>
 <?properties {
-    "label": {
+    "cell": {
         "layer.borderWidth": 0.5
     }
 }?>
 <?case tvOS?>
 <?properties {
-    "label": {
+    "cell": {
         "layer.borderWidth": 1
     }
 }?>
 <?end?>
 
-<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="#ffffff">
-    <LMAnchorView layoutMargins="16">
-        <UILabel class="label" text="Top Left" anchor="top, left"/>
-        <UILabel class="label" text="Top" anchor="top"/>
-        <UILabel class="label" text="Top Right" anchor="top, right"/>
+<LMAnchorView layoutMarginsRelativeArrangement="false"
+    topSpacing="16" bottomSpacing="16" leadingSpacing="16" trailingSpacing="16"
+    backgroundColor="white">
+    <UIView class="cell" anchor="all"/>
 
-        <UILabel class="label" text="Left" anchor="left"/>
+    <UILabel class="cell" text="Top Leading" anchor="top, leading"/>
+    <UILabel class="cell" text="Top" anchor="top"/>
+    <UILabel class="cell" text="Top Trailing" anchor="top, trailing"/>
 
-        <UILabel class="label" text="None"/>
+    <UILabel class="cell" text="Leading" anchor="leading"/>
 
-        <UILabel class="label" text="Right" anchor="right"/>
+    <UILabel class="cell" text="None"/>
 
-        <UILabel class="label" text="Bottom Left" anchor="bottom, left"/>
-        <UILabel class="label" text="Bottom" anchor="bottom"/>
-        <UILabel class="label" text="Bottom Right" anchor="bottom, right"/>
-    </LMAnchorView>
-</LMLayerView>
+    <UILabel class="cell" text="Trailing" anchor="trailing"/>
+
+    <UILabel class="cell" text="Bottom Leading" anchor="bottom, leading"/>
+    <UILabel class="cell" text="Bottom" anchor="bottom"/>
+    <UILabel class="cell" text="Bottom Trailing" anchor="bottom, trailing"/>
+</LMAnchorView>

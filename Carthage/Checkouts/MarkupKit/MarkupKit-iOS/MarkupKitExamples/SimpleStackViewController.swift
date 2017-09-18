@@ -33,7 +33,7 @@ class SimpleStackViewController: UIViewController {
         edgesForExtendedLayout = UIRectEdge()
     }
 
-    func moveNext() {
+    @objc func moveNext() {
         navigationController!.pushViewController(NestedStackViewController(), animated: true)
     }
 }

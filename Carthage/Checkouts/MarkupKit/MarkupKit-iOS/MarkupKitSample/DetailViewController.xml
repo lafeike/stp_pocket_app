@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMColumnView layoutMarginsRelativeArrangement="false" backgroundColor="#ffffff">
+<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="white">
     <LMColumnView layoutMargins="32" spacing="24">
         <UILabel id="headingLabel" font="title1" textAlignment="center" numberOfLines="0"/>
         <UILabel id="detailLabel" font="body" textAlignment="center" numberOfLines="0"/>
@@ -23,4 +23,4 @@ limitations under the License.
 
         <UIButton style="systemButton" title="@done" onPrimaryActionTriggered="doneButtonPressed"/>
     </LMColumnView>
-</LMColumnView>
+</LMLayerView>

@@ -14,15 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMColumnView layoutMarginsRelativeArrangement="false" backgroundColor="#ffffff">
+<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="white">
     <LMColumnView layoutMargins="16">
         <WKWebView id="webView" weight="1" layer.borderWidth="0.5" layer.borderColor="#c0c0c0"/>
         
-        <UITextField id="urlTextField" borderStyle="roundedRect"
+        <UITextField id="urlTextField" text="http://" borderStyle="roundedRect"
             autocorrectionType="no" autocapitalizationType="none"
-            keyboardType="URL"
-            text="http://"/>
+            keyboardType="URL"/>
         
         <UIButton style="systemButton" title="Go" onPrimaryActionTriggered="loadURL"/>
     </LMColumnView>
-</LMColumnView>
+</LMLayerView>

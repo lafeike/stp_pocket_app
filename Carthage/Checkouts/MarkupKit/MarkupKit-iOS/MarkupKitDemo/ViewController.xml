@@ -14,23 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<?properties Styles?>
-
 <LMTableView style="groupedTableView">
     <!-- Image view -->
-    <sectionHeader title="Image View"/>
+    <sectionHeader title="@imageView"/>
 
     <LMTableViewCell selectionStyle="none">
-        <UIImageView image="sample.jpg" contentMode="scaleAspectFit" height="210"/>
+        <UIImageView image="sample.jpg" contentMode="scaleAspectFit" height="180"/>
     </LMTableViewCell>
 
     <!-- Button -->
     <?sectionBreak?>
 
-    <sectionHeader title="Button"/>
+    <sectionHeader title="@button"/>
 
     <LMTableViewCell selectionStyle="none">
-        <UIButton style="systemButton" title="Press Me" onPrimaryActionTriggered="showGreeting"/>
+        <UIButton style="systemButton" title="@pressMe" onPrimaryActionTriggered="showGreeting"/>
     </LMTableViewCell>
 
     <?case iOS?>
@@ -38,9 +36,9 @@ limitations under the License.
     <!-- Switch -->
     <?sectionBreak?>
 
-    <sectionHeader title="Switch"/>
+    <sectionHeader title="@switch"/>
 
-    <UITableViewCell textLabel.text="On/Off" selectionStyle="none">
+    <UITableViewCell textLabel.text="@onOff" selectionStyle="none">
         <UISwitch/>
     </UITableViewCell>
 
@@ -49,27 +47,27 @@ limitations under the License.
     <!-- Text fields -->
     <?sectionBreak?>
 
-    <sectionHeader title="Text Fields"/>
+    <sectionHeader title="@textFields"/>
 
     <LMTableViewCell selectionStyle="none">
-        <UITextField placeholder="Text"/>
+        <UITextField placeholder="@text"/>
     </LMTableViewCell>
 
     <LMTableViewCell selectionStyle="none">
-        <UITextField placeholder="Number" keyboardType="numberPad"/>
+        <UITextField placeholder="@number" keyboardType="numberPad"/>
     </LMTableViewCell>
 
     <LMTableViewCell selectionStyle="none">
-        <UITextField placeholder="Email Address" keyboardType="emailAddress"/>
+        <UITextField placeholder="@emailAddress" keyboardType="emailAddress"/>
     </LMTableViewCell>
 
     <LMTableViewCell selectionStyle="none">
-        <UITextField placeholder="Password" secureTextEntry="true"/>
+        <UITextField placeholder="@password" secureTextEntry="true"/>
     </LMTableViewCell>
 
     <?case iOS?>
     <LMTableViewCell selectionStyle="none">
-        <UITextField id="dateTextField" placeholder="Date">
+        <UITextField id="dateTextField" placeholder="@date">
             <?inputView?>
             <UIDatePicker id="datePicker" datePickerMode="date"/>
 
@@ -83,13 +81,13 @@ limitations under the License.
     </LMTableViewCell>
 
     <LMTableViewCell selectionStyle="none">
-        <UITextField id="sizeTextField" placeholder="Size">
+        <UITextField id="sizeTextField" placeholder="@size">
             <?inputView?>
             <LMPickerView id="sizePickerView">
-                <row title="Small" value="S"/>
-                <row title="Medium" value="M"/>
-                <row title="Large" value="L"/>
-                <row title="Extra-Large" value="XL"/>
+                <row title="@small"/>
+                <row title="@medium"/>
+                <row title="@large"/>
+                <row title="@extraLarge"/>
             </LMPickerView>
 
             <?inputAccessoryView?>
@@ -106,38 +104,38 @@ limitations under the License.
     <?sectionBreak?>
     <?sectionSelectionMode singleCheckmark?>
 
-    <sectionHeader title="Radio Buttons"/>
+    <sectionHeader title="@radioButtons"/>
 
-    <UITableViewCell textLabel.text="Small"/>
-    <UITableViewCell textLabel.text="Medium"/>
-    <UITableViewCell textLabel.text="Large" checked="true"/>
-    <UITableViewCell textLabel.text="Extra-Large"/>
+    <UITableViewCell textLabel.text="@small"/>
+    <UITableViewCell textLabel.text="@medium"/>
+    <UITableViewCell textLabel.text="@large" checked="true"/>
+    <UITableViewCell textLabel.text="@extraLarge"/>
 
     <!-- Checkboxes -->
     <?sectionBreak?>
     <?sectionSelectionMode multipleCheckmarks?>
 
-    <sectionHeader title="Checkboxes"/>
+    <sectionHeader title="@checkboxes"/>
 
-    <UITableViewCell textLabel.text="Dog"/>
-    <UITableViewCell textLabel.text="Cat" checked="true"/>
-    <UITableViewCell textLabel.text="Fish"/>
-    <UITableViewCell textLabel.text="Rabbit"/>
-    <UITableViewCell textLabel.text="Turtle" checked="true"/>
+    <UITableViewCell textLabel.text="@dog"/>
+    <UITableViewCell textLabel.text="@cat" checked="true"/>
+    <UITableViewCell textLabel.text="@fish"/>
+    <UITableViewCell textLabel.text="@rabbit"/>
+    <UITableViewCell textLabel.text="@turtle" checked="true"/>
 
     <!-- Segmented control -->
     <?sectionBreak?>
 
-    <sectionHeader title="Segmented Control"/>
+    <sectionHeader title="@segmentedControl"/>
 
     <LMTableViewCell selectionStyle="none">
         <LMRowView>
             <LMSpacer/>
                 <UISegmentedControl>
-                    <segment title="Small"/>
-                    <segment title="Medium"/>
-                    <segment title="Large"/>
-                    <segment title="Extra-Large"/>
+                    <segment title="@small"/>
+                    <segment title="@medium"/>
+                    <segment title="@large"/>
+                    <segment title="@extraLarge"/>
                 </UISegmentedControl>
             <LMSpacer/>
         </LMRowView>
@@ -148,7 +146,7 @@ limitations under the License.
     <!-- Date picker -->
     <?sectionBreak?>
 
-    <sectionHeader title="Date Picker"/>
+    <sectionHeader title="@datePicker"/>
 
     <LMTableViewCell selectionStyle="none" layoutMarginsRelativeArrangement="false">
         <UIDatePicker datePickerMode="date"/>
@@ -157,24 +155,24 @@ limitations under the License.
     <!-- Custom picker -->
     <?sectionBreak?>
 
-    <sectionHeader title="Custom Picker"/>
+    <sectionHeader title="@customPicker"/>
 
     <LMTableViewCell selectionStyle="none" layoutMarginsRelativeArrangement="false">
         <LMPickerView>
             <?componentName sizes?>
-            <row title="Small" value="S"/>
-            <row title="Medium" value="M"/>
-            <row title="Large" value="L"/>
-            <row title="Extra-Large" value="XL"/>
+            <row title="@small"/>
+            <row title="@medium"/>
+            <row title="@large"/>
+            <row title="@extraLarge"/>
 
             <?componentSeparator?>
 
-            <?componentName pets?>
-            <row title="Dog"/>
-            <row title="Cat"/>
-            <row title="Fish"/>
-            <row title="Rabbit"/>
-            <row title="Turtle"/>
+            <?componentName colors?>
+            <row title="@red"/>
+            <row title="@yellow"/>
+            <row title="@green"/>
+            <row title="@blue"/>
+            <row title="@purple"/>
         </LMPickerView>
     </LMTableViewCell>
 
@@ -183,7 +181,7 @@ limitations under the License.
     <!-- Collection view -->
     <?sectionBreak?>
 
-    <sectionHeader title="Collection View"/>
+    <sectionHeader title="@collectionView"/>
 
     <LMTableViewCell selectionStyle="none">
         <LMCollectionView style="flowLayoutCollectionView" id="collectionView" height="64"
@@ -197,7 +195,7 @@ limitations under the License.
     <!-- Stepper -->
     <?sectionBreak?>
 
-    <sectionHeader title="Stepper"/>
+    <sectionHeader title="@stepper"/>
 
     <LMTableViewCell selectionStyle="none">
         <LMRowView>
@@ -210,7 +208,7 @@ limitations under the License.
     <!-- Slider -->
     <?sectionBreak?>
 
-    <sectionHeader title="Slider"/>
+    <sectionHeader title="@slider"/>
 
     <LMTableViewCell selectionStyle="none">
         <UISlider id="slider" onValueChanged="sliderValueChanged:"/>
@@ -219,16 +217,16 @@ limitations under the License.
     <!-- Page control -->
     <?sectionBreak?>
 
-    <sectionHeader title="Page Control"/>
+    <sectionHeader title="@pageControl"/>
 
     <LMTableViewCell selectionStyle="none">
-        <UIPageControl id="pageControl" numberOfPages="11" pageIndicatorTintColor="red" currentPageIndicatorTintColor="green"/>
+        <UIPageControl id="pageControl" numberOfPages="11" pageIndicatorTintColor="lightGray" currentPageIndicatorTintColor="black"/>
     </LMTableViewCell>
 
     <!-- Progress view -->
     <?sectionBreak?>
 
-    <sectionHeader title="Progress View"/>
+    <sectionHeader title="@progressView"/>
 
     <LMTableViewCell selectionStyle="none">
         <UIProgressView id="progressView" style="defaultProgressView"/>

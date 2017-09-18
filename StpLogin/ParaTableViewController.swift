@@ -23,6 +23,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
     var citationArray: Array<String> = Array<String>()
     
     var rowTapped: Int?
+    var tableOffsetY: CGFloat = 0.0
     
     let sdPickerViewController = StatePickerViewController()
     let dynamicComponentName = "dynamic"
@@ -39,6 +40,8 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
             
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionHeaderHeight = 25;
+        
+        tableOffsetY = tableView.contentOffset.y
 
         navigationItem.title = "Paragraph"
         self.navigationController?.navigationBar.topItem!.title = "Back"
@@ -145,7 +148,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
                 
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                    print("error is \(error), \(response.debugDescription)")
+                    print("error is \(String(describing: error)), \(response.debugDescription)")
                     //self.loginSuccess(userId: nil, error: error.debugDescription)
                     return
                 }
@@ -202,6 +205,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
     func do_table_refresh()  {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             return
         }
     }
@@ -209,6 +213,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
     }
     
     

@@ -36,7 +36,7 @@ class LinearGradientViewController: UIViewController {
         edgesForExtendedLayout = UIRectEdge()
     }
 
-    func moveNext() {
+    @objc func moveNext() {
         navigationController!.pushViewController(RadialGradientViewController(), animated: true)
     }
 }

@@ -15,7 +15,7 @@ limitations under the License.
 -->
 
 <LMLayerView layoutMarginsRelativeArrangement="false">
-    <UIImageView image="sample.jpg" contentMode="scaleAspectFill"/>
+    <UIImageView image="orchard.jpg" contentMode="scaleAspectFill"/>
 
     <LMRowView>
         <LMLayerView weight="0.4">

@@ -16,4 +16,4 @@ limitations under the License.
 
 <UILabel text="This is the vertical view."
     font="title1" textAlignment="center" numberOfLines="0"
-    backgroundColor="#ffffff"/>
+    backgroundColor="white"/>

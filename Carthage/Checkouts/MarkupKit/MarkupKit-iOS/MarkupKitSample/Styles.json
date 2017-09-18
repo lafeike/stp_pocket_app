@@ -1,22 +1,15 @@
 {
-    "cell.footer": {
-        "textLabel.font": "caption2",
-        "textLabel.color": "#808080"
+    "inputCell": {
+        "selectionStyle": "none"
     },
 
-    "cell.input": {
-        "selectionStyle": "none",
-        "layoutMarginTop": 12,
-        "layoutMarginBottom": 12
-    },
-
-    "label.heading": {
+    "headingLabel": {
         "font": "headline",
         "textColor": "#444444",
         "numberOfLines": 0
     },
 
-    "label.detail": {
+    "detailLabel": {
         "font": "subheadline",
         "textColor": "#666666",
         "numberOfLines": 1

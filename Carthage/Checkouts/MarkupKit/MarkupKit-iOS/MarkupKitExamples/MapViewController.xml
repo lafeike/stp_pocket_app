@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMColumnView layoutMarginsRelativeArrangement="false" backgroundColor="#ffffff">
+<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="white">
     <LMColumnView layoutMargins="16">
         <MKMapView id="mapView" weight="1" layer.borderWidth="0.5" layer.borderColor="#c0c0c0"/>
         
@@ -29,4 +29,4 @@ limitations under the License.
         
         <UIButton style="systemButton" title="Go" onPrimaryActionTriggered="showLocation"/>
     </LMColumnView>
-</LMColumnView>
+</LMLayerView>

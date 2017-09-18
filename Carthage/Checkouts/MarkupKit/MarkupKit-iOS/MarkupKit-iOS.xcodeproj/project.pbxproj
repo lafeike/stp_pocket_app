@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3715C2B01F503A60007D39C4 /* orchard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3715C2AD1F5039AE007D39C4 /* orchard.jpg */; };
+		3715C2B11F503A60007D39C4 /* quebec.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3715C2AF1F5039AF007D39C4 /* quebec.jpg */; };
+		3715C2B21F503A60007D39C4 /* lighthouse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3715C2AC1F5039AE007D39C4 /* lighthouse.jpg */; };
+		3715C2B31F503A60007D39C4 /* waterfall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3715C2AE1F5039AF007D39C4 /* waterfall.jpg */; };
+		3715C2B41F503A60007D39C4 /* daisies.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3715C2AB1F5039AE007D39C4 /* daisies.jpg */; };
 		371E236D1E042E1D00A29425 /* sample.mov in Resources */ = {isa = PBXBuildFile; fileRef = 371E236C1E042E1D00A29425 /* sample.mov */; };
 		373BFAEE1DFB003800BB7509 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E97D1DF1B8E40064CC82 /* AppDelegate.swift */; };
 		373BFAEF1DFB003800BB7509 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E97F1DF1B8FC0064CC82 /* ViewController.swift */; };
@@ -17,8 +22,6 @@
 		373BFAF41DFB003800BB7509 /* EffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9A11DF1B9C70064CC82 /* EffectViewController.swift */; };
 		373BFAF51DFB003800BB7509 /* ColorsAndFontsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771EA001DF1BB090064CC82 /* ColorsAndFontsViewController.swift */; };
 		373BFAF61DFB003800BB7509 /* IncludesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9F31DF1BACC0064CC82 /* IncludesViewController.swift */; };
-		373BFAF71DFB003800BB7509 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E98B1DF1B97A0064CC82 /* SelectionViewController.swift */; };
-		373BFAF81DFB003800BB7509 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E98D1DF1B9820064CC82 /* ColorPickerViewController.swift */; };
 		373BFAF91DFB003800BB7509 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9A51DF1B9D10064CC82 /* ScrollViewController.swift */; };
 		373BFAFA1DFB003800BB7509 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9BD1DF1BA100064CC82 /* PageViewController.swift */; };
 		373BFAFB1DFB003800BB7509 /* CustomCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9911DF1B98F0064CC82 /* CustomCellViewController.swift */; };
@@ -28,7 +31,6 @@
 		373BFAFF1DFB003800BB7509 /* LinearGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9B51DF1B9FD0064CC82 /* LinearGradientViewController.swift */; };
 		373BFB001DFB003800BB7509 /* RadialGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9B91DF1BA070064CC82 /* RadialGradientViewController.swift */; };
 		373BFB011DFB003800BB7509 /* SizeClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9C11DF1BA200064CC82 /* SizeClassViewController.swift */; };
-		373BFB021DFB003800BB7509 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9C91DF1BA2C0064CC82 /* FormViewController.swift */; };
 		373BFB031DFB003800BB7509 /* SimpleStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771EA0B1DF1BB550064CC82 /* SimpleStackViewController.swift */; };
 		373BFB041DFB003800BB7509 /* NestedStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771EA0F1DF1BB720064CC82 /* NestedStackViewController.swift */; };
 		373BFB051DFB003800BB7509 /* PeriodicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3771E9DB1DF1BA920064CC82 /* PeriodicTableViewController.swift */; };
@@ -51,7 +53,6 @@
 		373BFB161DFB007B00BB7509 /* FirstRowView.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9F71DF1BAD70064CC82 /* FirstRowView.xml */; };
 		373BFB171DFB007B00BB7509 /* SecondRowView.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9F91DF1BADE0064CC82 /* SecondRowView.xml */; };
 		373BFB181DFB007B00BB7509 /* ThirdRowView.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9FB1DF1BAE70064CC82 /* ThirdRowView.xml */; };
-		373BFB191DFB007B00BB7509 /* ColorPickerViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E98E1DF1B9820064CC82 /* ColorPickerViewController.xml */; };
 		373BFB1A1DFB007B00BB7509 /* ScrollViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9A61DF1B9D10064CC82 /* ScrollViewController.xml */; };
 		373BFB1B1DFB007B00BB7509 /* PageViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9BE1DF1BA100064CC82 /* PageViewController.xml */; };
 		373BFB1C1DFB007B00BB7509 /* PharmacyCell.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9941DF1B9990064CC82 /* PharmacyCell.xml */; };
@@ -62,7 +63,6 @@
 		373BFB211DFB007B00BB7509 /* SizeClassViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9C21DF1BA200064CC82 /* SizeClassViewController.xml */; };
 		373BFB221DFB007B00BB7509 /* SizeClassViewController~horizontal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9C31DF1BA200064CC82 /* SizeClassViewController~horizontal.xml */; };
 		373BFB231DFB007B00BB7509 /* SizeClassViewController~vertical.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9C41DF1BA200064CC82 /* SizeClassViewController~vertical.xml */; };
-		373BFB241DFB007B00BB7509 /* FormViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9CA1DF1BA2C0064CC82 /* FormViewController.xml */; };
 		373BFB251DFB007B00BB7509 /* SimpleStackViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771EA0C1DF1BB550064CC82 /* SimpleStackViewController.xml */; };
 		373BFB261DFB007B00BB7509 /* NestedStackViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771EA101DF1BB720064CC82 /* NestedStackViewController.xml */; };
 		373BFB271DFB007B00BB7509 /* PeriodicTableViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9DC1DF1BA920064CC82 /* PeriodicTableViewController.xml */; };
@@ -71,10 +71,6 @@
 		373BFB2A1DFB007B00BB7509 /* WebViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9EC1DF1BAB50064CC82 /* WebViewController.xml */; };
 		373BFB2B1DFB007B00BB7509 /* MapViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9F01DF1BAC20064CC82 /* MapViewController.xml */; };
 		373BFB2C1DFB007B00BB7509 /* PlayerViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9E81DF1BAA80064CC82 /* PlayerViewController.xml */; };
-		373BFB2D1DFB007B00BB7509 /* chevy.png in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9CD1DF1BA4C0064CC82 /* chevy.png */; };
-		373BFB2E1DFB007B00BB7509 /* mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9CE1DF1BA4C0064CC82 /* mini.png */; };
-		373BFB2F1DFB007B00BB7509 /* vw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9CF1DF1BA4C0064CC82 /* vw.png */; };
-		373BFB301DFB007B00BB7509 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3763AD8E1DF714F600E88F7A /* sample.jpg */; };
 		373BFB311DFB007B00BB7509 /* sample.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3771E9D41DF1BA570064CC82 /* sample.txt */; };
 		373BFB331DFB007B00BB7509 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37BC06D91DF7225C00C46DF6 /* Icons.xcassets */; };
 		373BFB341DFB007B00BB7509 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3771E96F1DF1B8B00064CC82 /* Assets.xcassets */; };
@@ -163,6 +159,10 @@
 		376306881DF188F400357E68 /* UITableViewCell+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 3799BB341DF18539006E6B3D /* UITableViewCell+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		376306891DF188F400357E68 /* UICollectionViewFlowLayout+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 3799BB201DF18539006E6B3D /* UICollectionViewFlowLayout+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3763068A1DF188F400357E68 /* UIVisualEffectView+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 3799BB3C1DF18539006E6B3D /* UIVisualEffectView+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37659D4B1ECF56E30043C9C1 /* UITabBar+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 37659D491ECF56E30043C9C1 /* UITabBar+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37659D4C1ECF56E30043C9C1 /* UITabBar+Markup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37659D4A1ECF56E30043C9C1 /* UITabBar+Markup.m */; };
+		37659D531ECF59290043C9C1 /* BarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37659D511ECF59290043C9C1 /* BarsViewController.swift */; };
+		37659D541ECF59290043C9C1 /* BarsViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37659D521ECF59290043C9C1 /* BarsViewController.xml */; };
 		3771E93E1DF1B66A0064CC82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3771E93D1DF1B66A0064CC82 /* Assets.xcassets */; };
 		3771E9411DF1B66A0064CC82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3771E93F1DF1B66A0064CC82 /* LaunchScreen.storyboard */; };
 		3771E9461DF1B68A0064CC82 /* MarkupKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3799BAD91DF18389006E6B3D /* MarkupKit.framework */; };
@@ -195,12 +195,23 @@
 		3771EAA01DF1C2720064CC82 /* Styles2~vertical.json in Resources */ = {isa = PBXBuildFile; fileRef = 3771EA9C1DF1C2720064CC82 /* Styles2~vertical.json */; };
 		3771EAA11DF1C2D00064CC82 /* MarkupKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3799BAD91DF18389006E6B3D /* MarkupKit.framework */; };
 		3771EAA21DF1C2D00064CC82 /* MarkupKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3799BAD91DF18389006E6B3D /* MarkupKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		377A69751DFB105500E06CD1 /* SlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A69731DFB105500E06CD1 /* SlidersViewController.swift */; };
-		377A69761DFB105600E06CD1 /* SlidersViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 377A69741DFB105500E06CD1 /* SlidersViewController.xml */; };
+		37770B341ECF6DD900C5B491 /* UITabBarItem+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 37770B321ECF6DD900C5B491 /* UITabBarItem+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37770B351ECF6DD900C5B491 /* UITabBarItem+Markup.m in Sources */ = {isa = PBXBuildFile; fileRef = 37770B331ECF6DD900C5B491 /* UITabBarItem+Markup.m */; };
+		377B4CA51F60924800D2A729 /* UIImageView+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 377B4CA31F60924800D2A729 /* UIImageView+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377B4CA61F60924800D2A729 /* UIImageView+Markup.m in Sources */ = {isa = PBXBuildFile; fileRef = 377B4CA41F60924800D2A729 /* UIImageView+Markup.m */; };
+		378EFBC41F2A91C800F09CF7 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EFBC21F2A91C800F09CF7 /* AnimationViewController.swift */; };
+		378EFBC51F2A91C800F09CF7 /* AnimationViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 378EFBC31F2A91C800F09CF7 /* AnimationViewController.xml */; };
 		379214F51E40DECE00C56838 /* UIResponder+Markup.m in Sources */ = {isa = PBXBuildFile; fileRef = 379214F31E40DECE00C56838 /* UIResponder+Markup.m */; };
 		379214F61E40DECE00C56838 /* UIResponder+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 379214F41E40DECE00C56838 /* UIResponder+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3793AC861EE0A83500C686CF /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793AC851EE0A83500C686CF /* Row.swift */; };
 		379E4B481E4E4CC400FEDC2E /* UIGestureRecognizer+Markup.h in Headers */ = {isa = PBXBuildFile; fileRef = 379E4B461E4E4CC400FEDC2E /* UIGestureRecognizer+Markup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		379E4B491E4E4CC400FEDC2E /* UIGestureRecognizer+Markup.m in Sources */ = {isa = PBXBuildFile; fileRef = 379E4B471E4E4CC400FEDC2E /* UIGestureRecognizer+Markup.m */; };
+		37ABAF681F27BD850010A7B3 /* HorizontalAlignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABAF661F27BD850010A7B3 /* HorizontalAlignmentViewController.swift */; };
+		37ABAF691F27BD850010A7B3 /* HorizontalAlignmentViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ABAF671F27BD850010A7B3 /* HorizontalAlignmentViewController.xml */; };
+		37ABAF6C1F27BDA50010A7B3 /* VerticalAlignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABAF6A1F27BDA50010A7B3 /* VerticalAlignmentViewController.swift */; };
+		37ABAF6D1F27BDA50010A7B3 /* VerticalAlignmentViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37ABAF6B1F27BDA50010A7B3 /* VerticalAlignmentViewController.xml */; };
+		37BB5C871F472E680089139F /* LMTableViewHeaderFooterView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37BB5C851F472E680089139F /* LMTableViewHeaderFooterView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37BB5C881F472E680089139F /* LMTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5C861F472E680089139F /* LMTableViewHeaderFooterView.m */; };
 		37BC06D81DF7219500C46DF6 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37BC06D71DF7219500C46DF6 /* Icons.xcassets */; };
 		37E57ACF1DF191B1002984B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37E57ACE1DF191B1002984B9 /* Assets.xcassets */; };
 		37E57AD21DF191B1002984B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37E57AD01DF191B1002984B9 /* LaunchScreen.storyboard */; };
@@ -219,6 +230,7 @@
 		37E57B201DF1B1D8002984B9 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37E57B191DF1B1D8002984B9 /* sample.jpg */; };
 		37E57B221DF1B1D8002984B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E57B1B1DF1B1D8002984B9 /* ViewController.swift */; };
 		37E57B231DF1B1D8002984B9 /* ViewController.xml in Resources */ = {isa = PBXBuildFile; fileRef = 37E57B1C1DF1B1D8002984B9 /* ViewController.xml */; };
+		37F70CEC1ECE49A000F3A861 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F70CEE1ECE49A000F3A861 /* Localizable.strings */; };
 		37F899831E475E5700205A70 /* LMTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 37F899811E475E5700205A70 /* LMTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37F899841E475E5700205A70 /* LMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F899821E475E5700205A70 /* LMTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -320,10 +332,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3715C2AB1F5039AE007D39C4 /* daisies.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = daisies.jpg; sourceTree = "<group>"; };
+		3715C2AC1F5039AE007D39C4 /* lighthouse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lighthouse.jpg; sourceTree = "<group>"; };
+		3715C2AD1F5039AE007D39C4 /* orchard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = orchard.jpg; sourceTree = "<group>"; };
+		3715C2AE1F5039AF007D39C4 /* waterfall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = waterfall.jpg; sourceTree = "<group>"; };
+		3715C2AF1F5039AF007D39C4 /* quebec.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = quebec.jpg; sourceTree = "<group>"; };
 		371E236C1E042E1D00A29425 /* sample.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = sample.mov; sourceTree = "<group>"; };
 		37596C171EAA2C0600D427B4 /* UILabel+Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Markup.h"; sourceTree = "<group>"; };
 		37596C181EAA2C0600D427B4 /* UILabel+Markup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Markup.m"; sourceTree = "<group>"; };
-		3763AD8E1DF714F600E88F7A /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
+		37659D491ECF56E30043C9C1 /* UITabBar+Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+Markup.h"; sourceTree = "<group>"; };
+		37659D4A1ECF56E30043C9C1 /* UITabBar+Markup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+Markup.m"; sourceTree = "<group>"; };
+		37659D511ECF59290043C9C1 /* BarsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarsViewController.swift; sourceTree = "<group>"; };
+		37659D521ECF59290043C9C1 /* BarsViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BarsViewController.xml; sourceTree = "<group>"; };
 		3771E9341DF1B66A0064CC82 /* MarkupKitSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkupKitSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3771E93D1DF1B66A0064CC82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3771E9401DF1B66A0064CC82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -349,9 +369,6 @@
 		3771E9841DF1B9460064CC82 /* RadioButtonViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RadioButtonViewController.xml; sourceTree = "<group>"; };
 		3771E9871DF1B9580064CC82 /* CheckboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxViewController.swift; sourceTree = "<group>"; };
 		3771E9881DF1B9580064CC82 /* CheckboxViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CheckboxViewController.xml; sourceTree = "<group>"; };
-		3771E98B1DF1B97A0064CC82 /* SelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
-		3771E98D1DF1B9820064CC82 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
-		3771E98E1DF1B9820064CC82 /* ColorPickerViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ColorPickerViewController.xml; sourceTree = "<group>"; };
 		3771E9911DF1B98F0064CC82 /* CustomCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellViewController.swift; sourceTree = "<group>"; };
 		3771E9931DF1B9990064CC82 /* PharmacyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PharmacyCell.swift; sourceTree = "<group>"; };
 		3771E9941DF1B9990064CC82 /* PharmacyCell.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PharmacyCell.xml; sourceTree = "<group>"; };
@@ -376,11 +393,6 @@
 		3771E9C21DF1BA200064CC82 /* SizeClassViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SizeClassViewController.xml; sourceTree = "<group>"; };
 		3771E9C31DF1BA200064CC82 /* SizeClassViewController~horizontal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SizeClassViewController~horizontal.xml"; sourceTree = "<group>"; };
 		3771E9C41DF1BA200064CC82 /* SizeClassViewController~vertical.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SizeClassViewController~vertical.xml"; sourceTree = "<group>"; };
-		3771E9C91DF1BA2C0064CC82 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
-		3771E9CA1DF1BA2C0064CC82 /* FormViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FormViewController.xml; sourceTree = "<group>"; };
-		3771E9CD1DF1BA4C0064CC82 /* chevy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevy.png; sourceTree = "<group>"; };
-		3771E9CE1DF1BA4C0064CC82 /* mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mini.png; sourceTree = "<group>"; };
-		3771E9CF1DF1BA4C0064CC82 /* vw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vw.png; sourceTree = "<group>"; };
 		3771E9D41DF1BA570064CC82 /* sample.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.txt; sourceTree = "<group>"; };
 		3771E9D71DF1BA690064CC82 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		3771E9D91DF1BA720064CC82 /* Fonts.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fonts.plist; sourceTree = "<group>"; };
@@ -428,10 +440,15 @@
 		3771EA9A1DF1C2720064CC82 /* Styles2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Styles2.json; sourceTree = "<group>"; };
 		3771EA9B1DF1C2720064CC82 /* Styles2~horizontal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Styles2~horizontal.json"; sourceTree = "<group>"; };
 		3771EA9C1DF1C2720064CC82 /* Styles2~vertical.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Styles2~vertical.json"; sourceTree = "<group>"; };
-		377A69731DFB105500E06CD1 /* SlidersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidersViewController.swift; sourceTree = "<group>"; };
-		377A69741DFB105500E06CD1 /* SlidersViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SlidersViewController.xml; sourceTree = "<group>"; };
+		37770B321ECF6DD900C5B491 /* UITabBarItem+Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+Markup.h"; sourceTree = "<group>"; };
+		37770B331ECF6DD900C5B491 /* UITabBarItem+Markup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+Markup.m"; sourceTree = "<group>"; };
+		377B4CA31F60924800D2A729 /* UIImageView+Markup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Markup.h"; sourceTree = "<group>"; };
+		377B4CA41F60924800D2A729 /* UIImageView+Markup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Markup.m"; sourceTree = "<group>"; };
+		378EFBC21F2A91C800F09CF7 /* AnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
+		378EFBC31F2A91C800F09CF7 /* AnimationViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AnimationViewController.xml; sourceTree = "<group>"; };
 		379214F31E40DECE00C56838 /* UIResponder+Markup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Markup.m"; sourceTree = "<group>"; };
 		379214F41E40DECE00C56838 /* UIResponder+Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Markup.h"; sourceTree = "<group>"; };
+		3793AC851EE0A83500C686CF /* Row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
 		3799BAD91DF18389006E6B3D /* MarkupKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarkupKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3799BADC1DF18389006E6B3D /* MarkupKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkupKit.h; sourceTree = "<group>"; };
 		3799BADD1DF18389006E6B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -515,6 +532,12 @@
 		3799BB3D1DF18539006E6B3D /* UIVisualEffectView+Markup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+Markup.m"; sourceTree = "<group>"; };
 		379E4B461E4E4CC400FEDC2E /* UIGestureRecognizer+Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Markup.h"; sourceTree = "<group>"; };
 		379E4B471E4E4CC400FEDC2E /* UIGestureRecognizer+Markup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Markup.m"; sourceTree = "<group>"; };
+		37ABAF661F27BD850010A7B3 /* HorizontalAlignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalAlignmentViewController.swift; sourceTree = "<group>"; };
+		37ABAF671F27BD850010A7B3 /* HorizontalAlignmentViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = HorizontalAlignmentViewController.xml; sourceTree = "<group>"; };
+		37ABAF6A1F27BDA50010A7B3 /* VerticalAlignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalAlignmentViewController.swift; sourceTree = "<group>"; };
+		37ABAF6B1F27BDA50010A7B3 /* VerticalAlignmentViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VerticalAlignmentViewController.xml; sourceTree = "<group>"; };
+		37BB5C851F472E680089139F /* LMTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		37BB5C861F472E680089139F /* LMTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTableViewHeaderFooterView.m; sourceTree = "<group>"; };
 		37BC06D71DF7219500C46DF6 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		37BC06D91DF7225C00C46DF6 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		37E57AC51DF191B1002984B9 /* MarkupKitIntroduction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkupKitIntroduction.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -534,6 +557,7 @@
 		37E57B191DF1B1D8002984B9 /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
 		37E57B1B1DF1B1D8002984B9 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		37E57B1C1DF1B1D8002984B9 /* ViewController.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ViewController.xml; sourceTree = "<group>"; };
+		37F70CED1ECE49A000F3A861 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37F899811E475E5700205A70 /* LMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTableViewController.h; sourceTree = "<group>"; };
 		37F899821E475E5700205A70 /* LMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -593,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				3771E94B1DF1B71F0064CC82 /* AppDelegate.swift */,
+				3793AC851EE0A83500C686CF /* Row.swift */,
 				3771E94D1DF1B73C0064CC82 /* ViewController.swift */,
 				3771E94E1DF1B73C0064CC82 /* ViewController.xml */,
 				3771E9511DF1B7580064CC82 /* CustomCell.swift */,
@@ -619,25 +644,20 @@
 				3771E9841DF1B9460064CC82 /* RadioButtonViewController.xml */,
 				3771E9871DF1B9580064CC82 /* CheckboxViewController.swift */,
 				3771E9881DF1B9580064CC82 /* CheckboxViewController.xml */,
-				3771E9A91DF1B9DA0064CC82 /* GridViewController.swift */,
-				3771E9AA1DF1B9DA0064CC82 /* GridViewController.xml */,
+				37ABAF661F27BD850010A7B3 /* HorizontalAlignmentViewController.swift */,
+				37ABAF671F27BD850010A7B3 /* HorizontalAlignmentViewController.xml */,
+				37ABAF6A1F27BDA50010A7B3 /* VerticalAlignmentViewController.swift */,
+				37ABAF6B1F27BDA50010A7B3 /* VerticalAlignmentViewController.xml */,
 				3771EA071DF1BB1D0064CC82 /* AnchorViewController.swift */,
 				3771EA081DF1BB1D0064CC82 /* AnchorViewController.xml */,
-				3771EA001DF1BB090064CC82 /* ColorsAndFontsViewController.swift */,
-				3771EA011DF1BB090064CC82 /* ColorsAndFontsViewController.xml */,
-				3771E9FF1DF1BB090064CC82 /* ColorsAndFonts.json */,
-				3771EA021DF1BB090064CC82 /* ColorsAndFonts~vertical.json */,
-				3771E9F31DF1BACC0064CC82 /* IncludesViewController.swift */,
-				3771E9F41DF1BACC0064CC82 /* IncludesViewController.xml */,
-				3771E9FD1DF1BAFE0064CC82 /* ColumnView.xml */,
-				3771E9F71DF1BAD70064CC82 /* FirstRowView.xml */,
-				3771E9F91DF1BADE0064CC82 /* SecondRowView.xml */,
-				3771E9FB1DF1BAE70064CC82 /* ThirdRowView.xml */,
-				377A69731DFB105500E06CD1 /* SlidersViewController.swift */,
-				377A69741DFB105500E06CD1 /* SlidersViewController.xml */,
-				3771E98B1DF1B97A0064CC82 /* SelectionViewController.swift */,
-				3771E98D1DF1B9820064CC82 /* ColorPickerViewController.swift */,
-				3771E98E1DF1B9820064CC82 /* ColorPickerViewController.xml */,
+				3771E9A91DF1B9DA0064CC82 /* GridViewController.swift */,
+				3771E9AA1DF1B9DA0064CC82 /* GridViewController.xml */,
+				3771EA0B1DF1BB550064CC82 /* SimpleStackViewController.swift */,
+				3771EA0C1DF1BB550064CC82 /* SimpleStackViewController.xml */,
+				3771EA0F1DF1BB720064CC82 /* NestedStackViewController.swift */,
+				3771EA101DF1BB720064CC82 /* NestedStackViewController.xml */,
+				3771E9DB1DF1BA920064CC82 /* PeriodicTableViewController.swift */,
+				3771E9DC1DF1BA920064CC82 /* PeriodicTableViewController.xml */,
 				3771E9A51DF1B9D10064CC82 /* ScrollViewController.swift */,
 				3771E9A61DF1B9D10064CC82 /* ScrollViewController.xml */,
 				3771E9BD1DF1BA100064CC82 /* PageViewController.swift */,
@@ -649,24 +669,6 @@
 				3771E9AE1DF1B9E70064CC82 /* CustomSectionViewController.xml */,
 				3771E9B11DF1B9F10064CC82 /* CustomComponentViewController.swift */,
 				3771E9B21DF1B9F10064CC82 /* CustomComponentViewController.xml */,
-				3771E9A11DF1B9C70064CC82 /* EffectViewController.swift */,
-				3771E9A21DF1B9C70064CC82 /* EffectViewController.xml */,
-				3771E9B51DF1B9FD0064CC82 /* LinearGradientViewController.swift */,
-				3771E9B61DF1B9FD0064CC82 /* LinearGradientViewController.xml */,
-				3771E9B91DF1BA070064CC82 /* RadialGradientViewController.swift */,
-				3771E9BA1DF1BA070064CC82 /* RadialGradientViewController.xml */,
-				3771E9C11DF1BA200064CC82 /* SizeClassViewController.swift */,
-				3771E9C21DF1BA200064CC82 /* SizeClassViewController.xml */,
-				3771E9C31DF1BA200064CC82 /* SizeClassViewController~horizontal.xml */,
-				3771E9C41DF1BA200064CC82 /* SizeClassViewController~vertical.xml */,
-				3771E9C91DF1BA2C0064CC82 /* FormViewController.swift */,
-				3771E9CA1DF1BA2C0064CC82 /* FormViewController.xml */,
-				3771EA0B1DF1BB550064CC82 /* SimpleStackViewController.swift */,
-				3771EA0C1DF1BB550064CC82 /* SimpleStackViewController.xml */,
-				3771EA0F1DF1BB720064CC82 /* NestedStackViewController.swift */,
-				3771EA101DF1BB720064CC82 /* NestedStackViewController.xml */,
-				3771E9DB1DF1BA920064CC82 /* PeriodicTableViewController.swift */,
-				3771E9DC1DF1BA920064CC82 /* PeriodicTableViewController.xml */,
 				3771E9DF1DF1BA9C0064CC82 /* CollectionViewController.swift */,
 				3771E9E01DF1BA9C0064CC82 /* CollectionViewController.xml */,
 				3771E9E11DF1BA9C0064CC82 /* ColorCell.swift */,
@@ -677,11 +679,36 @@
 				3771E9F01DF1BAC20064CC82 /* MapViewController.xml */,
 				3771E9E71DF1BAA80064CC82 /* PlayerViewController.swift */,
 				3771E9E81DF1BAA80064CC82 /* PlayerViewController.xml */,
-				3771E9CD1DF1BA4C0064CC82 /* chevy.png */,
-				3771E9CE1DF1BA4C0064CC82 /* mini.png */,
-				3771E9CF1DF1BA4C0064CC82 /* vw.png */,
-				3763AD8E1DF714F600E88F7A /* sample.jpg */,
+				37659D511ECF59290043C9C1 /* BarsViewController.swift */,
+				37659D521ECF59290043C9C1 /* BarsViewController.xml */,
+				3771E9A11DF1B9C70064CC82 /* EffectViewController.swift */,
+				3771E9A21DF1B9C70064CC82 /* EffectViewController.xml */,
+				3771E9B51DF1B9FD0064CC82 /* LinearGradientViewController.swift */,
+				3771E9B61DF1B9FD0064CC82 /* LinearGradientViewController.xml */,
+				3771E9B91DF1BA070064CC82 /* RadialGradientViewController.swift */,
+				3771E9BA1DF1BA070064CC82 /* RadialGradientViewController.xml */,
+				378EFBC21F2A91C800F09CF7 /* AnimationViewController.swift */,
+				378EFBC31F2A91C800F09CF7 /* AnimationViewController.xml */,
+				3771E9C11DF1BA200064CC82 /* SizeClassViewController.swift */,
+				3771E9C21DF1BA200064CC82 /* SizeClassViewController.xml */,
+				3771E9C31DF1BA200064CC82 /* SizeClassViewController~horizontal.xml */,
+				3771E9C41DF1BA200064CC82 /* SizeClassViewController~vertical.xml */,
+				3771EA001DF1BB090064CC82 /* ColorsAndFontsViewController.swift */,
+				3771EA011DF1BB090064CC82 /* ColorsAndFontsViewController.xml */,
+				3771E9FF1DF1BB090064CC82 /* ColorsAndFonts.json */,
+				3771EA021DF1BB090064CC82 /* ColorsAndFonts~vertical.json */,
+				3771E9F31DF1BACC0064CC82 /* IncludesViewController.swift */,
+				3771E9F41DF1BACC0064CC82 /* IncludesViewController.xml */,
+				3771E9FD1DF1BAFE0064CC82 /* ColumnView.xml */,
+				3771E9F71DF1BAD70064CC82 /* FirstRowView.xml */,
+				3771E9F91DF1BADE0064CC82 /* SecondRowView.xml */,
+				3771E9FB1DF1BAE70064CC82 /* ThirdRowView.xml */,
 				3771E9D41DF1BA570064CC82 /* sample.txt */,
+				3715C2AD1F5039AE007D39C4 /* orchard.jpg */,
+				3715C2AF1F5039AF007D39C4 /* quebec.jpg */,
+				3715C2AC1F5039AE007D39C4 /* lighthouse.jpg */,
+				3715C2AE1F5039AF007D39C4 /* waterfall.jpg */,
+				3715C2AB1F5039AE007D39C4 /* daisies.jpg */,
 				371E236C1E042E1D00A29425 /* sample.mov */,
 				37BC06D91DF7225C00C46DF6 /* Icons.xcassets */,
 				3771E96F1DF1B8B00064CC82 /* Assets.xcassets */,
@@ -765,6 +792,8 @@
 				3799BB131DF18539006E6B3D /* LMTableView.m */,
 				3799BB141DF18539006E6B3D /* LMTableViewCell.h */,
 				3799BB151DF18539006E6B3D /* LMTableViewCell.m */,
+				37BB5C851F472E680089139F /* LMTableViewHeaderFooterView.h */,
+				37BB5C861F472E680089139F /* LMTableViewHeaderFooterView.m */,
 				37F899811E475E5700205A70 /* LMTableViewController.h */,
 				37F899821E475E5700205A70 /* LMTableViewController.m */,
 				3799BAF61DF18539006E6B3D /* LMCollectionView.h */,
@@ -799,12 +828,18 @@
 				3799BB1D1DF18539006E6B3D /* UIActivityIndicatorView+Markup.m */,
 				37596C171EAA2C0600D427B4 /* UILabel+Markup.h */,
 				37596C181EAA2C0600D427B4 /* UILabel+Markup.m */,
+				377B4CA31F60924800D2A729 /* UIImageView+Markup.h */,
+				377B4CA41F60924800D2A729 /* UIImageView+Markup.m */,
 				3799BB261DF18539006E6B3D /* UIPickerView+Markup.h */,
 				3799BB271DF18539006E6B3D /* UIPickerView+Markup.m */,
 				3799BB281DF18539006E6B3D /* UIProgressView+Markup.h */,
 				3799BB291DF18539006E6B3D /* UIProgressView+Markup.m */,
 				3799BB2C1DF18539006E6B3D /* UISearchBar+Markup.h */,
 				3799BB2D1DF18539006E6B3D /* UISearchBar+Markup.m */,
+				37659D491ECF56E30043C9C1 /* UITabBar+Markup.h */,
+				37659D4A1ECF56E30043C9C1 /* UITabBar+Markup.m */,
+				37770B321ECF6DD900C5B491 /* UITabBarItem+Markup.h */,
+				37770B331ECF6DD900C5B491 /* UITabBarItem+Markup.m */,
 				3799BB381DF18539006E6B3D /* UIToolbar+Markup.h */,
 				3799BB391DF18539006E6B3D /* UIToolbar+Markup.m */,
 				3799BB301DF18539006E6B3D /* UIStackView+Markup.h */,
@@ -863,6 +898,7 @@
 				37E57B081DF1B181002984B9 /* Assets.xcassets */,
 				37E57B0A1DF1B181002984B9 /* LaunchScreen.storyboard */,
 				37E57B0D1DF1B181002984B9 /* Info.plist */,
+				37F70CEE1ECE49A000F3A861 /* Localizable.strings */,
 			);
 			path = MarkupKitDemo;
 			sourceTree = "<group>";
@@ -891,6 +927,7 @@
 				376306711DF188F400357E68 /* LMPlayerView.h in Headers */,
 				376306721DF188F400357E68 /* LMTableView.h in Headers */,
 				376306731DF188F400357E68 /* LMTableViewCell.h in Headers */,
+				37BB5C871F472E680089139F /* LMTableViewHeaderFooterView.h in Headers */,
 				37F899831E475E5700205A70 /* LMTableViewController.h in Headers */,
 				376306741DF188F400357E68 /* LMCollectionView.h in Headers */,
 				376306751DF188F400357E68 /* LMCollectionViewCell.h in Headers */,
@@ -908,9 +945,12 @@
 				3763067F1DF188F400357E68 /* UITextField+Markup.h in Headers */,
 				376306801DF188F400357E68 /* UIActivityIndicatorView+Markup.h in Headers */,
 				37596C191EAA2C0600D427B4 /* UILabel+Markup.h in Headers */,
+				377B4CA51F60924800D2A729 /* UIImageView+Markup.h in Headers */,
 				376306811DF188F400357E68 /* UIPickerView+Markup.h in Headers */,
 				376306821DF188F400357E68 /* UIProgressView+Markup.h in Headers */,
 				376306831DF188F400357E68 /* UISearchBar+Markup.h in Headers */,
+				37659D4B1ECF56E30043C9C1 /* UITabBar+Markup.h in Headers */,
+				37770B341ECF6DD900C5B491 /* UITabBarItem+Markup.h in Headers */,
 				376306841DF188F400357E68 /* UIToolbar+Markup.h in Headers */,
 				376306851DF188F400357E68 /* UIStackView+Markup.h in Headers */,
 				376306861DF188F400357E68 /* UIScrollView+Markup.h in Headers */,
@@ -1044,7 +1084,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					3771E9331DF1B66A0064CC82 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1128,8 +1168,31 @@
 				373BFB0B1DFB007B00BB7509 /* ViewController.xml in Resources */,
 				373BFB0C1DFB007B00BB7509 /* RadioButtonViewController.xml in Resources */,
 				373BFB0D1DFB007B00BB7509 /* CheckboxViewController.xml in Resources */,
-				373BFB0E1DFB007B00BB7509 /* GridViewController.xml in Resources */,
+				37ABAF691F27BD850010A7B3 /* HorizontalAlignmentViewController.xml in Resources */,
+				37ABAF6D1F27BDA50010A7B3 /* VerticalAlignmentViewController.xml in Resources */,
 				373BFB0F1DFB007B00BB7509 /* AnchorViewController.xml in Resources */,
+				373BFB0E1DFB007B00BB7509 /* GridViewController.xml in Resources */,
+				373BFB251DFB007B00BB7509 /* SimpleStackViewController.xml in Resources */,
+				373BFB261DFB007B00BB7509 /* NestedStackViewController.xml in Resources */,
+				373BFB271DFB007B00BB7509 /* PeriodicTableViewController.xml in Resources */,
+				373BFB1A1DFB007B00BB7509 /* ScrollViewController.xml in Resources */,
+				373BFB1B1DFB007B00BB7509 /* PageViewController.xml in Resources */,
+				373BFB1C1DFB007B00BB7509 /* PharmacyCell.xml in Resources */,
+				373BFB1D1DFB007B00BB7509 /* CustomSectionViewController.xml in Resources */,
+				373BFB1E1DFB007B00BB7509 /* CustomComponentViewController.xml in Resources */,
+				373BFB281DFB007B00BB7509 /* CollectionViewController.xml in Resources */,
+				373BFB291DFB007B00BB7509 /* ColorCell.xml in Resources */,
+				373BFB2A1DFB007B00BB7509 /* WebViewController.xml in Resources */,
+				373BFB2B1DFB007B00BB7509 /* MapViewController.xml in Resources */,
+				373BFB2C1DFB007B00BB7509 /* PlayerViewController.xml in Resources */,
+				37659D541ECF59290043C9C1 /* BarsViewController.xml in Resources */,
+				373BFB101DFB007B00BB7509 /* EffectViewController.xml in Resources */,
+				373BFB1F1DFB007B00BB7509 /* LinearGradientViewController.xml in Resources */,
+				373BFB201DFB007B00BB7509 /* RadialGradientViewController.xml in Resources */,
+				378EFBC51F2A91C800F09CF7 /* AnimationViewController.xml in Resources */,
+				373BFB211DFB007B00BB7509 /* SizeClassViewController.xml in Resources */,
+				373BFB221DFB007B00BB7509 /* SizeClassViewController~horizontal.xml in Resources */,
+				373BFB231DFB007B00BB7509 /* SizeClassViewController~vertical.xml in Resources */,
 				373BFB111DFB007B00BB7509 /* ColorsAndFontsViewController.xml in Resources */,
 				373BFB121DFB007B00BB7509 /* ColorsAndFonts.json in Resources */,
 				373BFB131DFB007B00BB7509 /* ColorsAndFonts~vertical.json in Resources */,
@@ -1137,35 +1200,14 @@
 				373BFB151DFB007B00BB7509 /* ColumnView.xml in Resources */,
 				373BFB161DFB007B00BB7509 /* FirstRowView.xml in Resources */,
 				373BFB171DFB007B00BB7509 /* SecondRowView.xml in Resources */,
-				371E236D1E042E1D00A29425 /* sample.mov in Resources */,
 				373BFB181DFB007B00BB7509 /* ThirdRowView.xml in Resources */,
-				377A69761DFB105600E06CD1 /* SlidersViewController.xml in Resources */,
-				373BFB191DFB007B00BB7509 /* ColorPickerViewController.xml in Resources */,
-				373BFB1A1DFB007B00BB7509 /* ScrollViewController.xml in Resources */,
-				373BFB1B1DFB007B00BB7509 /* PageViewController.xml in Resources */,
-				373BFB1C1DFB007B00BB7509 /* PharmacyCell.xml in Resources */,
-				373BFB1D1DFB007B00BB7509 /* CustomSectionViewController.xml in Resources */,
-				373BFB1E1DFB007B00BB7509 /* CustomComponentViewController.xml in Resources */,
-				373BFB101DFB007B00BB7509 /* EffectViewController.xml in Resources */,
-				373BFB1F1DFB007B00BB7509 /* LinearGradientViewController.xml in Resources */,
-				373BFB201DFB007B00BB7509 /* RadialGradientViewController.xml in Resources */,
-				373BFB211DFB007B00BB7509 /* SizeClassViewController.xml in Resources */,
-				373BFB221DFB007B00BB7509 /* SizeClassViewController~horizontal.xml in Resources */,
-				373BFB231DFB007B00BB7509 /* SizeClassViewController~vertical.xml in Resources */,
-				373BFB241DFB007B00BB7509 /* FormViewController.xml in Resources */,
-				373BFB251DFB007B00BB7509 /* SimpleStackViewController.xml in Resources */,
-				373BFB261DFB007B00BB7509 /* NestedStackViewController.xml in Resources */,
-				373BFB271DFB007B00BB7509 /* PeriodicTableViewController.xml in Resources */,
-				373BFB281DFB007B00BB7509 /* CollectionViewController.xml in Resources */,
-				373BFB291DFB007B00BB7509 /* ColorCell.xml in Resources */,
-				373BFB2A1DFB007B00BB7509 /* WebViewController.xml in Resources */,
-				373BFB2B1DFB007B00BB7509 /* MapViewController.xml in Resources */,
-				373BFB2C1DFB007B00BB7509 /* PlayerViewController.xml in Resources */,
-				373BFB2D1DFB007B00BB7509 /* chevy.png in Resources */,
-				373BFB2E1DFB007B00BB7509 /* mini.png in Resources */,
-				373BFB2F1DFB007B00BB7509 /* vw.png in Resources */,
-				373BFB301DFB007B00BB7509 /* sample.jpg in Resources */,
 				373BFB311DFB007B00BB7509 /* sample.txt in Resources */,
+				3715C2B01F503A60007D39C4 /* orchard.jpg in Resources */,
+				3715C2B11F503A60007D39C4 /* quebec.jpg in Resources */,
+				3715C2B21F503A60007D39C4 /* lighthouse.jpg in Resources */,
+				3715C2B31F503A60007D39C4 /* waterfall.jpg in Resources */,
+				3715C2B41F503A60007D39C4 /* daisies.jpg in Resources */,
+				371E236D1E042E1D00A29425 /* sample.mov in Resources */,
 				373BFB331DFB007B00BB7509 /* Icons.xcassets in Resources */,
 				373BFB341DFB007B00BB7509 /* Assets.xcassets in Resources */,
 				373BFB351DFB007B00BB7509 /* LaunchScreen.storyboard in Resources */,
@@ -1221,6 +1263,7 @@
 				37BC06D81DF7219500C46DF6 /* Icons.xcassets in Resources */,
 				37E57B091DF1B181002984B9 /* Assets.xcassets in Resources */,
 				37E57B0C1DF1B181002984B9 /* LaunchScreen.storyboard in Resources */,
+				37F70CEC1ECE49A000F3A861 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,6 +1275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3771E94C1DF1B71F0064CC82 /* AppDelegate.swift in Sources */,
+				3793AC861EE0A83500C686CF /* Row.swift in Sources */,
 				3771E94F1DF1B73C0064CC82 /* ViewController.swift in Sources */,
 				3771E9531DF1B7580064CC82 /* CustomCell.swift in Sources */,
 				3771E9571DF1B77D0064CC82 /* DetailViewController.swift in Sources */,
@@ -1246,32 +1290,32 @@
 				373BFAEF1DFB003800BB7509 /* ViewController.swift in Sources */,
 				373BFAF01DFB003800BB7509 /* RadioButtonViewController.swift in Sources */,
 				373BFAF11DFB003800BB7509 /* CheckboxViewController.swift in Sources */,
-				373BFAF21DFB003800BB7509 /* GridViewController.swift in Sources */,
+				37ABAF681F27BD850010A7B3 /* HorizontalAlignmentViewController.swift in Sources */,
+				37ABAF6C1F27BDA50010A7B3 /* VerticalAlignmentViewController.swift in Sources */,
 				373BFAF31DFB003800BB7509 /* AnchorViewController.swift in Sources */,
-				373BFAF51DFB003800BB7509 /* ColorsAndFontsViewController.swift in Sources */,
-				373BFAF61DFB003800BB7509 /* IncludesViewController.swift in Sources */,
-				377A69751DFB105500E06CD1 /* SlidersViewController.swift in Sources */,
-				373BFAF71DFB003800BB7509 /* SelectionViewController.swift in Sources */,
-				373BFAF81DFB003800BB7509 /* ColorPickerViewController.swift in Sources */,
+				373BFAF21DFB003800BB7509 /* GridViewController.swift in Sources */,
+				373BFB031DFB003800BB7509 /* SimpleStackViewController.swift in Sources */,
+				373BFB041DFB003800BB7509 /* NestedStackViewController.swift in Sources */,
+				373BFB051DFB003800BB7509 /* PeriodicTableViewController.swift in Sources */,
 				373BFAF91DFB003800BB7509 /* ScrollViewController.swift in Sources */,
 				373BFAFA1DFB003800BB7509 /* PageViewController.swift in Sources */,
 				373BFAFB1DFB003800BB7509 /* CustomCellViewController.swift in Sources */,
 				373BFAFC1DFB003800BB7509 /* PharmacyCell.swift in Sources */,
 				373BFAFD1DFB003800BB7509 /* CustomSectionViewController.swift in Sources */,
 				373BFAFE1DFB003800BB7509 /* CustomComponentViewController.swift in Sources */,
-				373BFAF41DFB003800BB7509 /* EffectViewController.swift in Sources */,
-				373BFAFF1DFB003800BB7509 /* LinearGradientViewController.swift in Sources */,
-				373BFB001DFB003800BB7509 /* RadialGradientViewController.swift in Sources */,
-				373BFB011DFB003800BB7509 /* SizeClassViewController.swift in Sources */,
-				373BFB021DFB003800BB7509 /* FormViewController.swift in Sources */,
-				373BFB031DFB003800BB7509 /* SimpleStackViewController.swift in Sources */,
-				373BFB041DFB003800BB7509 /* NestedStackViewController.swift in Sources */,
-				373BFB051DFB003800BB7509 /* PeriodicTableViewController.swift in Sources */,
 				373BFB061DFB003800BB7509 /* CollectionViewController.swift in Sources */,
 				373BFB071DFB003800BB7509 /* ColorCell.swift in Sources */,
 				373BFB081DFB003800BB7509 /* WebViewController.swift in Sources */,
 				373BFB091DFB003800BB7509 /* MapViewController.swift in Sources */,
 				373BFB0A1DFB003800BB7509 /* PlayerViewController.swift in Sources */,
+				37659D531ECF59290043C9C1 /* BarsViewController.swift in Sources */,
+				373BFAF41DFB003800BB7509 /* EffectViewController.swift in Sources */,
+				373BFAFF1DFB003800BB7509 /* LinearGradientViewController.swift in Sources */,
+				373BFB001DFB003800BB7509 /* RadialGradientViewController.swift in Sources */,
+				378EFBC41F2A91C800F09CF7 /* AnimationViewController.swift in Sources */,
+				373BFB011DFB003800BB7509 /* SizeClassViewController.swift in Sources */,
+				373BFAF51DFB003800BB7509 /* ColorsAndFontsViewController.swift in Sources */,
+				373BFAF61DFB003800BB7509 /* IncludesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1304,6 +1348,7 @@
 				376306491DF188BF00357E68 /* LMPlayerView.m in Sources */,
 				3763064A1DF188BF00357E68 /* LMTableView.m in Sources */,
 				3763064B1DF188BF00357E68 /* LMTableViewCell.m in Sources */,
+				37BB5C881F472E680089139F /* LMTableViewHeaderFooterView.m in Sources */,
 				37F899841E475E5700205A70 /* LMTableViewController.m in Sources */,
 				3763064C1DF188BF00357E68 /* LMCollectionView.m in Sources */,
 				3763064D1DF188BF00357E68 /* LMCollectionViewCell.m in Sources */,
@@ -1321,9 +1366,12 @@
 				376306571DF188BF00357E68 /* UITextField+Markup.m in Sources */,
 				376306581DF188BF00357E68 /* UIActivityIndicatorView+Markup.m in Sources */,
 				37596C1A1EAA2C0600D427B4 /* UILabel+Markup.m in Sources */,
+				377B4CA61F60924800D2A729 /* UIImageView+Markup.m in Sources */,
 				376306591DF188BF00357E68 /* UIPickerView+Markup.m in Sources */,
 				3763065A1DF188BF00357E68 /* UIProgressView+Markup.m in Sources */,
 				3763065B1DF188BF00357E68 /* UISearchBar+Markup.m in Sources */,
+				37659D4C1ECF56E30043C9C1 /* UITabBar+Markup.m in Sources */,
+				37770B351ECF6DD900C5B491 /* UITabBarItem+Markup.m in Sources */,
 				3763065C1DF188BF00357E68 /* UIToolbar+Markup.m in Sources */,
 				3763065D1DF188BF00357E68 /* UIStackView+Markup.m in Sources */,
 				3763065E1DF188BF00357E68 /* UIScrollView+Markup.m in Sources */,
@@ -1448,6 +1496,14 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		37F70CEE1ECE49A000F3A861 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37F70CED1ECE49A000F3A861 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1494,7 +1550,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1503,7 +1559,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1545,14 +1601,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = org.markupkit.MarkupKitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1601,7 +1657,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitExamples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1610,7 +1666,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1652,14 +1708,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitExamples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = org.markupkit.MarkupKitExamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1708,7 +1764,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1717,7 +1773,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1759,14 +1815,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = org.markupkit.MarkupKitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1819,7 +1875,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1874,7 +1930,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = org.markupkit.MarkupKit;
@@ -1891,12 +1947,18 @@
 		37E3BB381DF1814000878727 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1916,12 +1978,18 @@
 		37E3BB391DF1814000878727 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1980,7 +2048,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitIntroduction/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1989,7 +2057,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2031,14 +2099,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitIntroduction/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = org.markupkit.MarkupKitIntroduction;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2087,7 +2155,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2096,7 +2164,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2138,14 +2206,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MarkupKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = org.markupkit.MarkupKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

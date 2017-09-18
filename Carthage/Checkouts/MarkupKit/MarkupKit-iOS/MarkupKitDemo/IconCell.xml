@@ -15,5 +15,10 @@ limitations under the License.
 -->
 
 <root>
-    <UIImageView id="imageView" contentMode="scaleAspectFit" tintColor="black"/>
+    <UIImageView id="imageView" contentMode="scaleAspectFit" tintColor="black">
+        <?case tvOS?>
+        <?overlayContent?>
+        <UILabel id="label" textColor="red" textAlignment="center" font="System-Bold 24"/>
+        <?end?>
+    </UIImageView>
 </root>

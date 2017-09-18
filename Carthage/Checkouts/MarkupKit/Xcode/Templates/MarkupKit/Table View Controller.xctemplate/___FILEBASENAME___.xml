@@ -8,7 +8,7 @@
 ___COPYRIGHT___
 -->
 
-<LMTableView>
+<LMTableView style="groupedTableView">
     <!-- 
     TODO: Declare table view content 
     -->

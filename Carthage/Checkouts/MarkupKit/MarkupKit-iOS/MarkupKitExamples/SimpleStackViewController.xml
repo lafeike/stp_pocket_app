@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMLayerView backgroundColor="#ffffff">
+<LMLayerView backgroundColor="white">
     <UIStackView axis="vertical" layoutMarginsRelativeArrangement="true" layoutMarginTop="20" layoutMarginBottom="20" spacing="8">
         <UILabel text="Flowers" font="body" textAlignment="center"/>
 

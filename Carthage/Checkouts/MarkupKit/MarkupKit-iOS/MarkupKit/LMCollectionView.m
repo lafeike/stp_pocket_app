@@ -13,6 +13,7 @@
 //
 
 #import "LMCollectionView.h"
+#import "UIView+Markup.h"
 
 static NSString * const kBackgroundViewTarget = @"backgroundView";
 
@@ -46,6 +47,10 @@ typedef enum {
 {
     if ([target isEqual:kBackgroundViewTarget]) {
         _elementDisposition = kElementBackgroundView;
+    } else {
+        _elementDisposition = INT_MAX;
+
+        [super processMarkupInstruction:target data:data];
     }
 }
 
@@ -59,6 +64,12 @@ typedef enum {
 
         case kElementBackgroundView: {
             [self setBackgroundView:view];
+
+            break;
+        }
+
+        default: {
+            [super appendMarkupElementView:view];
 
             break;
         }

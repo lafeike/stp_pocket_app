@@ -8,8 +8,8 @@
 ___COPYRIGHT___
 -->
 
-<LMColumnView>
+<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="white">
     <!-- 
     TODO: Declare view content 
     -->
-</LMColumnView>
+</LMLayerView>

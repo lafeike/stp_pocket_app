@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The list of subviews whose sizes and positions are managed by the layout view.
  */
-@property (nonatomic, readonly, copy) NSArray<UIView *> *arrangedSubviews;
+@property (nonatomic, readonly, copy) NSArray<__kindof UIView *> *arrangedSubviews;
 
 /**
  * Adds an arranged subview.
@@ -56,6 +56,26 @@ NS_ASSUME_NONNULL_BEGIN
  * The default value is <code>YES</code>.
  */
 @property (nonatomic) BOOL layoutMarginsRelativeArrangement;
+
+/**
+ * The amount of space to reserve at the top of the view. The default is 0.
+ */
+@property (nonatomic) CGFloat topSpacing;
+
+/**
+ * The amount of space to reserve at the bottom of the view. The default is 0.
+ */
+@property (nonatomic) CGFloat bottomSpacing;
+
+/**
+ * The amount of space to reserve at the view's leading edge. The default is 0.
+ */
+@property (nonatomic) CGFloat leadingSpacing;
+
+/**
+ * The amount of space to reserve at the view's trailing edge. The default is 0.
+ */
+@property (nonatomic) CGFloat trailingSpacing;
 
 @end
 

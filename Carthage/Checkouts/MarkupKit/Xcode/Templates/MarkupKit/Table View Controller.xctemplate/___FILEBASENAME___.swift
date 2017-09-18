@@ -10,6 +10,10 @@ import UIKit
 import MarkupKit
 
 class ___FILEBASENAMEASIDENTIFIER___: LMTableViewController {
+    deinit {
+        unbindAll()
+    }
+
     override func loadView() {
         view = LMViewBuilder.view(withName:"___FILEBASENAMEASIDENTIFIER___", owner: self, root: nil)
 

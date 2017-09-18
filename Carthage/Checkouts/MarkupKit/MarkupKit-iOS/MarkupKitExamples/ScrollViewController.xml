@@ -14,24 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="#ffffff">
-    <LMScrollView fitToWidth="true">
-        <LMColumnView layoutMargins="10">
+<LMAnchorView layoutMarginsRelativeArrangement="false" backgroundColor="white">
+    <LMScrollView anchor="all" fitToWidth="true">
+        <?refreshControl?>
+        <UIRefreshControl onValueChanged="refresh:"/>
+
+        <LMColumnView layoutMargins="10" spacing="0">
             <UILabel id="label1" numberOfLines="0" lineBreakMode="byWordWrapping"/>
             <UILabel id="label2" numberOfLines="0" lineBreakMode="byWordWrapping"/>
         </LMColumnView>
     </LMScrollView>
 
-    <LMColumnView>
-        <LMSpacer/>
-
-        <LMColumnView layoutMargins="20">
-            <UIButton style="systemButton" title="Press Me!"
-                backgroundColor="#ffffffee" contentEdgeInsets="16" clipsToBounds="true"
-                layer.borderColor="#808080"
-                layer.borderWidth="0.5"
-                layer.cornerRadius="6"
-                onPrimaryActionTriggered="showGreeting"/>
-        </LMColumnView>
+    <LMColumnView anchor="bottom, left, right" layoutMargins="20">
+        <UIButton style="systemButton" title="Press Me!"
+            backgroundColor="#ffffffee" contentEdgeInsets="16" clipsToBounds="true"
+            layer.borderWidth="0.5" layer.borderColor="#808080" layer.cornerRadius="6"
+            onPrimaryActionTriggered="showGreeting"/>
     </LMColumnView>
-</LMLayerView>
+</LMAnchorView>

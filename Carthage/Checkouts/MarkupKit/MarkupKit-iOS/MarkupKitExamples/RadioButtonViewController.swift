@@ -16,6 +16,8 @@ import UIKit
 import MarkupKit
 
 class RadioButtonViewController: UITableViewController {
+    let sizeSectionName = "sizes"
+
     override func loadView() {
         view = LMViewBuilder.view(withName: "RadioButtonViewController", owner: self, root: nil)
     }
@@ -24,5 +26,19 @@ class RadioButtonViewController: UITableViewController {
         super.viewDidLoad()
 
         title = "Radio Buttons"
+
+        tableView.setValue("L", forSection: tableView.section(withName: sizeSectionName))
+    }
+
+    @IBAction func submit() {
+        let value = tableView.value(forSection: tableView.section(withName: sizeSectionName)) as! String
+
+        let message = String(format: "You selected %@.", value)
+
+        let alertController = UIAlertController(title: "Submitted", message: message, preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+        present(alertController, animated: true)
     }
 }

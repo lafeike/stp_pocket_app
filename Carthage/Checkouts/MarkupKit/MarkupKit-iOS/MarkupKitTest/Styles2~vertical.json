@@ -1,16 +1,16 @@
 {
-    "row.first": {
-        "layer.borderColor": "#f0f0f0",
-        "layer.borderWidth": 8
+    "firstRow": {
+        "layer.borderWidth": 8,
+        "layer.borderColor": "#f0f0f0"
     },
 
-    "label.greeting": {
+    "secondRow": {
+        "layer.borderWidth": 8,
+        "layer.borderColor": "#00cc00"
+    },
+
+    "greetingLabel": {
         "font": "body",
         "textColor": "#00cc00"
-    },
-
-    "row.second": {
-        "layer.borderColor": "#00cc00",
-        "layer.borderWidth": 8
     }
 }

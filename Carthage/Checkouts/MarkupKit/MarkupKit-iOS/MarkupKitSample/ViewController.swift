@@ -25,7 +25,7 @@ class ViewController: LMTableViewController {
     @IBOutlet var footerSwitch: UISwitch!
 
     // Properties
-    var rows: [[String: AnyObject]]!
+    var rows: [Row]!
 
     let dynamicSectionName = "dynamic"
 
@@ -43,12 +43,12 @@ class ViewController: LMTableViewController {
 
         title = Bundle.main.localizedString(forKey: "title", value: nil, table: nil)
 
-        tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.self.description())
+        tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.description())
 
         // Load row list
-        let rowListURL = Bundle.main.url(forResource: "rows", withExtension: "json")
+        let jsonDecoder = JSONDecoder()
 
-        rows = (try! JSONSerialization.jsonObject(with: try! Data(contentsOf: rowListURL!))) as! [[String: AnyObject]]
+        rows = try! jsonDecoder.decode([Row].self, from: try! Data(contentsOf: Bundle.main.url(forResource: "rows", withExtension: "json")!))
     }
 
     // Button press handler
@@ -78,9 +78,9 @@ class ViewController: LMTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         if (tableView.name(forSection: indexPath.section) == dynamicSectionName) {
-            let customCell = tableView.dequeueReusableCell(withIdentifier: CustomCell.self.description()) as! CustomCell
+            let customCell = tableView.dequeueReusableCell(withIdentifier: CustomCell.description(), for: indexPath) as! CustomCell
 
-            customCell.content = rows[indexPath.row]
+            customCell.row = rows[indexPath.row]
 
             cell = customCell
         } else {
@@ -99,8 +99,8 @@ class ViewController: LMTableViewController {
 
             detailViewController.loadView()
 
-            detailViewController.headingLabel.text = row["heading"] as? String
-            detailViewController.detailLabel.text = row["detail"] as? String
+            detailViewController.headingLabel.text = row.heading
+            detailViewController.detailLabel.text = row.detail
 
             present(detailViewController, animated: true)
         } else {

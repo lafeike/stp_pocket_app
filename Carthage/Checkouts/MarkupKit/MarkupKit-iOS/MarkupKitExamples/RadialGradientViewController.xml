@@ -14,4 +14,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMRadialGradientView colors="#ff0000, #00ff00, #0000ff" locations="0.0, 0.5, 1.0"/>
+<LMRadialGradientView colors="#2c3e50, #3498db" locations="0.0, 1.0"/>

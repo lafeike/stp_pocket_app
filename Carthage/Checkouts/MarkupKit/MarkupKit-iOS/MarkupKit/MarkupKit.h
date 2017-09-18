@@ -36,6 +36,7 @@ FOUNDATION_EXPORT const unsigned char MarkupKitVersionString[];
 #import <MarkupKit/LMPageView.h>
 #import <MarkupKit/LMTableView.h>
 #import <MarkupKit/LMTableViewCell.h>
+#import <MarkupKit/LMTableViewHeaderFooterView.h>
 #import <MarkupKit/LMTableViewController.h>
 #import <MarkupKit/LMCollectionView.h>
 #import <MarkupKit/LMCollectionViewCell.h>
@@ -54,9 +55,12 @@ FOUNDATION_EXPORT const unsigned char MarkupKitVersionString[];
 #import <MarkupKit/UITextField+Markup.h>
 #import <MarkupKit/UIActivityIndicatorView+Markup.h>
 #import <MarkupKit/UILabel+Markup.h>
+#import <MarkupKit/UIImageView+Markup.h>
 #import <MarkupKit/UIPickerView+Markup.h>
 #import <MarkupKit/UIProgressView+Markup.h>
 #import <MarkupKit/UISearchBar+Markup.h>
+#import <MarkupKit/UITabBar+Markup.h>
+#import <MarkupKit/UITabBarItem+Markup.h>
 #import <MarkupKit/UIToolbar+Markup.h>
 #import <MarkupKit/UIStackView+Markup.h>
 #import <MarkupKit/UIScrollView+Markup.h>

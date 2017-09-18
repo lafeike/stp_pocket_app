@@ -16,7 +16,11 @@ import UIKit
 import MarkupKit
 
 class IconCell: LMCollectionViewCell {
-    var imageView: UIImageView!
+    #if os(tvOS)
+    @IBOutlet var label: UILabel!
+    #endif
+
+    @IBOutlet var imageView: UIImageView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)

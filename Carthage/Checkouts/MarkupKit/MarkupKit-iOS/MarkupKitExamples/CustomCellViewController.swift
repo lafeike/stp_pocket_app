@@ -15,7 +15,7 @@
 import UIKit
 
 class CustomCellViewController: UITableViewController {
-    var pharmacies: [[String: AnyObject]]!
+    var pharmacies: [[String: Any]]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +23,13 @@ class CustomCellViewController: UITableViewController {
         title = "Custom Cell View"
         
         // Configure table view
-        tableView.register(PharmacyCell.self, forCellReuseIdentifier: PharmacyCell.self.description())
+        tableView.register(PharmacyCell.self, forCellReuseIdentifier: PharmacyCell.description())
         tableView.estimatedRowHeight = 2
 
         // Load pharmacy list
         let pharmacyListURL = Bundle.main.url(forResource: "pharmacies", withExtension: "json")
 
-        pharmacies = try! JSONSerialization.jsonObject(with: try! Data(contentsOf: pharmacyListURL!)) as! [[String: AnyObject]]
+        pharmacies = try! JSONSerialization.jsonObject(with: try! Data(contentsOf: pharmacyListURL!)) as! [[String: Any]]
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,7 +47,7 @@ class CustomCellViewController: UITableViewController {
         let pharmacy = pharmacies[index]
 
         // Configure cell with pharmacy data
-        let cell = tableView.dequeueReusableCell(withIdentifier: PharmacyCell.self.description()) as! PharmacyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PharmacyCell.description(), for: indexPath) as! PharmacyCell
 
         cell.name = String(format: "%d. %@", index + 1, pharmacy["name"] as! String)
 

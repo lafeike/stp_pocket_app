@@ -4,7 +4,7 @@
 <dict>
 	<key>text</key>
 	<string>title1</string>
-	<key>text_vertical</key>
+	<key>verticalText</key>
 	<string>caption1</string>
 </dict>
 </plist>

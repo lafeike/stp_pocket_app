@@ -17,14 +17,65 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ * Horizontal alignment options.
+ */
+typedef NS_ENUM(NSInteger, LMHorizontalAlignment) {
+    /** Fill horizontal alignment. */
+    LMHorizontalAlignmentFill,
+
+    /** Leading horizontal alignment. */
+    LMHorizontalAlignmentLeading,
+
+    /** Trailing horizontal alignment. */
+    LMHorizontalAlignmentTrailing,
+
+    /** Center horizontal alignment. */
+    LMHorizontalAlignmentCenter
+};
+
+/**
+ * Vertical alignment options.
+ */
+typedef NS_ENUM(NSInteger, LMVerticalAlignment) {
+    /** Fill vertical alignment. */
+    LMVerticalAlignmentFill,
+
+    /** Top vertical alignment. */
+    LMVerticalAlignmentTop,
+
+    /** Bottom vertical alignment. */
+    LMVerticalAlignmentBottom,
+
+    /** Center vertical alignment. */
+    LMVerticalAlignmentCenter
+};
+
+/**
  * Abstract base class for box views.
  */
 @interface LMBoxView : LMLayoutView
 
 /**
- * The amount of spacing between successive subviews. The default is 8.
+ * The horizontal alignment of the subviews. The default is "fill".
+ */
+@property (nonatomic) LMHorizontalAlignment horizontalAlignment;
+
+/**
+ * The vertical alignment of the subviews. The default is "fill".
+ */
+@property (nonatomic) LMVerticalAlignment verticalAlignment;
+
+/**
+ * The amount of spacing between successive subviews. The default value is 8
+ * in iOS 10 and earlier and is system-dependent in iOS 11 and later.
  */
 @property (nonatomic) CGFloat spacing;
+
+/**
+ * Specifies that subviews should be baseline-aligned. The default value is
+ * <code>NO</code>.
+ */
+@property (nonatomic) BOOL alignToBaseline;
 
 @end
 

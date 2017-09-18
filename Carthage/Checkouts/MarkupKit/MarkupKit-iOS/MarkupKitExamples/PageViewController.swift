@@ -31,9 +31,19 @@ class PageViewController: UIViewController, UIScrollViewDelegate {
         edgesForExtendedLayout = UIRectEdge()
 
         pageView.delegate = self
+
+        pageControl.numberOfPages = pageView.pages.count
+    }
+
+    func updatePage() {
+        pageView.setCurrentPage(pageControl.currentPage, animated: true)
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl.currentPage = scrollView.currentPage
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         pageControl.currentPage = scrollView.currentPage
     }
 }

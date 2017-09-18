@@ -224,37 +224,8 @@ class StpDB {
     }
     
     
-    func addContact(cname: String, cphone: String, caddress: String) -> Int64? {
-        do {
-            let insert = contacts.insert(name <- cname, phone <- cphone, address <- caddress)
-            let id = try db!.run(insert)
-            
-            return id
-            
-        } catch {
-            print("Error info: \(error)")
-            return -1
-        }
-    }
-    
-    
-    func getContacts() -> [Contact] {
-        var contacts = [Contact]()
         
-        do {
-            for contact in try db!.prepare(self.contacts){
-                contacts.append(Contact(
-                    id: contact[id],
-                    name: contact[name],
-                    phone: contact[phone],
-                    address: contact[address]))
-            }
-        } catch {
-            print("Select failed")
-        }
-        
-        return contacts
-    }
+    
     
     func getPublications() -> [Publication] {
         var pubs = [Publication]()

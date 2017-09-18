@@ -17,6 +17,7 @@
 #import "NSObject+Markup.h"
 
 static NSDictionary *tableViewCellSeparatorStyleValues;
+static NSDictionary *tableViewSeparatorInsetReferenceValues;
 
 @implementation UITableView (Markup)
 
@@ -29,6 +30,13 @@ static NSDictionary *tableViewCellSeparatorStyleValues;
         @"singleLineEtched": @(UITableViewCellSeparatorStyleSingleLineEtched)
         #endif
     };
+
+    if (@available(iOS 11, tvOS 11, *)) {
+        tableViewSeparatorInsetReferenceValues = @{
+            @"fromCellEdges": @(UITableViewSeparatorInsetFromCellEdges),
+            @"fromAutomaticInsets": @(UITableViewSeparatorInsetFromAutomaticInsets)
+        };
+    }
 }
 
 - (NSString *)nameForSection:(NSInteger)section
@@ -51,38 +59,24 @@ static NSDictionary *tableViewCellSeparatorStyleValues;
     return (section < n) ? section : NSNotFound;
 }
 
-- (NSInteger)rowForCellWithValue:(id)value inSection:(NSInteger)section
+- (nullable id)valueForSection:(NSInteger)section
 {
-    NSInteger row = 0, n = [self numberOfRowsInSection:section];
-
-    while (row < n) {
-        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
-
-        if ([[cell value] isEqual:value]) {
-            break;
-        }
-
-        row++;
-    }
-
-    return (row < n) ? row : NSNotFound;
+    return nil;
 }
 
-- (NSInteger)rowForCheckedCellInSection:(NSInteger)section
+- (void)setValue:(nullable id)value forSection:(NSInteger)section
 {
-    NSInteger row = 0, n = [self numberOfRowsInSection:section];
+    [NSException raise:NSGenericException format:@"Method not implemented."];
+}
 
-    while (row < n) {
-        UITableViewCell *cell = [self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+- (NSArray *)valuesForSection:(NSInteger)section
+{
+    return nil;
+}
 
-        if ([cell checked]) {
-            break;
-        }
-
-        row++;
-    }
-
-    return (row < n) ? row : NSNotFound;
+- (void)setValues:(NSArray *)values forSection:(NSInteger)section
+{
+    [NSException raise:NSGenericException format:@"Method not implemented."];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -92,8 +86,6 @@ static NSDictionary *tableViewCellSeparatorStyleValues;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [NSException raise:NSInternalInconsistencyException format:@"Unexpected request for table view cell."];
-
     return nil;
 }
 
@@ -101,6 +93,8 @@ static NSDictionary *tableViewCellSeparatorStyleValues;
 {
     if ([key isEqual:@"separatorStyle"]) {
         value = [tableViewCellSeparatorStyleValues objectForKey:value];
+    } else if ([key isEqual:@"separatorInsetReference"]) {
+        value = [tableViewSeparatorInsetReferenceValues objectForKey:value];
     }
 
     [super applyMarkupPropertyValue:value forKey:key];

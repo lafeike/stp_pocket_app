@@ -17,8 +17,8 @@ import MarkupKit
 
 class ViewController: UITableViewController, UICollectionViewDataSource {
     #if os(iOS)
-    @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var dateTextField: UITextField!
+    @IBOutlet var datePicker: UIDatePicker!
 
     @IBOutlet var sizeTextField: UITextField!
     @IBOutlet var sizePickerView: LMPickerView!
@@ -50,11 +50,11 @@ class ViewController: UITableViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "MarkupKit Demo"
+        title = Bundle.main.localizedString(forKey: "title", value: nil, table: nil)
 
         collectionView.dataSource = self
         
-        collectionView?.register(IconCell.self, forCellWithReuseIdentifier: IconCell.self.description())
+        collectionView.register(IconCell.self, forCellWithReuseIdentifier: IconCell.description())
 
         #if os(iOS)
         slider.minimumValue = Float(stepper.minimumValue)
@@ -65,9 +65,12 @@ class ViewController: UITableViewController, UICollectionViewDataSource {
     }
 
     @IBAction func showGreeting() {
-        let alertController = UIAlertController(title: "Greeting", message: "Hello!", preferredStyle: .alert)
+        let alertController = UIAlertController(title: Bundle.main.localizedString(forKey: "greeting", value: nil, table: nil),
+            message: Bundle.main.localizedString(forKey: "hello", value: nil, table: nil),
+            preferredStyle: .alert)
 
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        alertController.addAction(UIAlertAction(title: Bundle.main.localizedString(forKey: "ok", value: nil, table: nil),
+            style: .default))
 
         present(alertController, animated: true)
     }
@@ -105,7 +108,11 @@ class ViewController: UITableViewController, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.self.description(), for: indexPath) as! IconCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.description(), for: indexPath) as! IconCell
+
+        #if os(tvOS)
+        cell.label.text = String(indexPath.item)
+        #endif
 
         cell.imageView.image = UIImage(named: icons[indexPath.item])
 

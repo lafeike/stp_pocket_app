@@ -36,29 +36,14 @@
     return (component < n) ? component : NSNotFound;
 }
 
-- (NSString *)titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (nullable id)valueForComponent:(NSInteger)component
 {
     return nil;
 }
 
-- (id)valueForRow:(NSInteger)row forComponent:(NSInteger)component
+- (void)setValue:(nullable id)value forComponent:(NSInteger)component animated:(BOOL)animated 
 {
-    return nil;
-}
-
-- (NSInteger)rowWithValue:(id)value inComponent:(NSInteger)component
-{
-    NSInteger row = 0, n = [self numberOfRowsInComponent:component];
-
-    while (row < n) {
-        if ([value isEqual:[self valueForRow:row forComponent:component]]) {
-            break;
-        }
-
-        row++;
-    }
-
-    return (row < n) ? row : NSNotFound;
+    [NSException raise:NSGenericException format:@"Method not implemented."];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView

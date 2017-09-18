@@ -34,7 +34,7 @@ class CollectionViewController: UICollectionViewController {
 
         edgesForExtendedLayout = UIRectEdge()
 
-        collectionView?.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell.self.description())
+        collectionView!.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell.description())
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -46,7 +46,7 @@ class CollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.self.description(), for: indexPath) as! ColorCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.description(), for: indexPath) as! ColorCell
 
         let index = indexPath.item
         let value = colors[index]

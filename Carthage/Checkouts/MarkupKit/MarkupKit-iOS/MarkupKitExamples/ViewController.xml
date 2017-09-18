@@ -14,44 +14,52 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMTableView>
+<LMTableView style="groupedTableView" estimatedSectionHeaderHeight="0" estimatedSectionFooterHeight="0">
+    <sectionHeader title="Selection Management"/>
     <UITableViewCell textLabel.text="Radio Buttons" accessoryType="disclosureIndicator" value="radioButtons"/>
     <UITableViewCell textLabel.text="Checkboxes" accessoryType="disclosureIndicator" value="checkboxes"/>
-    <UITableViewCell textLabel.text="Grid View" accessoryType="disclosureIndicator" value="gridView"/>
-    <UITableViewCell textLabel.text="Anchor View" accessoryType="disclosureIndicator" value="anchorView"/>
-    <UITableViewCell textLabel.text="Colors and Fonts" accessoryType="disclosureIndicator" value="colorsAndFonts"/>
-    <UITableViewCell textLabel.text="Includes" accessoryType="disclosureIndicator" value="includes"/>
 
+    <?sectionBreak?>
+    <sectionHeader title="Layout"/>
+    <UITableViewCell textLabel.text="Horizontal Alignment" accessoryType="disclosureIndicator" value="horizontalAlignment"/>
+    <UITableViewCell textLabel.text="Vertical Alignment" accessoryType="disclosureIndicator" value="verticalAlignment"/>
+    <UITableViewCell textLabel.text="Anchor View" accessoryType="disclosureIndicator" value="anchorView"/>
+    <UITableViewCell textLabel.text="Grid View" accessoryType="disclosureIndicator" value="gridView"/>
     <?case iOS?>
-    <UITableViewCell textLabel.text="Sliders" accessoryType="disclosureIndicator" value="sliders"/>
-    <UITableViewCell textLabel.text="Selection View" accessoryType="disclosureIndicator" value="selectionView"/>
+    <UITableViewCell textLabel.text="Stack View" accessoryType="disclosureIndicator" value="stackView"/>
+    <?end?>
+    <UITableViewCell textLabel.text="Periodic Table" accessoryType="disclosureIndicator" value="periodicTable"/>
+
+    <?sectionBreak?>
+    <sectionHeader title="Content and Navigation"/>
+    <?case iOS?>
     <UITableViewCell textLabel.text="Scroll View" accessoryType="disclosureIndicator" value="scrollView"/>
     <UITableViewCell textLabel.text="Page View" accessoryType="disclosureIndicator" value="pageView"/>
     <?end?>
-
     <UITableViewCell textLabel.text="Custom Cell View" accessoryType="disclosureIndicator" value="customCellView"/>
     <UITableViewCell textLabel.text="Custom Section View" accessoryType="disclosureIndicator" value="customSectionView"/>
-
     <?case iOS?>
     <UITableViewCell textLabel.text="Custom Component View" accessoryType="disclosureIndicator" value="customComponentView"/>
     <?end?>
-
-    <UITableViewCell textLabel.text="Effect View" accessoryType="disclosureIndicator" value="effectView"/>
-    <UITableViewCell textLabel.text="Gradient Views" accessoryType="disclosureIndicator" value="gradientViews"/>
-    <UITableViewCell textLabel.text="Size Classes" accessoryType="disclosureIndicator" value="sizeClassView"/>
-
-    <?case iOS?>
-    <UITableViewCell textLabel.text="Form View" accessoryType="disclosureIndicator" value="formView"/>
-    <UITableViewCell textLabel.text="Stack View" accessoryType="disclosureIndicator" value="stackView"/>
-    <?end?>
-
-    <UITableViewCell textLabel.text="Periodic Table" accessoryType="disclosureIndicator" value="periodicTable"/>
     <UITableViewCell textLabel.text="Collection View" accessoryType="disclosureIndicator" value="collectionView"/>
-
     <?case iOS?>
     <UITableViewCell textLabel.text="Web View" accessoryType="disclosureIndicator" value="webView"/>
     <UITableViewCell textLabel.text="Map View" accessoryType="disclosureIndicator" value="mapView"/>
     <?end?>
-
     <UITableViewCell textLabel.text="Player View" accessoryType="disclosureIndicator" value="playerView"/>
+    <UITableViewCell textLabel.text="Bars" accessoryType="disclosureIndicator" value="bars"/>
+
+    <?sectionBreak?>
+    <sectionHeader title="Effects"/>
+    <UITableViewCell textLabel.text="Effect View" accessoryType="disclosureIndicator" value="effectView"/>
+    <UITableViewCell textLabel.text="Gradient Views" accessoryType="disclosureIndicator" value="gradientViews"/>
+    <?case iOS?>
+    <UITableViewCell textLabel.text="Animation" accessoryType="disclosureIndicator" value="animation"/>
+    <?end?>
+
+    <?sectionBreak?>
+    <sectionHeader title="Additional"/>
+    <UITableViewCell textLabel.text="Size Classes" accessoryType="disclosureIndicator" value="sizeClassView"/>
+    <UITableViewCell textLabel.text="Colors and Fonts" accessoryType="disclosureIndicator" value="colorsAndFonts"/>
+    <UITableViewCell textLabel.text="Includes" accessoryType="disclosureIndicator" value="includes"/>
 </LMTableView>

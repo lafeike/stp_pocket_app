@@ -22,6 +22,10 @@ class ___FILEBASENAMEASIDENTIFIER___: LMCollectionViewCell {
         super.init(coder: decoder)
     }
 
+    deinit {
+        unbindAll()
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
 

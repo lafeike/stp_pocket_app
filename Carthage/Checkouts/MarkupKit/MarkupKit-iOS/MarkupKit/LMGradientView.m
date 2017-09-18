@@ -21,6 +21,17 @@
     CGGradientRef _gradient;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+
+    if (self) {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+
+    return self;
+}
+
 - (void)dealloc
 {
     CGGradientRelease(_gradient);
@@ -47,33 +58,6 @@
     CGGradientRelease(_gradient);
 
     _gradient = nil;
-}
-
-- (void)applyMarkupPropertyValue:(id)value forKey:(NSString *)key
-{
-    if ([key isEqual:@"colors"] && [value isKindOfClass:[NSString self]]) {
-        NSArray *components = [value componentsSeparatedByString:@","];
-
-        NSMutableArray *colors = [[NSMutableArray alloc] initWithCapacity:[components count]];
-
-        for (NSString *component in components) {
-            [colors addObject:[LMViewBuilder colorValue:[component stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]]];
-        }
-
-        value = colors;
-    } else if ([key isEqual:@"locations"] && [value isKindOfClass:[NSString self]]) {
-        NSArray *components = [value componentsSeparatedByString:@","];
-
-        NSMutableArray *locations = [[NSMutableArray alloc] initWithCapacity:[components count]];
-
-        for (NSString *component in components) {
-            [locations addObject:[NSNumber numberWithFloat:[component floatValue]]];
-        }
-
-        value = locations;
-    }
-
-    [super applyMarkupPropertyValue:value forKey:key];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -119,6 +103,33 @@
 
 - (void)drawGradient:(CGGradientRef)gradient withContext:(CGContextRef)context {
     // No-op
+}
+
+- (void)applyMarkupPropertyValue:(id)value forKey:(NSString *)key
+{
+    if ([key isEqual:@"colors"] && [value isKindOfClass:[NSString self]]) {
+        NSArray *components = [value componentsSeparatedByString:@","];
+
+        NSMutableArray *colors = [[NSMutableArray alloc] initWithCapacity:[components count]];
+
+        for (NSString *component in components) {
+            [colors addObject:[LMViewBuilder colorValue:[component stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]]];
+        }
+
+        value = colors;
+    } else if ([key isEqual:@"locations"] && [value isKindOfClass:[NSString self]]) {
+        NSArray *components = [value componentsSeparatedByString:@","];
+
+        NSMutableArray *locations = [[NSMutableArray alloc] initWithCapacity:[components count]];
+
+        for (NSString *component in components) {
+            [locations addObject:[NSNumber numberWithFloat:[component floatValue]]];
+        }
+
+        value = locations;
+    }
+
+    [super applyMarkupPropertyValue:value forKey:key];
 }
 
 @end

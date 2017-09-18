@@ -40,22 +40,20 @@ class ViewController: UITableViewController {
             navigationController!.pushViewController(RadioButtonViewController(), animated: true)
         } else if (value == "checkboxes") {
             navigationController!.pushViewController(CheckboxViewController(), animated: true)
-        } else if (value == "gridView") {
-            navigationController!.pushViewController(GridViewController(), animated: true)
+        } else if (value == "horizontalAlignment") {
+            navigationController!.pushViewController(HorizontalAlignmentViewController(), animated: true)
+        } else if (value == "verticalAlignment") {
+            navigationController!.pushViewController(VerticalAlignmentViewController(), animated: true)
         } else if (value == "anchorView") {
             navigationController!.pushViewController(AnchorViewController(), animated: true)
-        } else if (value == "colorsAndFonts") {
-            navigationController!.pushViewController(ColorsAndFontsViewController(), animated: true)
-        } else if (value == "includes") {
-            navigationController!.pushViewController(IncludesViewController(), animated: true)
-        } else if (value == "sliders") {
+        } else if (value == "gridView") {
+            navigationController!.pushViewController(GridViewController(), animated: true)
+        } else if (value == "stackView") {
             #if os(iOS)
-            navigationController!.pushViewController(SlidersViewController(), animated: true)
+            navigationController!.pushViewController(SimpleStackViewController(), animated: true)
             #endif
-        } else if (value == "selectionView") {
-            #if os(iOS)
-            navigationController!.pushViewController(SelectionViewController(), animated: true)
-            #endif
+        } else if (value == "periodicTable") {
+            navigationController!.pushViewController(PeriodicTableViewController(), animated: true)
         } else if (value == "scrollView") {
             #if os(iOS)
             navigationController!.pushViewController(ScrollViewController(), animated: true)
@@ -72,22 +70,6 @@ class ViewController: UITableViewController {
             #if os(iOS)
             navigationController!.pushViewController(CustomComponentViewController(), animated: true)
             #endif
-        } else if (value == "effectView") {
-            navigationController!.pushViewController(EffectViewController(), animated: true)
-        } else if (value == "gradientViews") {
-            navigationController!.pushViewController(LinearGradientViewController(), animated: true)
-        } else if (value == "sizeClassView") {
-            navigationController!.pushViewController(SizeClassViewController(), animated: true)
-        } else if (value == "formView") {
-            #if os(iOS)
-            navigationController!.pushViewController(FormViewController(), animated: true)
-            #endif
-        } else if (value == "stackView") {
-            #if os(iOS)
-            navigationController!.pushViewController(SimpleStackViewController(), animated: true)
-            #endif
-        } else if (value == "periodicTable") {
-            navigationController!.pushViewController(PeriodicTableViewController(), animated: true)
         } else if (value == "collectionView") {
             navigationController!.pushViewController(CollectionViewController(), animated: true)
         } else if (value == "webView") {
@@ -100,6 +82,22 @@ class ViewController: UITableViewController {
             #endif
         } else if (value == "playerView") {
             navigationController!.pushViewController(PlayerViewController(), animated: true)
+        } else if (value == "bars") {
+            navigationController!.pushViewController(BarsViewController(), animated: true)
+        } else if (value == "effectView") {
+            navigationController!.pushViewController(EffectViewController(), animated: true)
+        } else if (value == "gradientViews") {
+            navigationController!.pushViewController(LinearGradientViewController(), animated: true)
+        } else if (value == "animation") {
+            #if os(iOS)
+            navigationController!.pushViewController(AnimationViewController(), animated: true)
+            #endif
+        } else if (value == "sizeClassView") {
+            navigationController!.pushViewController(SizeClassViewController(), animated: true)
+        } else if (value == "colorsAndFonts") {
+            navigationController!.pushViewController(ColorsAndFontsViewController(), animated: true)
+        } else if (value == "includes") {
+            navigationController!.pushViewController(IncludesViewController(), animated: true)
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -109,4 +107,3 @@ class ViewController: UITableViewController {
         return true
     }
 }
-

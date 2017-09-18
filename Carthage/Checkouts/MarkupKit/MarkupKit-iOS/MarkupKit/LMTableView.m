@@ -13,6 +13,7 @@
 //
 
 #import "LMTableView.h"
+#import "UIView+Markup.h"
 #import "UITableView+Markup.h"
 #import "UITableViewCell+Markup.h"
 
@@ -80,12 +81,16 @@ typedef enum {
 
 #define INIT {\
     _sections = [NSMutableArray new];\
-    [super setDataSource:self];\
-    [super setDelegate:self];\
-    [super setEstimatedRowHeight:ESTIMATED_HEIGHT];\
-    if ([self style] == UITableViewStyleGrouped) {\
-        [super setEstimatedSectionHeaderHeight:ESTIMATED_HEIGHT];\
-        [super setEstimatedSectionFooterHeight:ESTIMATED_HEIGHT];\
+    [self setDataSource:self];\
+    [self setDelegate:self];\
+    if ([self estimatedRowHeight] != UITableViewAutomaticDimension) {\
+        [self setEstimatedRowHeight:ESTIMATED_HEIGHT];\
+    }\
+    if ([self estimatedSectionHeaderHeight] != UITableViewAutomaticDimension) {\
+        [self setEstimatedSectionHeaderHeight:ESTIMATED_HEIGHT];\
+    }\
+    if ([self estimatedSectionFooterHeight] != UITableViewAutomaticDimension) {\
+        [self setEstimatedSectionFooterHeight:ESTIMATED_HEIGHT];\
     }\
     [self insertSection:0];\
 }
@@ -136,6 +141,56 @@ typedef enum {
 - (void)setSelectionMode:(LMTableViewSelectionMode)selectionMode forSection:(NSInteger)section
 {
     [[_sections objectAtIndex:section] setSelectionMode:selectionMode];
+}
+
+- (id)valueForSection:(NSInteger)section
+{
+    id value = nil;
+
+    for (UITableViewCell *cell in [[_sections objectAtIndex:section] rows]) {
+        if ([cell checked]) {
+            value = [cell value];
+
+            break;
+        }
+    }
+
+    return value;
+}
+
+- (void)setValue:(nullable id)value forSection:(NSInteger)section
+{
+    for (UITableViewCell *cell in [[_sections objectAtIndex:section] rows]) {
+        [cell setChecked:[[cell value] isEqual:value]];
+    }
+}
+
+- (NSArray *)valuesForSection:(NSInteger)section
+{
+    NSMutableArray *values = [NSMutableArray new];
+
+    for (UITableViewCell *cell in [[_sections objectAtIndex:section] rows]) {
+        if ([cell checked]) {
+            id value = [cell value];
+
+            if (value != nil) {
+                [values addObject:value];
+            }
+        }
+    }
+
+    return values;
+}
+
+- (void)setValues:(NSArray *)values forSection:(NSInteger)section
+{
+    for (UITableViewCell *cell in [[_sections objectAtIndex:section] rows]) {
+        id value = [cell value];
+
+        if (value != nil) {
+            [cell setChecked:[values containsObject:value]];
+        }
+    }
 }
 
 - (NSString *)titleForHeaderInSection:(NSInteger)section
@@ -200,7 +255,7 @@ typedef enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[[_sections objectAtIndex:[indexPath section]] rows] objectAtIndex:indexPath.row];
+    return [[[_sections objectAtIndex:[indexPath section]] rows] objectAtIndex:[indexPath row]];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -232,10 +287,10 @@ typedef enum {
 
         case LMTableViewSelectionModeSingleCheckmark: {
             // Uncheck all cells except for current selection
+            NSInteger row = [indexPath row];
+
             NSArray *rows = [[_sections objectAtIndex:section] rows];
 
-            NSInteger row = [indexPath row];
-            
             for (NSUInteger i = 0, n = [rows count]; i < n; i++) {
                 [[rows objectAtIndex:i] setChecked:(i == row)];
             }
@@ -309,6 +364,10 @@ typedef enum {
         _elementDisposition = kElementSectionHeaderView;
     } else if ([target isEqual:kSectionFooterViewTarget]) {
         _elementDisposition = kElementSectionFooterView;
+    } else {
+        _elementDisposition = INT_MAX;
+
+        [super processMarkupInstruction:target data:data];
     }
 }
 
@@ -326,6 +385,8 @@ typedef enum {
         if (title != nil) {
             [self setTitle:title forFooterInSection:[self numberOfSectionsInTableView:self] - 1];
         }
+    } else {
+        [super processMarkupElement:tag properties:properties];
     }
 }
 
@@ -372,6 +433,12 @@ typedef enum {
 
         case kElementSectionFooterView: {
             [self setView:view forFooterInSection:section];
+
+            break;
+        }
+
+        default: {
+            [super appendMarkupElementView:view];
 
             break;
         }

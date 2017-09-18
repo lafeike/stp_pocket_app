@@ -21,28 +21,28 @@
 {
     // Ensure that subviews resize
     for (UIView *subview in _arrangedSubviews) {
+        if ([subview isHidden]) {
+            continue;
+        }
+
         LMAnchor anchor = [subview anchor];
 
-        UILayoutPriority verticalPriority;
-        if ((anchor & LMAnchorTop) && (anchor & LMAnchorBottom)) {
-            verticalPriority = UILayoutPriorityDefaultLow;
+        if (anchor & LMAnchorTop && anchor & LMAnchorBottom) {
+            [subview setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
+            [subview setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
         } else {
-            verticalPriority = UILayoutPriorityRequired;
+            [subview setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+            [subview setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
         }
 
-        [subview setContentCompressionResistancePriority:verticalPriority forAxis:UILayoutConstraintAxisVertical];
-        [subview setContentHuggingPriority:verticalPriority forAxis:UILayoutConstraintAxisVertical];
-
-        UILayoutPriority horizontalPriority;
-        if (((anchor & LMAnchorTop) && (anchor & LMAnchorBottom))
-            || ((anchor & LMAnchorLeading) && (anchor & LMAnchorTrailing))) {
-            horizontalPriority = UILayoutPriorityDefaultLow;
+        if ((anchor & LMAnchorLeft && anchor & LMAnchorRight)
+            || (anchor & LMAnchorLeading && anchor & LMAnchorTrailing)) {
+            [subview setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+            [subview setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
         } else {
-            horizontalPriority = UILayoutPriorityRequired;
+            [subview setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+            [subview setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
         }
-
-        [subview setContentCompressionResistancePriority:horizontalPriority forAxis:UILayoutConstraintAxisHorizontal];
-        [subview setContentHuggingPriority:horizontalPriority forAxis:UILayoutConstraintAxisHorizontal];
     }
 
     [super layoutSubviews];
@@ -70,20 +70,29 @@
         trailingAttribute = NSLayoutAttributeTrailing;
     }
 
+    CGFloat topSpacing = [self topSpacing];
+    CGFloat bottomSpacing = [self bottomSpacing];
+    CGFloat leadingSpacing = [self leadingSpacing];
+    CGFloat trailingSpacing = [self trailingSpacing];
+
     for (UIView *subview in _arrangedSubviews) {
+        if ([subview isHidden]) {
+            continue;
+        }
+
         LMAnchor anchor = [subview anchor];
 
         if (anchor & LMAnchorTop || anchor & LMAnchorBottom) {
             if (anchor & LMAnchorTop) {
                 [constraints addObject:[NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeTop
                     relatedBy:NSLayoutRelationEqual toItem:self attribute:topAttribute
-                    multiplier:1 constant:0]];
+                    multiplier:1 constant:topSpacing]];
             }
 
             if (anchor & LMAnchorBottom) {
                 [constraints addObject:[NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeBottom
                     relatedBy:NSLayoutRelationEqual toItem:self attribute:bottomAttribute
-                    multiplier:1 constant:0]];
+                    multiplier:1 constant:-bottomSpacing]];
             }
         } else {
             [constraints addObject:[NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeCenterY
@@ -108,13 +117,13 @@
             if (anchor & LMAnchorLeading) {
                 [constraints addObject:[NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeLeading
                     relatedBy:NSLayoutRelationEqual toItem:self attribute:leadingAttribute
-                    multiplier:1 constant:0]];
+                    multiplier:1 constant:leadingSpacing]];
             }
 
             if (anchor & LMAnchorTrailing) {
                 [constraints addObject:[NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeTrailing
                     relatedBy:NSLayoutRelationEqual toItem:self attribute:trailingAttribute
-                    multiplier:1 constant:0]];
+                    multiplier:1 constant:-trailingSpacing]];
             }
         } else {
             [constraints addObject:[NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeCenterX

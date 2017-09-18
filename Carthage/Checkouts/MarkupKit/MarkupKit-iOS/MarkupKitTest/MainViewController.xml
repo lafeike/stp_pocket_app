@@ -36,10 +36,12 @@ limitations under the License.
         <UIView backgroundColor="Background"/>
         
         <LMColumnView layoutMargins="20">
-            <LMRowView class="row.first">
-                <UILabel id="greetingLabel" class="label.greeting" text="@greeting"/>
+            <LMRowView class="firstRow">
+                <UILabel id="greetingLabel" class="greetingLabel" text="@greeting"/>
                 <LMSpacer/>
-                <UILabel text="@missing.key" textAlignment="right" font="System 22"/>
+                <UILabel text="^$10.00" textAlignment="right" font="System 18"/>
+                <UILabel text="^@" textAlignment="center" font="System 18"/>
+                <UILabel text="@missing.key" textAlignment="left" font="System 18"/>
             </LMRowView>
 
             <foo>
@@ -51,35 +53,51 @@ limitations under the License.
             <NSTextField id="textField"/>
             <?end?>
 
-            <LMRowView class="row.second">
-                <UILabel text="12345" class="large, blue"/>
+            <LMRowView class="secondRow">
+                <UILabel text="$number" class="large, blue"/>
                 <LMSpacer/>
                 <UIButton title="@prompt" titleColor="purple" titleShadowColor="yellow"
                     titleLabel.shadowOffsetWidth="3" titleLabel.shadowOffsetHeight="3"
                     contentHorizontalAlignment="left" contentVerticalAlignment="center"
-                    onTouchUpInside="handleButtonTouchUpInside:"/>
+                    onPrimaryActionTriggered="handlePrimaryActionTriggered:"/>
             </LMRowView>
 
-            <UIButton style="systemButton" title="@prompt" image="Right"
+            <LMRowView>
+                <LMSpacer/>
+                <UISegmentedControl>
+                    <segment title="$one"/>
+                    <segment title="$two"/>
+                    <segment title="$three"/>
+                </UISegmentedControl>
+                <LMSpacer/>
+            </LMRowView>
+
+            <UIButton style="systemButton" attributedTitle="$prompt" image="Right"
                 tintColor="red" backgroundColor="#ffffff"
                 contentEdgeInsets="16" imageEdgeInsetRight="8"
                 clipsToBounds="true"
-                layer.borderColor="#808080"
                 layer.borderWidth="0.5"
+                layer.borderColor="#808080"
                 layer.cornerRadius="6"
-                onTouchUpInside="handleButtonTouchUpInside:"/>
+                onPrimaryActionTriggered="handlePrimaryActionTriggered:"/>
 
-            <LMRowView alignToBaseline="true" backgroundColor="#ff00ff">
+            <LMRowView alignToBaseline="true" topSpacing="20" bottomSpacing="10" backgroundColor="#ff00ff">
                 <LMSpacer/>
-                <UILabel text="abcd" font="Helvetica 16"/>
+                <UILabel text="abcd" font="Helvetica 16" backgroundColor="yellow"/>
                 <UILabel text="efg" font="Helvetica 32" backgroundColor="yellow"/>
-                <UILabel text="hijk" font="Helvetica 24"/>
+                <UILabel text="hijk" font="Helvetica 24" backgroundColor="yellow"/>
                 <LMSpacer/>
             </LMRowView>
 
+            <LMColumnView alignToBaseline="true" backgroundColor="#ffff00">
+                <UILabel text="abcd" font="Helvetica 16" backgroundColor="green"/>
+                <UILabel text="efg" font="Helvetica 32" backgroundColor="green"/>
+                <UILabel text="hijk" font="Helvetica 24" backgroundColor="green"/>
+            </LMColumnView>
+
             <LMRowView layoutMargins="12" backgroundColor="#ffff00">
                 <LMSpacer/>
-                <UILabel text="abcd" font="Helvetica 16" textAlignment="abcde"/>
+                <UILabel text="abcd" font="Helvetica 16" textAlignment="abcde" backgroundColor="#00ffff"/>
                 <UILabel width="45" text="efg hijk lmnop" font="Helvetica 16" numberOfLines="0" backgroundColor="#00ffff"/>
                 <LMSpacer/>
             </LMRowView>
@@ -102,7 +120,7 @@ limitations under the License.
                 <LMSpacer/>
             </LMRowView>
             
-            <LMRowView layoutMargins="12" backgroundColor="#ffffff">
+            <LMLayerView layoutMargins="12" backgroundColor="#ffffff">
                 <UITextField placeholder="@password" secureTextEntry="true" leftViewMode="always" rightViewMode="unlessEditing">
                     <?leftView?>
                     <UIImageView image="Left"/>
@@ -110,11 +128,15 @@ limitations under the License.
                     <?rightView?>
                     <UIImageView image="Right"/>
                 </UITextField>
-            </LMRowView>
+            </LMLayerView>
 
             <?case iOS?>
             <UIImageView id="imageView" image="waterfall.jpg" hidden="true" contentMode="scaleAspectFit"
                 layer.shadowOpacity="0.5" layer.shadowOffsetHeight="8" layer.shadowRadius="10"/>
+
+            <LMAnchorView>
+                <UIView anchor="top, bottom" width="80" aspectRatio="1.0" backgroundColor="#0000ff"/>
+            </LMAnchorView>
         </LMColumnView>
     </LMLayerView>
 </root>

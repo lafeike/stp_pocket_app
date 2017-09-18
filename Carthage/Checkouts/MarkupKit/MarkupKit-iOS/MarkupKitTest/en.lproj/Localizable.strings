@@ -1,6 +1,4 @@
 "greeting" = "Hello, World!";
-"prompt" = "Click Me!";
+"prompt" = "Press Me!";
 "text" = "Type a number";
 "password" = "Type a password";
-
-"section2.start" = "Section 2 Start";

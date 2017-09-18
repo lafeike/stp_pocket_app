@@ -20,7 +20,7 @@ import MarkupKit
  */
 class CustomCell: LMTableViewCell {
     // View model
-    dynamic var content: [String: AnyObject]?
+    @objc dynamic var row: Row!
 
     // Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

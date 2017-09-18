@@ -19,6 +19,14 @@ class MainViewController: UIViewController {
     @IBOutlet var greetingLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
 
+    @objc let number = "12345"
+
+    @objc let one = "One"
+    @objc let two = "Two"
+    @objc let three = "Three"
+
+    @objc let prompt = NSAttributedString(string: "Press Me!")
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,23 +37,15 @@ class MainViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
 
         if (previousTraitCollection != nil) {
+            unbindAll()
+
             loadView()
             viewDidLoad()
         }
     }
 
-    @IBAction func handleButtonTouchUpInside(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Greeting", message: "Hello!", preferredStyle: .alert)
-
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { action in
-            print("User tapped Cancel")
-        })
-
-        alertController.addAction(UIAlertAction(title: "OK", style: .default) { action in
-            print("User tapped OK")
-        })
-
-        present(alertController, animated: true)
+    @IBAction func handlePrimaryActionTriggered(_ sender: UIButton) {
+        NSLog("Button pressed.")
     }
 
     @IBAction func handleSwitchValueChanged(_ sender: UISwitch) {

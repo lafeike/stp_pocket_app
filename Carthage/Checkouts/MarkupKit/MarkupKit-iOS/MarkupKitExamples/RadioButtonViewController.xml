@@ -15,10 +15,17 @@ limitations under the License.
 -->
 
 <LMTableView style="groupedTableView">
+    <?sectionName sizes?>
     <?sectionSelectionMode singleCheckmark?>
 
     <UITableViewCell textLabel.text="Small" value="S"/>
     <UITableViewCell textLabel.text="Medium" value="M"/>
-    <UITableViewCell textLabel.text="Large" value="L" checked="true"/>
+    <UITableViewCell textLabel.text="Large" value="L"/>
     <UITableViewCell textLabel.text="Extra-Large" value="XL"/>
+
+    <?sectionBreak?>
+
+    <LMTableViewCell selectionStyle="none">
+        <UIButton style="systemButton" title="Submit" onPrimaryActionTriggered="submit"/>
+    </LMTableViewCell>
 </LMTableView>

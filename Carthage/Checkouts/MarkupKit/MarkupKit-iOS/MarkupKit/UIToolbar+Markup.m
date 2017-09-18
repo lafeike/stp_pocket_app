@@ -13,6 +13,7 @@
 //
 
 #import "UIToolbar+Markup.h"
+#import "UIView+Markup.h"
 
 static NSString * const kItemTag = @"item";
 
@@ -114,6 +115,8 @@ static NSString * const kItemActionKey = @"action";
         [self setItems:items];
 
         [self sizeToFit];
+    } else {
+        [super processMarkupElement:tag properties:properties];
     }
 }
 

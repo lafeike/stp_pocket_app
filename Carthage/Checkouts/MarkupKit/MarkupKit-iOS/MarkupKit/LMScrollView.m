@@ -62,6 +62,24 @@
     [super willRemoveSubview:subview];
 }
 
+- (void)layoutSubviews
+{
+    // Ensure that content view resizes
+    if (_contentView != nil) {
+        UILayoutPriority horizontalPriority = (_fitToWidth) ? UILayoutPriorityDefaultLow : UILayoutPriorityRequired;
+
+        [_contentView setContentCompressionResistancePriority:horizontalPriority forAxis:UILayoutConstraintAxisHorizontal];
+        [_contentView setContentHuggingPriority:horizontalPriority forAxis:UILayoutConstraintAxisHorizontal];
+
+        UILayoutPriority verticalPriority = (_fitToHeight) ? UILayoutPriorityDefaultLow : UILayoutPriorityRequired;
+
+        [_contentView setContentCompressionResistancePriority:verticalPriority forAxis:UILayoutConstraintAxisVertical];
+        [_contentView setContentHuggingPriority:verticalPriority forAxis:UILayoutConstraintAxisVertical];
+    }
+
+    [super layoutSubviews];
+}
+
 - (void)setNeedsUpdateConstraints
 {
     if (_constraints != nil) {

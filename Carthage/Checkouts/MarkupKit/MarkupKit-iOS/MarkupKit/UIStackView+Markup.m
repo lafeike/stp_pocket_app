@@ -48,11 +48,6 @@ static NSDictionary *stackViewDistributionValues;
     };
 }
 
-- (void)appendMarkupElementView:(UIView *)view
-{
-    [self addArrangedSubview:view];
-}
-
 - (void)applyMarkupPropertyValue:(id)value forKey:(NSString *)key
 {
     if ([key isEqual:@"axis"]) {
@@ -64,6 +59,11 @@ static NSDictionary *stackViewDistributionValues;
     }
 
     [super applyMarkupPropertyValue:value forKey:key];
+}
+
+- (void)appendMarkupElementView:(UIView *)view
+{
+    [self addArrangedSubview:view];
 }
 
 @end

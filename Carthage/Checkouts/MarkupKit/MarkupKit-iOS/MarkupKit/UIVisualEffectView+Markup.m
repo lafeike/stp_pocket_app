@@ -31,12 +31,10 @@
     return [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
 }
 
-#if TARGET_OS_TV
 + (UIVisualEffectView *)extraDarkBlurEffectView
 {
     return [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraDark]];
 }
-#endif
 
 + (UIVisualEffectView *)regularBlurEffectView
 {

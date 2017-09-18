@@ -1,18 +1,21 @@
 {
-    "row.first": {
+    "firstRow": {
         "layoutMargins": 6,
-        "layer.borderColor": "#ffff00",
-        "layer.borderWidth": 4
+        "layer.borderWidth": 4,
+        "layer.borderColor": "#ffff00"
     },
 
-    "label.greeting": {
+    "secondRow": {
+        "layoutMarginTop": 6,
+        "layoutMarginBottom": 6,
+        "layoutMarginLeading": 24,
+        "layoutMarginTrailing": 48,
+        "layer.borderWidth": 4,
+        "layer.borderColor": "#00ffff"
+    },
+
+    "greetingLabel": {
         "font": "title",
         "textColor": "#00ffff"
-    },
-
-    "row.second": {
-        "layoutMargins": 6,
-        "layer.borderColor": "#00ffff",
-        "layer.borderWidth": 4
     }
 }

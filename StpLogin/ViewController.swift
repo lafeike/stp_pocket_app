@@ -19,6 +19,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        UITextField.appearance().tintColor = .orange;
         
         // Dismiss the textfield when the view is tapped.
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleViewTap(_:)))

@@ -16,6 +16,7 @@
 #import "NSObject+Markup.h"
 
 static NSDictionary *collectionViewScrollDirectionValues;
+static NSDictionary *collectionViewFlowLayoutSectionInsetReferenceValues;
 
 @implementation UICollectionViewFlowLayout (Markup)
 
@@ -25,6 +26,14 @@ static NSDictionary *collectionViewScrollDirectionValues;
         @"vertical": @(UICollectionViewScrollDirectionVertical),
         @"horizontal": @(UICollectionViewScrollDirectionHorizontal)
     };
+
+    if (@available(iOS 11, tvOS 11, *)) {
+        collectionViewFlowLayoutSectionInsetReferenceValues = @{
+            @"fromContentInset": @(UICollectionViewFlowLayoutSectionInsetFromContentInset),
+            @"fromSafeArea": @(UICollectionViewFlowLayoutSectionInsetFromSafeArea),
+            @"fromLayoutMargins": @(UICollectionViewFlowLayoutSectionInsetFromLayoutMargins)
+        };
+    }
 }
 
 - (CGFloat)itemWidth
@@ -171,6 +180,8 @@ static NSDictionary *collectionViewScrollDirectionValues;
         CGFloat inset = [value floatValue];
 
         value = [NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
+    } else if ([key isEqual:@"sectionInsetReference"]) {
+        value = [collectionViewFlowLayoutSectionInsetReferenceValues objectForKey:value];
     }
 
     [super applyMarkupPropertyValue:value forKey:key];

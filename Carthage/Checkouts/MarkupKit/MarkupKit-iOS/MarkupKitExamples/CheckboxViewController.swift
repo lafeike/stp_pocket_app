@@ -16,6 +16,8 @@ import UIKit
 import MarkupKit
 
 class CheckboxViewController: UITableViewController {
+    let petSectionName = "pets"
+
     override func loadView() {
         view = LMViewBuilder.view(withName: "CheckboxViewController", owner: self, root: nil)
     }
@@ -24,5 +26,19 @@ class CheckboxViewController: UITableViewController {
         super.viewDidLoad()
 
         title = "Checkboxes"
+
+        tableView.setValues(["C", "T"], forSection: tableView.section(withName: petSectionName))
+    }
+
+    @IBAction func submit() {
+        let values = tableView.values(forSection: tableView.section(withName: petSectionName)) as! [String]
+
+        let message = String(format: "You selected [%@].", values.joined(separator: ", "))
+
+        let alertController = UIAlertController(title: "Submitted", message: message, preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+        present(alertController, animated: true)
     }
 }

@@ -34,14 +34,17 @@ limitations under the License.
 }?>
 <?end?>
 
-<LMScrollView fitToWidth="true" backgroundColor="#ffffff">
+<LMScrollView fitToWidth="true" backgroundColor="white">
     <LMColumnView layoutMargins="16">
         <UILabel class="cell" numberOfLines="0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
 
         <LMColumnView alignToGrid="true">
             <LMRowView alignToBaseline="true">
                 <UILabel class="cell" textAlignment="right" text="First Baseline"/>
-                <UILabel class="cell" weight="1" numberOfLines="0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                <LMColumnView class="cell" weight="1">
+                    <UILabel numberOfLines="0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                    <UILabel numberOfLines="0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
+                </LMColumnView>
             </LMRowView>
 
             <LMRowView alignToBaseline="true" baseline="last">

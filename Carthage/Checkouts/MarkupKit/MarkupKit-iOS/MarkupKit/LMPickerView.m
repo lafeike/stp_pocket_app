@@ -13,8 +13,9 @@
 //
 
 #import "LMPickerView.h"
-#import "UIPickerView+Markup.h"
 #import "NSObject+Markup.h"
+#import "UIView+Markup.h"
+#import "UIPickerView+Markup.h"
 
 static NSString * const kComponentSeparatorTarget = @"componentSeparator";
 static NSString * const kComponentNameTarget = @"componentName";
@@ -46,8 +47,8 @@ static NSString * const kRowValueKey = @"value";
 
 #define INIT {\
     _components = [NSMutableArray new];\
-    [super setDataSource:self];\
-    [super setDelegate:self];\
+    [self setDataSource:self];\
+    [self setDelegate:self];\
     [self insertComponent:0];\
 }
 
@@ -119,6 +120,30 @@ static NSString * const kRowValueKey = @"value";
     [(LMPickerViewRow *)[[[_components objectAtIndex:component] rows] objectAtIndex:row] setValue:value];
 }
 
+- (nullable id)valueForComponent:(NSInteger)component
+{
+    NSInteger row = [self selectedRowInComponent:component];
+
+    return (row == -1) ? nil : [self valueForRow:row forComponent:component];
+}
+
+- (void)setValue:(nullable id)value forComponent:(NSInteger)component animated:(BOOL)animated
+{
+    NSInteger row = -1;
+
+    if (value != nil) {
+        for (NSUInteger i = 0, n = [self numberOfRowsInComponent:component]; i < n; i++) {
+            if ([[self valueForRow:i forComponent:component] isEqual:value]) {
+                row = i;
+
+                break;
+            }
+        }
+    }
+
+    [self selectRow:row inComponent:component animated:animated];
+}
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return [_components count];
@@ -140,6 +165,8 @@ static NSString * const kRowValueKey = @"value";
         [self insertComponent:[self numberOfComponents]];
     } else if ([target isEqual:kComponentNameTarget]) {
         [self setName:data forComponent:[self numberOfComponents] - 1];
+    } else {
+        [super processMarkupInstruction:target data:data];
     }
 }
 
@@ -154,6 +181,8 @@ static NSString * const kRowValueKey = @"value";
             [self insertRow:[self pickerView:self numberOfRowsInComponent:component] inComponent:component
                 withTitle:title value:[properties objectForKey:kRowValueKey]];
         }
+    } else {
+        [super processMarkupElement:tag properties:properties];
     }
 }
 

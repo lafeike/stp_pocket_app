@@ -16,9 +16,9 @@ import UIKit
 import MarkupKit
 
 class ColorCell: LMCollectionViewCell {
-    dynamic var index: String?
-    dynamic var color: UIColor?
-    dynamic var value: String?
+    @objc dynamic var index: String?
+    @objc dynamic var color: UIColor?
+    @objc dynamic var value: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

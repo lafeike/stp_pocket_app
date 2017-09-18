@@ -25,8 +25,11 @@ static NSDictionary *textAlignmentValues;
 static NSDictionary *textAutocapitalizationTypeValues;
 static NSDictionary *textAutocorrectionTypeValues;
 static NSDictionary *textSpellCheckingTypeValues;
-static NSDictionary *keyboardAppearanceValues;
+static NSDictionary *textSmartQuotesTypeValues;
+static NSDictionary *textSmartDashesTypeValues;
+static NSDictionary *textSmartInsertDeleteTypeValues;
 static NSDictionary *keyboardTypeValues;
+static NSDictionary *keyboardAppearanceValues;
 static NSDictionary *returnKeyTypeValues;
 static NSDictionary *barStyleValues;
 
@@ -94,10 +97,24 @@ static NSDictionary *anchorValues;
         @"no": @(UITextSpellCheckingTypeNo)
     };
 
-    keyboardAppearanceValues = @{
-        @"default": @(UIKeyboardAppearanceDefault),
-        @"dark": @(UIKeyboardAppearanceDark),
-        @"light": @(UIKeyboardAppearanceLight)
+    if (@available(iOS 11.0, tvOS 11, *)) {
+        textSmartQuotesTypeValues = @{
+            @"default": @(UITextSmartQuotesTypeDefault),
+            @"no": @(UITextSmartQuotesTypeNo),
+            @"yes": @(UITextSmartQuotesTypeYes)
+        };
+
+        textSmartDashesTypeValues = @{
+            @"default": @(UITextSmartDashesTypeDefault),
+            @"no": @(UITextSmartDashesTypeNo),
+            @"yes": @(UITextSmartDashesTypeYes)
+        };
+
+        textSmartInsertDeleteTypeValues = @{
+            @"default": @(UITextSmartInsertDeleteTypeDefault),
+            @"no": @(UITextSmartInsertDeleteTypeNo),
+            @"yes": @(UITextSmartInsertDeleteTypeYes)
+        };
     };
 
     keyboardTypeValues = @{
@@ -112,6 +129,12 @@ static NSDictionary *anchorValues;
         @"decimalPad": @(UIKeyboardTypeDecimalPad),
         @"twitter": @(UIKeyboardTypeTwitter),
         @"webSearch": @(UIKeyboardTypeWebSearch)
+    };
+
+    keyboardAppearanceValues = @{
+        @"default": @(UIKeyboardAppearanceDefault),
+        @"dark": @(UIKeyboardAppearanceDark),
+        @"light": @(UIKeyboardAppearanceLight)
     };
 
     returnKeyTypeValues = @{
@@ -142,7 +165,8 @@ static NSDictionary *anchorValues;
         @"left": @(LMAnchorLeft),
         @"right": @(LMAnchorRight),
         @"leading": @(LMAnchorLeading),
-        @"trailing": @(LMAnchorTrailing)
+        @"trailing": @(LMAnchorTrailing),
+        @"all": @(LMAnchorAll)
     };
 }
 
@@ -162,7 +186,7 @@ static NSDictionary *anchorValues;
     if (!isnan(width)) {
         constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth
             relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-            multiplier:1 constant:MAX(width, 0)];
+            multiplier:1 constant:width];
     } else {
         constraint = nil;
     }
@@ -188,7 +212,7 @@ static NSDictionary *anchorValues;
     if (!isnan(minimumWidth)) {
         constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth
             relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-            multiplier:1 constant:MAX(minimumWidth, 0)];
+            multiplier:1 constant:minimumWidth];
     } else {
         constraint = nil;
     }
@@ -214,7 +238,7 @@ static NSDictionary *anchorValues;
     if (!isnan(maximumWidth)) {
         constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth
             relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-            multiplier:1 constant:MAX(maximumWidth, 0)];
+            multiplier:1 constant:maximumWidth];
     } else {
         constraint = nil;
     }
@@ -240,7 +264,7 @@ static NSDictionary *anchorValues;
     if (!isnan(height)) {
         constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight
             relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-            multiplier:1 constant:MAX(height, 0)];
+            multiplier:1 constant:height];
     } else {
         constraint = nil;
     }
@@ -266,7 +290,7 @@ static NSDictionary *anchorValues;
     if (!isnan(minimumHeight)) {
         constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight
             relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-            multiplier:1 constant:MAX(minimumHeight, 0)];
+            multiplier:1 constant:minimumHeight];
     } else {
         constraint = nil;
     }
@@ -292,7 +316,7 @@ static NSDictionary *anchorValues;
     if (!isnan(maximumHeight)) {
         constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight
             relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-            multiplier:1 constant:MAX(maximumHeight, 0)];
+            multiplier:1 constant:maximumHeight];
     } else {
         constraint = nil;
     }
@@ -300,6 +324,32 @@ static NSDictionary *anchorValues;
     [constraint setActive:YES];
 
     objc_setAssociatedObject(self, @selector(maximumHeight), constraint, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)aspectRatio
+{
+    NSLayoutConstraint *constraint = objc_getAssociatedObject(self, @selector(aspectRatio));
+
+    return (constraint == nil) ? NAN : [constraint constant];
+}
+
+- (void)setAspectRatio:(CGFloat)aspectRatio
+{
+    NSLayoutConstraint *constraint = objc_getAssociatedObject(self, @selector(aspectRatio));
+
+    [constraint setActive:NO];
+
+    if (!isnan(aspectRatio)) {
+        constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth
+            relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight
+            multiplier:aspectRatio constant:0];
+    } else {
+        constraint = nil;
+    }
+
+    [constraint setActive:YES];
+
+    objc_setAssociatedObject(self, @selector(aspectRatio), constraint, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGFloat)weight
@@ -311,10 +361,6 @@ static NSDictionary *anchorValues;
 
 - (void)setWeight:(CGFloat)weight
 {
-    if (weight <= 0) {
-        return;
-    }
-
     objc_setAssociatedObject(self, @selector(weight), isnan(weight) ? nil : [NSNumber numberWithFloat:weight],
         OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
@@ -334,46 +380,6 @@ static NSDictionary *anchorValues;
         OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     [[self superview] setNeedsUpdateConstraints];
-}
-
-- (CGFloat)horizontalContentCompressionResistancePriority
-{
-    return [self contentCompressionResistancePriorityForAxis:UILayoutConstraintAxisHorizontal];
-}
-
-- (void)setHorizontalContentCompressionResistancePriority:(CGFloat)priority
-{
-    [self setContentCompressionResistancePriority:priority forAxis:UILayoutConstraintAxisHorizontal];
-}
-
-- (CGFloat)horizontalContentHuggingPriority
-{
-    return [self contentHuggingPriorityForAxis:UILayoutConstraintAxisHorizontal];
-}
-
-- (void)setHorizontalContentHuggingPriority:(CGFloat)priority
-{
-    [self setContentHuggingPriority:priority forAxis:UILayoutConstraintAxisHorizontal];
-}
-
-- (CGFloat)verticalContentCompressionResistancePriority
-{
-    return [self contentCompressionResistancePriorityForAxis:UILayoutConstraintAxisVertical];
-}
-
-- (void)setVerticalContentCompressionResistancePriority:(CGFloat)priority
-{
-    [self setContentCompressionResistancePriority:priority forAxis:UILayoutConstraintAxisVertical];
-}
-
-- (CGFloat)verticalContentHuggingPriority
-{
-    return [self contentHuggingPriorityForAxis:UILayoutConstraintAxisVertical];
-}
-
-- (void)setVerticalContentHuggingPriority:(CGFloat)priority
-{
-    [self setContentHuggingPriority:priority forAxis:UILayoutConstraintAxisVertical];
 }
 
 - (CGFloat)layoutMarginTop
@@ -432,19 +438,118 @@ static NSDictionary *anchorValues;
     [self setLayoutMargins:layoutMargins];
 }
 
-- (void)processMarkupInstruction:(NSString *)target data:(NSString *)data
+- (CGFloat)layoutMarginLeading
 {
-    // No-op
+    CGFloat leading;
+    if (@available(iOS 11, tvOS 11, *)) {
+        leading = [self directionalLayoutMargins].leading;
+    } else {
+        if ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:[self semanticContentAttribute]] == UIUserInterfaceLayoutDirectionLeftToRight) {
+            leading = [self layoutMargins].left;
+        } else {
+            leading = [self layoutMargins].right;
+        }
+    }
+
+    return leading;
 }
 
-- (void)processMarkupElement:(NSString *)tag properties:(NSDictionary *)properties
+- (void)setLayoutMarginLeading:(CGFloat)leading
 {
-    // No-op
+    if (@available(iOS 11, tvOS 11, *)) {
+        NSDirectionalEdgeInsets directionalLayoutMargins = [self directionalLayoutMargins];
+
+        directionalLayoutMargins.leading = leading;
+
+        [self setDirectionalLayoutMargins:directionalLayoutMargins];
+    } else {
+        UIEdgeInsets layoutMargins = [self layoutMargins];
+
+        if ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:[self semanticContentAttribute]] == UIUserInterfaceLayoutDirectionLeftToRight) {
+            layoutMargins.left = leading;
+        } else {
+            layoutMargins.right = leading;
+        }
+
+        [self setLayoutMargins:layoutMargins];
+    }
 }
 
-- (void)appendMarkupElementView:(UIView *)view
+- (CGFloat)layoutMarginTrailing
 {
-    // No-op
+    CGFloat trailing;
+    if (@available(iOS 11, tvOS 11, *)) {
+        trailing = [self directionalLayoutMargins].trailing;
+    } else {
+        if ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:[self semanticContentAttribute]] == UIUserInterfaceLayoutDirectionLeftToRight) {
+            trailing = [self layoutMargins].right;
+        } else {
+            trailing = [self layoutMargins].left;
+        }
+    }
+
+    return trailing;
+}
+
+- (void)setLayoutMarginTrailing:(CGFloat)trailing
+{
+    if (@available(iOS 11, tvOS 11, *)) {
+        NSDirectionalEdgeInsets directionalLayoutMargins = [self directionalLayoutMargins];
+
+        directionalLayoutMargins.trailing = trailing;
+
+        [self setDirectionalLayoutMargins:directionalLayoutMargins];
+    } else {
+        UIEdgeInsets layoutMargins = [self layoutMargins];
+
+        if ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:[self semanticContentAttribute]] == UIUserInterfaceLayoutDirectionLeftToRight) {
+            layoutMargins.right = trailing;
+        } else {
+            layoutMargins.left = trailing;
+        }
+
+        [self setLayoutMargins:layoutMargins];
+    }
+}
+
+- (CGFloat)horizontalContentCompressionResistancePriority
+{
+    return [self contentCompressionResistancePriorityForAxis:UILayoutConstraintAxisHorizontal];
+}
+
+- (void)setHorizontalContentCompressionResistancePriority:(CGFloat)priority
+{
+    [self setContentCompressionResistancePriority:priority forAxis:UILayoutConstraintAxisHorizontal];
+}
+
+- (CGFloat)horizontalContentHuggingPriority
+{
+    return [self contentHuggingPriorityForAxis:UILayoutConstraintAxisHorizontal];
+}
+
+- (void)setHorizontalContentHuggingPriority:(CGFloat)priority
+{
+    [self setContentHuggingPriority:priority forAxis:UILayoutConstraintAxisHorizontal];
+}
+
+- (CGFloat)verticalContentCompressionResistancePriority
+{
+    return [self contentCompressionResistancePriorityForAxis:UILayoutConstraintAxisVertical];
+}
+
+- (void)setVerticalContentCompressionResistancePriority:(CGFloat)priority
+{
+    [self setContentCompressionResistancePriority:priority forAxis:UILayoutConstraintAxisVertical];
+}
+
+- (CGFloat)verticalContentHuggingPriority
+{
+    return [self contentHuggingPriorityForAxis:UILayoutConstraintAxisVertical];
+}
+
+- (void)setVerticalContentHuggingPriority:(CGFloat)priority
+{
+    [self setContentHuggingPriority:priority forAxis:UILayoutConstraintAxisVertical];
 }
 
 - (void)applyMarkupPropertyValue:(id)value forKey:(NSString *)key
@@ -481,11 +586,33 @@ static NSDictionary *anchorValues;
         }
 
         return;
-    } else if ([key isEqual:@"keyboardAppearance"]) {
-        value = [keyboardAppearanceValues objectForKey:value];
+    } else if ([key isEqual:@"smartQuotesType"]) {
+        value = [textSmartQuotesTypeValues objectForKey:value];
 
         if (value != nil) {
-            [(UIView<UITextInputTraits> *)self setKeyboardAppearance:[value integerValue]];
+            if (@available(iOS 11.0, tvOS 11, *)) {
+                [(UIView<UITextInputTraits> *)self setSmartQuotesType:[value integerValue]];
+            }
+        }
+
+        return;
+    } else if ([key isEqual:@"smartDashesType"]) {
+        value = [textSmartDashesTypeValues objectForKey:value];
+
+        if (value != nil) {
+            if (@available(iOS 11.0, tvOS 11, *)) {
+                [(UIView<UITextInputTraits> *)self setSmartDashesType:[value integerValue]];
+            }
+        }
+
+        return;
+    } else if ([key isEqual:@"smartInsertDeleteType"]) {
+        value = [textSmartInsertDeleteTypeValues objectForKey:value];
+
+        if (value != nil) {
+            if (@available(iOS 11.0, tvOS 11, *)) {
+                [(UIView<UITextInputTraits> *)self setSmartInsertDeleteType:[value integerValue]];
+            }
         }
 
         return;
@@ -494,6 +621,14 @@ static NSDictionary *anchorValues;
 
         if (value != nil) {
             [(UIView<UITextInputTraits> *)self setKeyboardType:[value integerValue]];
+        }
+
+        return;
+    } else if ([key isEqual:@"keyboardAppearance"]) {
+        value = [keyboardAppearanceValues objectForKey:value];
+
+        if (value != nil) {
+            [(UIView<UITextInputTraits> *)self setKeyboardAppearance:[value integerValue]];
         }
 
         return;
@@ -538,6 +673,21 @@ static NSDictionary *anchorValues;
     }
 
     [super applyMarkupPropertyValue:value forKey:key];
+}
+
+- (void)processMarkupInstruction:(NSString *)target data:(NSString *)data
+{
+    // No-op
+}
+
+- (void)processMarkupElement:(NSString *)tag properties:(NSDictionary *)properties
+{
+    // No-op
+}
+
+- (void)appendMarkupElementView:(UIView *)view
+{
+    // No-op
 }
 
 @end

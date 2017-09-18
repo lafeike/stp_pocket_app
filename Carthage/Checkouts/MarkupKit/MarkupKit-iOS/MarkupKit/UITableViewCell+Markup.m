@@ -84,13 +84,6 @@ static NSDictionary *tableViewCellSelectionStyleValues;
     [self setAccessoryType:checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
 }
 
-- (void)appendMarkupElementView:(UIView *)view
-{
-    [self setAccessoryView:view];
-
-    [view sizeToFit];
-}
-
 - (void)applyMarkupPropertyValue:(id)value forKey:(NSString *)key
 {
     if ([key isEqual:@"accessoryType"]) {
@@ -100,6 +93,13 @@ static NSDictionary *tableViewCellSelectionStyleValues;
     }
 
     [super applyMarkupPropertyValue:value forKey:key];
+}
+
+- (void)appendMarkupElementView:(UIView *)view
+{
+    [self setAccessoryView:view];
+
+    [view sizeToFit];
 }
 
 @end

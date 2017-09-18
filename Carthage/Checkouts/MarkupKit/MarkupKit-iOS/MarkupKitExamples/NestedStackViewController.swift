@@ -53,7 +53,7 @@ class NestedStackViewController: UIViewController {
         ])
     }
 
-    func done() {
+    @objc func done() {
         navigationController!.popToRootViewController(animated: true)
     }
 }

@@ -16,9 +16,9 @@ import UIKit
 import MarkupKit
 
 class IncludesViewController: UIViewController {
-    var firstLabel: UILabel!
-    var secondLabel: UILabel!
-    var thirdLabel: UILabel!
+    @IBOutlet var firstLabel: UILabel!
+    @IBOutlet var secondLabel: UILabel!
+    @IBOutlet var thirdLabel: UILabel!
 
     override func loadView() {
         view = LMViewBuilder.view(withName: "IncludesViewController", owner: self, root: nil)
@@ -31,8 +31,8 @@ class IncludesViewController: UIViewController {
 
         edgesForExtendedLayout = UIRectEdge()
 
-        firstLabel.text = "First row"
-        secondLabel.text = "Second row"
-        thirdLabel.text = "Third row"
+        firstLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        secondLabel.text = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+        thirdLabel.text = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
     }
 }

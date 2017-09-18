@@ -19,51 +19,61 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self tableView] numberOfSectionsInTableView:tableView];
+    return [tableView numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self tableView] tableView:tableView numberOfRowsInSection:section];
+    return [tableView tableView:tableView numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self tableView] tableView:tableView cellForRowAtIndexPath:indexPath];
+    return [tableView tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [tableView tableView:tableView titleForHeaderInSection:section];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return [tableView tableView:tableView titleForFooterInSection:section];
 }
 
 #if TARGET_OS_IOS
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self tableView] tableView:tableView canEditRowAtIndexPath:indexPath];
+    return [tableView tableView:tableView canEditRowAtIndexPath:indexPath];
 }
 #endif
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self tableView] tableView:tableView didSelectRowAtIndexPath:indexPath];
+    return [tableView tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 #if TARGET_OS_IOS
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self tableView] tableView:tableView editActionsForRowAtIndexPath:indexPath];
+    return [tableView tableView:tableView editActionsForRowAtIndexPath:indexPath];
 }
 #endif
 
 - (BOOL)tableView:(UITableView *)tableView canFocusRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self tableView] tableView:tableView canFocusRowAtIndexPath:indexPath];
+    return [tableView tableView:tableView canFocusRowAtIndexPath:indexPath];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [[self tableView] tableView:tableView viewForHeaderInSection:section];
+    return [tableView tableView:tableView viewForHeaderInSection:section];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return [[self tableView] tableView:tableView viewForFooterInSection:section];
+    return [tableView tableView:tableView viewForFooterInSection:section];
 }
 
 @end

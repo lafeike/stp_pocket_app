@@ -3,10 +3,9 @@ MarkupKit.xcworkspace/xcuserdata
 MarkupKit-iOS/build
 MarkupKit-iOS/MarkupKit-iOS.xcodeproj/xcuserdata/
 MarkupKit-iOS/MarkupKit-iOS.xcodeproj/project.xcworkspace/xcuserdata/
-MarkupKit-iOS.framework.tar.gz
+MarkupKit-iOS.tar.gz
 MarkupKit-tvOS/build
 MarkupKit-tvOS/MarkupKit-tvOS.xcodeproj/xcuserdata/
 MarkupKit-tvOS/MarkupKit-tvOS.xcodeproj/project.xcworkspace/xcuserdata/
-MarkupKit-tvOS.framework.tar.gz
-MarkupKit.framework
-XcodeTemplates.tar.gz
+MarkupKit-tvOS.tar.gz
+Xcode.tar.gz

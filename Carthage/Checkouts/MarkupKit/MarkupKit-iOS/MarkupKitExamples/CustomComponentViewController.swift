@@ -16,6 +16,8 @@ import UIKit
 import MarkupKit
 
 class CustomComponentViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    let sizeComponentName = "sizes"
+    let colorComponentName = "colors"
     let dynamicComponentName = "dynamic"
 
     @IBOutlet var pickerView: UIPickerView!
@@ -37,6 +39,11 @@ class CustomComponentViewController: UIViewController, UIPickerViewDataSource, U
         pickerView.delegate = self
 
         edgesForExtendedLayout = UIRectEdge()
+
+        pickerView.setValue("L", forComponent: pickerView.component(withName: sizeComponentName), animated: false)
+        pickerView.setValue("#00ff00", forComponent: pickerView.component(withName: colorComponentName), animated: false)
+
+        pickerView.selectRow(2, inComponent: pickerView.component(withName: dynamicComponentName), animated: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,11 +68,11 @@ class CustomComponentViewController: UIViewController, UIPickerViewDataSource, U
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let title: String
+        let title: String?
         if (pickerView.name(forComponent: component) == dynamicComponentName) {
             title = String(row + 1)
         } else {
-            title = pickerView.title(forRow: row, forComponent:component)!
+            title = pickerView.pickerView(pickerView, titleForRow: row, forComponent: component)
         }
 
         return title
@@ -76,9 +83,11 @@ class CustomComponentViewController: UIViewController, UIPickerViewDataSource, U
     }
 
     func updateLabel() {
-        sizeLabel.text = pickerView.value(forRow: pickerView.selectedRow(inComponent: 0), forComponent: 0) as? String
-        colorLabel.text = pickerView.value(forRow: pickerView.selectedRow(inComponent: 1), forComponent: 1) as? String
+        sizeLabel.text = pickerView.value(forComponent: pickerView.component(withName: sizeComponentName)) as? String
+        colorLabel.text = pickerView.value(forComponent: pickerView.component(withName: colorComponentName)) as? String
 
-        numberLabel.text = pickerView(pickerView, titleForRow: pickerView.selectedRow(inComponent: 2), forComponent: 2)
+        let dynamicComponent = pickerView.component(withName: dynamicComponentName)
+
+        numberLabel.text = pickerView(pickerView, titleForRow: pickerView.selectedRow(inComponent: dynamicComponent), forComponent: dynamicComponent)
     }
 }

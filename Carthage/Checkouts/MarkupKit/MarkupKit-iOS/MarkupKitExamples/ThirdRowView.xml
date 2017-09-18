@@ -16,11 +16,12 @@ limitations under the License.
 
 <?properties {
     "label": {
-        "textColor": "#0000ff"
+        "textColor": "black",
+        "font": "System-Bold 12"
     }
 }?>
 
-<LMRowView spacing="20">
-    <UIImageView image="vw.png"/>
+<LMColumnView class="row">
+    <UIImageView class="icon" image="vw"/>
     <UILabel id="thirdLabel" class="label" weight="1"/>
-</LMRowView>
+</LMColumnView>

@@ -18,7 +18,7 @@ limitations under the License.
 
 <root accessoryType="disclosureIndicator">
     <LMColumnView>
-        <UILabel class="label.heading" text="$content.heading"/>
-        <UILabel class="label.detail" text="$content.detail"/>
+        <UILabel class="headingLabel" text="$row.heading"/>
+        <UILabel class="detailLabel" text="$row.detail"/>
     </LMColumnView>
 </root>

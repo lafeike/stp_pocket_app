@@ -13,12 +13,15 @@
 //
 
 #import "LMPageView.h"
+#import "UIScrollView+Markup.h"
 
 @implementation LMPageView
 {
     NSMutableArray *_pages;
 
     NSArray *_constraints;
+
+    NSInteger _currentPage;
 }
 
 + (BOOL)requiresConstraintBasedLayout
@@ -28,9 +31,9 @@
 
 #define INIT {\
     _pages = [NSMutableArray new];\
-    [super setPagingEnabled:YES];\
-    [super setShowsHorizontalScrollIndicator:NO];\
-    [super setShowsVerticalScrollIndicator:NO];\
+    [self setPagingEnabled:YES];\
+    [self setShowsHorizontalScrollIndicator:NO];\
+    [self setShowsVerticalScrollIndicator:NO];\
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -87,11 +90,52 @@
     }
 }
 
+- (NSInteger)currentPage
+{
+    return _currentPage;
+}
+
+- (void)setCurrentPage:(NSInteger)currentPage animated:(BOOL)animated
+{
+    [super setCurrentPage:currentPage animated:animated];
+
+    _currentPage = currentPage;
+}
+
+- (void)setContentOffset:(CGPoint)contentOffset
+{
+    [super setContentOffset:contentOffset];
+
+    if ([self isDecelerating]) {
+        _currentPage = [super currentPage];
+    }
+}
+
+- (void)setContentSize:(CGSize)contentSize {
+    [super setContentSize:contentSize];
+
+    [super setCurrentPage:_currentPage];
+}
+
 - (void)willRemoveSubview:(UIView *)subview
 {
     [self removePage:subview];
 
     [super willRemoveSubview:subview];
+}
+
+- (void)layoutSubviews
+{
+    // Ensure that pages resize
+    for (UIView * page in _pages) {
+        [page setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+        [page setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+        
+        [page setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+        [page setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+    }
+
+    [super layoutSubviews];
 }
 
 - (void)setNeedsUpdateConstraints

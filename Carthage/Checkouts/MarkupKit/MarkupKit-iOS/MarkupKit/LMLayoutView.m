@@ -114,6 +114,34 @@
     [self setNeedsUpdateConstraints];
 }
 
+- (void)setTopSpacing:(CGFloat)topSpacing
+{
+    _topSpacing = topSpacing;
+
+    [self setNeedsUpdateConstraints];
+}
+
+- (void)setBottomSpacing:(CGFloat)bottomSpacing
+{
+    _bottomSpacing = bottomSpacing;
+
+    [self setNeedsUpdateConstraints];
+}
+
+- (void)setLeadingSpacing:(CGFloat)leadingSpacing
+{
+    _leadingSpacing = leadingSpacing;
+
+    [self setNeedsUpdateConstraints];
+}
+
+- (void)setTrailingSpacing:(CGFloat)trailingSpacing
+{
+    _trailingSpacing = trailingSpacing;
+
+    [self setNeedsUpdateConstraints];
+}
+
 - (UIView *)viewForBaselineLayout
 {
     return ([_arrangedSubviews count] == 0) ? [super viewForBaselineLayout] : [[_arrangedSubviews firstObject] viewForBaselineLayout];

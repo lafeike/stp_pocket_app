@@ -15,7 +15,7 @@
 import UIKit
 import MarkupKit
 
-class EffectViewController: UITableViewController {
+class EffectViewController: UIViewController {
     override func loadView() {
         view = LMViewBuilder.view(withName: "EffectViewController", owner: self, root: nil)
     }

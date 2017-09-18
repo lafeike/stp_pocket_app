@@ -48,7 +48,7 @@ class CustomSectionViewController: LMTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         if (tableView.name(forSection: indexPath.section) == dynamicSectionName) {
-            cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)!
+            cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             
             cell.textLabel!.text = String(indexPath.row + 1)
         } else {

@@ -16,12 +16,12 @@ import UIKit
 import MarkupKit
 
 class PharmacyCell: LMTableViewCell {
-    dynamic var name: String?
-    dynamic var distance: String?
-    dynamic var address: String?
-    dynamic var phone: String?
-    dynamic var fax: String?
-    dynamic var email: String?
+    @objc dynamic var name: String?
+    @objc dynamic var distance: String?
+    @objc dynamic var address: String?
+    @objc dynamic var phone: String?
+    @objc dynamic var fax: String?
+    @objc dynamic var email: String?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

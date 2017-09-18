@@ -13,6 +13,7 @@
 //
 
 #import "UISegmentedControl+Markup.h"
+#import "UIView+Markup.h"
 
 static NSString * const kSegmentTag = @"segment";
 static NSString * const kSegmentTitleKey = @"title";
@@ -36,6 +37,8 @@ static NSString * const kSegmentImageKey = @"image";
                 [self insertSegmentWithImage:[UIImage imageNamed:image] atIndex:index animated:NO];
             }
         }
+    } else {
+        [super processMarkupElement:tag properties:properties];
     }
 }
 

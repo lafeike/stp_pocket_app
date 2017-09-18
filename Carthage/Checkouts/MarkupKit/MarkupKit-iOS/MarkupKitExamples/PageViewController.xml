@@ -14,26 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="#ffffff">
-    <LMPageView id="pageView">
-        <LMColumnView layoutMargins="40" backgroundColor="#ff0000">
-            <UIImageView image="chevy.png" contentMode="center" backgroundColor="#ffffff"/>
-        </LMColumnView>
-
-        <LMColumnView layoutMargins="40" backgroundColor="#00ff00">
-            <UIImageView image="mini.png" contentMode="center" backgroundColor="#ffffff"/>
-        </LMColumnView>
-
-        <LMColumnView layoutMargins="40" backgroundColor="#0000ff">
-            <UIImageView image="vw.png" contentMode="center" backgroundColor="#ffffff"/>
-        </LMColumnView>
+<LMAnchorView layoutMarginsRelativeArrangement="false" backgroundColor="white">
+    <LMPageView id="pageView" anchor="all">
+        <UIImageView image="quebec.jpg" contentMode="scaleAspectFill" clipsToBounds="true"/>
+        <UIImageView image="lighthouse.jpg" contentMode="scaleAspectFill" clipsToBounds="true"/>
+        <UIImageView image="waterfall.jpg" contentMode="scaleAspectFill" clipsToBounds="true"/>
     </LMPageView>
 
-    <LMColumnView>
-        <LMSpacer/>
-        <UIPageControl id="pageControl" numberOfPages="3"
-            pageIndicatorTintColor="#ffff0077" currentPageIndicatorTintColor="#ffff00ff"
-            userInteractionEnabled="false"/>
-    </LMColumnView>
-</LMLayerView>
-
+    <UIPageControl id="pageControl" anchor="bottom"
+        pageIndicatorTintColor="#ffff0077" currentPageIndicatorTintColor="#ffff00ff"
+        onValueChanged="updatePage"/>
+</LMAnchorView>

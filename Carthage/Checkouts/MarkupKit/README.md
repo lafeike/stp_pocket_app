@@ -1,4 +1,3 @@
-![Supported Platforms](https://img.shields.io/cocoapods/p/MarkupKit.svg) 
 [![Releases](https://img.shields.io/github/release/gk-brown/MarkupKit.svg)](https://github.com/gk-brown/MarkupKit/releases)
 [![CocoaPods](https://img.shields.io/cocoapods/v/MarkupKit.svg)](https://cocoapods.org/pods/MarkupKit)
 [![Discussion](https://badges.gitter.im/gk-brown/MarkupKit.svg)](https://gitter.im/MarkupKit/Lobby)
@@ -17,7 +16,7 @@ This markup is equivalent to the following Swift code:
 
 Building an interface in markup can significantly reduce development time. For example, the periodic table shown below was constructed using a combination of MarkupKit's layout views and `UILabel` instances:
 
-![](README/periodic-table.png)
+<img src="README/periodic-table.png" width="820px"/>
 
 Creating this view in Interface Builder would be an arduous task. Creating it programmatically would be even more difficult. However, in markup it is almost trivial. The complete source code for this example can be found [here](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKitExamples/PeriodicTableViewController.xml).
 
@@ -25,7 +24,9 @@ Using markup also helps to promote a clear separation of responsibility. Most, i
 
 This guide introduces the MarkupKit framework and provides an overview of its key features. The first section describes the structure of a MarkupKit document and explains how view instances are created and configured in markup. The remaining sections introduce the classes included with the framework and discuss how they can be used to help simplify application development. Extensions to several UIKit classes that enhance the classes' behavior or adapt their respective types for use in markup are also discusssed.
 
-MarkupKit requires either iOS 8 or later or tvOS 10 or later. The latest release can be downloaded [here](https://github.com/gk-brown/MarkupKit/releases). It is also available via [CocoaPods](https://cocoapods.org/pods/MarkupKit).
+MarkupKit requires either iOS 9 or later or tvOS 10 or later. The latest release can be downloaded [here](https://github.com/gk-brown/MarkupKit/releases). It is also available via [CocoaPods](https://cocoapods.org/pods/MarkupKit).
+
+For additional information and examples, including code templates, see the [wiki](https://github.com/gk-brown/MarkupKit/wiki).
 
 # Contents
 * [Document Structure](#document-structure)
@@ -33,7 +34,7 @@ MarkupKit requires either iOS 8 or later or tvOS 10 or later. The latest release
 * [Additional Information](#additional-information)
 
 # Document Structure
-MarkupKit uses XML to define the structure of a user interface. The hierarchical nature of XML parallels the view hierarchy of an iOS application, making it easy to understand the relationships between views. 
+MarkupKit uses XML to define the structure of a user interface. The hierarchical nature of an XML document parallels the view hierarchy of an iOS application, making it easy to understand the relationships between views. 
 
 ## Elements
 Elements in a MarkupKit document typically represent instances of `UIView` or its subclasses. As elements are read by the XML parser, the corresponding view types are dynamically instantiated and added to the view hierarchy. 
@@ -45,7 +46,7 @@ For example, the following markup creates an instance of `LMColumnView` containi
         <UILabel text="Hello, World!"/>
     </LMColumnView>
 
-![](README/hello-world.png)
+<img src="README/hello-world.png" width="300px"/>
 
 The same result could be achieved programmatically as shown below:
 
@@ -83,7 +84,7 @@ In addition to view instances, elements may also represent untyped data. For exa
         <segment title="Extra-Large"/>
     </UISegmentedControl>
 
-![](README/segmented-control.png)
+<img src="README/segmented-control.png" width="300px"/>
 
 Each `<segment>` element triggers to a call to the following method, which is also added to `UIView` by MarkupKit:
 
@@ -107,7 +108,7 @@ MarkupKit adds the following methods to `NSObject` to assist in applying propert
 
 Ultimately, these methods delegate to the `setValue:forKey:` method of `NSObject`. However, they allow an implementing class to override the default behavior and perform any necessary translation before the value is actually set (for example, converting a string representation of an enum value to its numeric equivalent).
 
-MarkupKit actually invokes the second method when applying property values. This makes it possible to set properties of nested objects in markup. For example, the following markup creates a button whose title label's `font` property is set to "Helvetica-Bold 32":
+MarkupKit actually invokes the second method when applying attribute values. This makes it possible to set properties of nested objects in markup. For example, the following markup creates a button whose title label's `font` property is set to "Helvetica-Bold 32":
 
     <UIButton style="systemButton" title="Press Me!" titleLabel.font="Helvetica-Bold 32"/>
 
@@ -137,7 +138,7 @@ This markup creates a column view whose background color is set to a semi-transp
     </LMColumnView>
 
 #### Named Colors
-A named color value may refer to either a color in the application's color table or to a color constant defined by the `UIColor` class. The color table is an optional collection of key-value pairs defined in a file named _Colors.plist_. If present, this file must be located in the application's main bundle. The table's keys represent color names, and the values the associated RGB[A] values. The names can be used thoroughout the application in place of the actual hex values.
+A named color value may refer to a color set in an asset catalog, an entry in the application's color table, or to a color constant defined by the `UIColor` class. The color table is an optional collection of key-value pairs defined in a file named _Colors.plist_. If present, this file must be located in the application's main bundle. The table's keys represent color names, and the values the associated RGB[A] values. The names can be used thoroughout the application in place of the actual hex values.
 
 For example, the following property list defines a color named "darkRed":
 
@@ -148,17 +149,23 @@ For example, the following property list defines a color named "darkRed":
     </dict>
     </plist>
 
-This markup creates an instance of `UILabel` whose text color will be set to the value that "darkRed" refers to in the property list, "#8b0000":
+This markup creates an instance of `UILabel` whose text color will be set to the value to which "darkRed" refers in the property list, "#8b0000":
 
     <UILabel text="A Dark Red Label" textColor="darkRed"/>
 
 Named colors may also refer to the color preset methods of `UIColor`, such as `darkGrayColor`. The value is the name of the accessor method minus the "Color" suffix. 
 
-For example, the following markup would produce a system-style button whose tint color is set to the value returned by the `greenColor` method of `UIColor`:
+For example, the following markup would produce a system-style button whose tint color is set to the value returned by the `greenColor` method:
 
     <UIButton style="systemButton" tintColor="green"/>
 
-Color table entries take precedence over `UIColor` constants. For example, if _Colors.plist_ defined a value for "green", the corresponding color would be used instead of the value returned by the `greenColor` method.
+Named colors are evaluated in the following order:
+
+* Color set
+* Color table
+* Color constant
+
+For example, if _Colors.plist_ defined a value for "green", the corresponding color would be used instead of the value returned by `greenColor`.
 
 #### Pattern Images
 Pattern images are specified by providing the name of the name of the image to use as a repeating tile. For example, this markup creates a table view with a tiled background image named "tile.png":
@@ -182,7 +189,7 @@ For example, the following markup creates a `UILabel` whose font is set to 24-po
 The current system font can be specified by using "System" as the font name. "System-Bold" and "System-Italic" are also supported.
 
 #### Text Styles
-A text style refers to either an entry in the application's font table or to a system-defined text style. The font table is an optional collection of key-value pairs defined in a file named _Fonts.plist_. If present, this file must be located in the application's main bundle. The table's keys represent style names, and the values the associated fonts. The styles can be used throughout the application in place of the actual font names.
+A text style refers either to an entry in the application's font table or to a system-defined text style. The font table is an optional collection of key-value pairs defined in a file named _Fonts.plist_. If present, this file must be located in the application's main bundle. The table's keys represent text style names, and the values the associated fonts. The styles can be used throughout the application in place of the actual font names.
 
 For example, the following property list defines a text style named "monospaced":
 
@@ -193,13 +200,11 @@ For example, the following property list defines a text style named "monospaced"
     </dict>
     </plist>
 
-This markup creates an instance of `UILabel` whose font will be set to the value that "monospaced" refers to in the property list, "Courier 12":
+This markup creates an instance of `UILabel` whose font will be set to the value to which "monospaced" refers in the property list, "Courier 12":
 
     <UILabel text="This is monospaced text" font="monospaced"/>
 
-Style names may also refer to system-defined text styles such as `UIFontTextStyleHeadline`. The value is the name of the style constant minus the leading "UIFontTextStyle" prefix, with a leading lowercase letter.
-
-For example, the following markup would produce a label whose font is set to whatever is currently associated with the system's "headline" text style:
+Style names may also refer to system-defined text styles such as `UIFontTextStyleHeadline`. The value is the name of the style constant minus the leading "UIFontTextStyle" prefix, with a leading lowercase letter. For example, the following markup would produce a label whose font is set to whatever is currently associated with the system's "headline" text style:
 
     <UILabel text="This is headline text" font="headline"/>
 
@@ -210,11 +215,13 @@ The value of any attribute whose name is equal to or ends with "image" is conver
 
     <UIImageView image="background.png"/>
 
-Images are loaded using the `imageNamed:inBundle:compatibleWithTraitCollection:` method of the `UIImage` class. The attribute value is passed as the first argument to the method. If the document's owner (usually the view controller) implements the `bundleForImages` method, the second argument will contain the value returned by this method. Otherwise, the application's main bundle will be used. Finally, if the owner conforms to the `UITraitEnvironment` protocol, the third argument will contain the value returned by the owner's `traitCollection` method. Otherwise, it will be `nil`.
+Images are typically loaded using the `imageNamed:inBundle:compatibleWithTraitCollection:` method of the `UIImage` class. The attribute value is passed as the first argument to this method. 
 
-Note that, because images are loaded via `imageNamed:inBundle:compatibleWithTraitCollection:`, image attributes may refer to image sets defined in an asset catalog. For example, if the asset catalog contains an image set named "PrintIcon", the following markup would create a button with a title of "Print" and an icon appropriate for the current device resolution:
+If the document's owner (usually the view controller) implements a method named `bundleForImages`, the second argument will contain the value returned by this method. MarkupKit adds an implementation of `bundleForImages` to the `UIResponder` class, so any subclass of `UIResponder` (including `UIViewController` and `UIView`) will automatically inherit the default implementation, which returns the application's main bundle. Subclasses can override this method to provide custom image loading behavior. If the owner does not implement `bundleForImages`, the main bundle will be used.
 
-    <UIButton style="systemButton" image="PrintIcon" title="Print"/>
+Finally, if the owner conforms to the `UITraitEnvironment` protocol, the third argument will contain the value returned by the `traitCollection` method. Otherwise, it will be `nil`.
+    
+If a matching image is not found in the identified bundle, it will be loaded from the application's _Library/Application Support_ folder.
 
 ### Enumerations
 Enumerated types are not automatically handled by KVC. However, MarkupKit provides translations for enumerations commonly used by UIKit. For example, the following markup creates an instance of `UITextField` that displays a clear button only while the user is editing, and presents a software keyboard suitable for entering email addresses:
@@ -225,30 +232,30 @@ Enumerated types are not automatically handled by KVC. However, MarkupKit provid
 
 Enumeration values in MarkupKit are abbreviated versions of their UIKit counterparts. The attribute value is simply the full name of the enum value minus the leading type name, with a lowercase first character. For example, "whileEditing" in the above example corresponds to the `UITextFieldViewModeWhileEditing` value of the `UITextFieldViewMode` enum. Similarly, "emailAddress" corresponds to the `UIKeyboardTypeEmailAddress` value of the `UIKeyboardType` enum. 
 
-Note that attribute values are converted to enum types based on the attribute's name, not its value or associated property type. For example, the following markup sets the value of the label's `text` property to the literal string "whileEditing":
+Note that attribute values are converted to enum types based on the attribute's name, not its value or associated property type (which generally cannot be determined at runtime). For example, the following markup sets the value of the label's `text` property to the literal string "whileEditing":
 
     <UILabel text="whileEditing"/>
 
 ### Edge Insets
-The `UIView` class allows a caller to specify the amount of space that should be reserved around all of its subviews when laying out its contents. This value is called the view's "layout margins" and is represented by an instance of the `UIEdgeInsets` structure. 
+The `UIView` class allows a caller to specify the amount of space that should be reserved around all of its subviews when laying out its contents. This value is called the view's "layout margins" and is represented by an instance of the `UIEdgeInsets` structure (or `NSDirectionalEdgeInsets` in iOS 11 and later). 
 
-Since edge inset structures aren't natively supported by KVC, MarkupKit provides a shorthand for specifying layout margin values. The "layoutMargins" attribute accepts a single numeric value that will be applied to all of the structure's components.
+Since edge insets aren't natively supported by KVC, MarkupKit provides a shorthand for specifying layout margin values. The "layoutMargins" attribute accepts a single numeric value that will be applied to all of the structure's components. For example, the following markup creates a column view whose top, left, bottom, and right layout margins are set to 20:
 
-For example, the following markup creates an instance of `LMTableViewCell` whose top, left, bottom, and right layout margins are set to 20:
-
-    <LMTableViewCell layoutMargins="20">
+    <LMColumnView layoutMargins="20">
         ...
-    </LMTableViewCell>
+    </LMColumnView>
 
 Edge inset properties of several other view types can also be specified using this shorthand. For example:
 
-    <UIButton style="systemButton" title="Press Me!" contentEdgeInsets="12"/>
-
-    <UITextView height="240" textContainerInset="7"/>    
+    <UIButton title="Press Me!" contentEdgeInsets="12"/>
     
-Additionally, MarkupKit adds properties to these view types that allow edge inset components to be specified individually; for example:
+Additionally, MarkupKit adds properties to these types that allow edge inset components to be specified individually. For example:
 
-    <UIButton style="systemButton" title="Press Me!" contentEdgeInsetTop="12"/>
+    <LMColumnView layoutMarginLeft="20" layoutMarginRight="20">
+        ...
+    </LMColumnView>
+    
+    <UIButton title="Press Me!" contentEdgeInsetTop="12" contentEdgeInsetBottom="12"/>
 
 These extensions are discussed in more detail later.
 
@@ -261,33 +268,47 @@ the following markup will produce an instance of `UILabel` with the value of its
 
     <UILabel text="@hello"/>
 
-If a localized value is not found, the key will be used instead. This allows developers to easily identify missing string resources at runtime.
+If the document's owner implements a method named `bundleForStrings`, localized string values will be loaded using the bundle returned by this method. As with the `bundleForImages` method discussed earlier, MarkupKit adds a default implementation of `bundleForStrings` to `UIResponder` that returns the application's main bundle. Subclasses can override this method to provide custom string loading behavior. If the owner does not implement `bundleForStrings`, the main bundle will be used.
 
-If the document's owner implements the `bundleForStrings` method, localized string values will be loaded using the bundle returned by this method. Otherwise, they will be loaded using the application's main bundle.
+Additionally, if the owner implements a method named `tableForStrings`, the name of the table returned by this method will be used to localize string values. If the owner does not implement this method or returns `nil`, the default string table (_Localizable.strings_) will be used. The default implementation provided by `UIResponder` returns `nil`.
+
+A leading "@" character can be escaped by prepending a caret character to the text. For example, this markup would produce a label containing the literal text "@hello":
+
+    <UILabel text="^@hello"/>
 
 ### Data Binding
-Attributes whose values begin with "$" represent data bindings. The text following the "$" character represents the key path of a property in the document's owner to which the corresponding view property will be bound. Bindings are bi-directional, such that an update to either the owner or the view property will be automatically reflected in the other.
+Attributes whose values begin with "$" represent data bindings. The text following the "$" character represents the key path of a property in the document's owner to which the corresponding view property will be bound. Bindings are implemented using [key-value observing](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html), so any KVO-compliant property defined by the owner can be bound to a view. 
 
-For example, the following markup binds the _text_ property of a text field to the _name_ property of the owner:
+For example, an owning class might define a bindable property called `name` as follows:
+
+    class ViewController: UIViewController {
+        @objc dynamic var name: String?
+
+        ...
+    }
+
+The following markup would create a binding between the `text` property of the text field and the owner's `name` property. Any updates to `name` will be automatically reflected in the text field:
 
     <UITextField text="$name"/>
- 
+
+As with the "@" symbol, a leading "$" character can be escaped using a caret. This markup would set the text of the label to the literal string "$name", rather than creating a binding:
+
+    <UILabel text="^$name"/>
+
 Bindings must be released before the owner is deallocated as well as any time the document is reloaded (for example, on an orientation change). Bindings are released via a call to `unbindAll`, a method MarkupKit adds to the `UIResponder` class. For example:
 
     deinit {
         unbindAll()
     }
 
-Note that it may not be possible to establish a two-way binding in all cases. Internally, data binding uses [key-value observing](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html) (KVO) to register and respond to property change events. Although many UIKit types support KVO, not all do. In such cases, the view will still respond to changes in the owner, but the owner will not be automatically updated to reflect changes in the view.
-
-Bindings may also be programmatically established by calling the `bind:toView:withKeyPath:` method MarkupKit adds to the `UIResponder` class. See _UIResponder.h_ for more information.
+Bindings may also be programmatically established by calling the `bind:toView:withKeyPath:` method MarkupKit adds to the `UIResponder` class. See [UIResponder+Markup.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/UIResponder%2BMarkup.h) for more information.
 
 ### Factory Methods
-Some UIKit classes can't be instantiated by simply invoking the `new` method on the type. For example, instances of `UIButton` are created by calling `buttonWithType:`, and `UITableView` instances are initialized with `initWithFrame:style:`.
+Some UIKit classes can't be instantiated by simply invoking the `new` method on the type. For example, instances of `UIButton` are created by calling the `buttonWithType:` class method, and `UITableView` instances are initialized with `initWithFrame:style:`.
 
 To handle these cases, MarkupKit supports a special attribute named "style". The value of this attribute is the name of a "factory method", a zero-argument class method that produces instances of a given type. MarkupKit adds a number of factory methods to classes such as `UIButton` and `UITableView` to enable these types to be constructed in markup.
 
-For example, the following markup creates an instance of a "system"-style `UIButton` by calling the `systemButton` method MarkupKit adds to the `UIButton` class:
+For example, the following markup creates an instance of a system-style `UIButton` by calling the `systemButton` method MarkupKit adds to the `UIButton` class:
 
     <UIButton style="systemButton" title="Press Me!"/>
 
@@ -298,7 +319,7 @@ The complete set of extensions MarkupKit adds to UIKit types is discussed in mor
 ### Template Properties
 Often, when constructing a user interface, the same set of property values are applied repeatedly to instances of a given type. For example, an application designer may want all buttons to have a similar appearance. While it is possible to simply duplicate the property definitions across each button instance, this is repetitive and does not allow the design to be easily modified later - every instance must be located and modified individually, which can be time consuming and error prone.
 
-MarkupKit allows developers to abstract common sets of property definitions into "templates", which can then be applied by name to individual view instances. This makes it much easier to assign common property values as well as modify them later.
+MarkupKit allows developers to abstract common sets of property definitions into CSS-like "templates", which can then be applied by name to individual view instances. This makes it much easier to assign common property values as well as modify them later.
 
 Property templates are specified using [JavaScript Object Notation](http://www.json.org) (JSON), and may be either inline or external. Inline templates are defined within the markup document itself, and external templates are specified in a separate file.
 
@@ -317,7 +338,7 @@ Templates are added to a MarkupKit document using the `properties` processing in
 
     <?properties Styles?>
 
-If the document's owner implements the `UITraitEnvironment` protocol, any size class-specific property overrides (e.g. _Styles~horizontal.json_) will also be added to the document. Size class-specific properties are discussed in more detail later.
+Note that if the document's owner implements the `UITraitEnvironment` protocol, any size class-specific property overrides (e.g. _Styles~horizontal.json_) will also be added to the document. Size class-specific properties are discussed in more detail later.
 
 Inline templates simply embed the entire template definition within the processing instruction:
 
@@ -346,7 +367,7 @@ Multiple templates can be applied to a view using a comma-separated list of temp
 Note that, although attribute values in XML are always represented as strings, the property values in a template definition can be any valid type; for example, if a property accepts a numeric type, the value can be defined as a number in the JSON document. However, this is not stricly necessary since strings will automatically be converted to the appropriate type by KVC.
 
 ### Outlets
-The reserved "id" attribute can be used to assign a name to a view instance. This creates an "outlet" for the view that makes it accessible to calling code. Using KVC, MarkupKit "injects" the named view instance into the document's owner (generally either the view controller for the root view or the root view itself), allowing the application to interact with it.
+The reserved "id" attribute can be used to assign a name to a view instance. This creates an "outlet" for the view that makes it accessible to calling code. Using KVC, MarkupKit "injects" the named view instance into the document's owner, allowing the application to interact with it.
 
 For example, the following markup declares a table view containing a `UITextField`. The text field is assigned an ID of "textField":
 
@@ -364,7 +385,7 @@ or in Swift, like this:
 
     @IBOutlet var textField: UITextField!
 
-In either case, when the document is loaded, the outlet will be populated with the text field instance, and the application can interact with it just as if it was defined in a storyboard or created programmatically. Note that the `IBOutlet` annotation used by Interface Builder to tag outlet properties is supported by MarkupKit, but is not required.
+In either case, when the document is loaded, the outlet will be populated with the text field instance, and the application can interact with it just as if it was defined in a storyboard or created programmatically.
 
 ### Actions
 Most non-trivial applications need to respond in some way to user interaction. UIKit controls (subclasses of the `UIControl` class) fire events that notify an application when such interaction has occurred. For example, the `UIButton` class fires the `UIControlEventPrimaryActionTriggered` event when a button instance is tapped.
@@ -386,8 +407,6 @@ Note that the `sender` argument is optional; if the trailing colon is omitted fr
     @IBAction func buttonPressed() {
         // User tapped button
     }
-
-Like `IBOutlet`, MarkupKit supports the `IBAction` annotation used by Interface Builder, but does not require it.
 
 ## Includes
 Includes allow content defined in another markup document to be "included" or "imported" into the current document. They enable the structure of a user interface to be modularized; for example, to break up a complex document into smaller, more manageable pieces.
@@ -415,7 +434,7 @@ However, if the device was presenting a compact width and regular height, the do
 Size class-specific layouts are discussed in more detail later.
 
 ## Conditional Processing
-In most cases, a markup document created for an iOS application can be used as is in tvOS. However, because not all UIKit types and properties are supported by tvOS, MarkupKit provides support for conditional processing. Using the `case` processing instruction, a document can conditionally include or exclude content based on the target operating system. Content following the PI will only be processed if the current OS matches the target. For example:
+In most cases, a markup document created for an iOS application can be used as is in tvOS. However, because not all UIKit types and properties are supported by tvOS, MarkupKit provides support for conditional processing. Using the `case` processing instruction, a document can conditionally include or exclude content based on the target platform. Content following the PI will only be processed if the current operating system matches the target. For example:
 
     <?case iOS?>
         <!-- iOS-specific content -->
@@ -428,12 +447,17 @@ The optional `end` PI terminates a case. If unspecified, OS-specific processing 
 ## View-Specific Processing Instructions
 In addition to the document-wide `properties` and `include` directives discussed earlier, MarkupKit also provides support for view-specific processing instructions. These allow developers to pass additional information to a view instance that can't be easily expressed as an attribute value or sub-element. 
 
-MarkupKit adds a `processMarkupInstruction:data:` method to the `UIView` class to facilitate PI handling at the view level. For example, `LMTableView` overrides this method to support section header and footer view declarations and section breaks:
+MarkupKit adds a `processMarkupInstruction:data:` method to the `UIView` class to facilitate PI handling at the view level. For example, `LMTableView` overrides this method to support section header and footer declarations and section breaks:
 
     <LMTableView style="groupedTableView">
         <?sectionHeaderView?>
         <UITableViewHeaderFooterView textLabel.text="Section 1"/>        
+        ...
         
+        <?sectionBreak?>
+        
+        <?sectionHeaderView?>
+        <UITableViewHeaderFooterView textLabel.text="Section 2"/>
         ...
     </LMTableView>
     
@@ -443,16 +467,16 @@ These processing instructions and others are discussed in more detail below.
 The remaining sections of this document discuss the classes included with the MarkupKit framework:
 
 * `LMViewBuilder` - processes a markup document, deserializing its contents into a view hierarchy that can be used by an iOS application
-* `LMTableView`/`LMTableViewCell` - `UITableView` and `UITableViewCell` subclasses, respectively, that facilitate the declaration of table view content
-* `LMTableViewController` - `UITableViewController` subclass that simplifies management of an `LMTableView`
-* `LMCollectionView`/`LMCollectionViewCell` - `UICollectionView` and `UICollectionViewCell` subclasses, respectively, that facilitate declaration of collection view content
-* `LMPickerView` - `UIPickerView` subclass that facilitates the declaration of picker view content
-* `LMScrollView` - subclass of `UIScrollView` that automatically adapts to the size of its content
-* `LMPageView` - subclass of `UIScrollView` that facilitates the declaration of paged content
 * `LMRowView` and `LMColumnView` - layout views that arrange subviews in a horizontal or vertical line, respectively
 * `LMSpacer` - view that creates flexible space between other views
 * `LMLayerView` - layout view that arranges subviews in layers, like a stack of transparencies
 * `LMAnchorView` - view that optionally anchors subviews to one or more edges
+* `LMTableView`, `LMTableViewCell`, and `LMTableViewHeaderFooterView` - `UITableView`, `UITableViewCell`, and `UITableViewHeaderFooterView` subclasses, respectively, that facilitate the declaration of table view content
+* `LMTableViewController` - `UITableViewController` subclass that simplifies management of an `LMTableView`
+* `LMCollectionView` and `LMCollectionViewCell` - `UICollectionView` and `UICollectionViewCell` subclasses, respectively, that facilitate declaration of collection view content
+* `LMPickerView` - `UIPickerView` subclass that facilitates the declaration of picker view content
+* `LMScrollView` - subclass of `UIScrollView` that automatically adapts to the size of its content
+* `LMPageView` - subclass of `UIScrollView` that facilitates the declaration of paged content
 * `LMLinearGradientView` and `LMRadialGradientView` - views that facilitate the declaration of linear and radial gradient effects, respectively
 * `LMPlayerView` - view that presents an AV player
 
@@ -468,14 +492,14 @@ The `name` parameter represents the name of the view to load. It is the file nam
 
 The `owner` parameter represents the view's owner. It is often an instance of `UIViewController`, but this is not strictly required. For example, custom table and collection view cell types often specify themselves as the owner.
 
-If the owner implements the `UITraitEnvironment` protocol, `viewWithName:owner:root:` will first look for an XML document corresponding to the owner's size class; for example, _LoginViewController~horizontal.xml_. Size classes are named as follows:
+If the owner implements the `UITraitEnvironment` protocol, `viewWithName:owner:root:` will first look for an XML document corresponding to the size class reported by the owner's [trait collection](https://developer.apple.com/documentation/uikit/uitraitcollection). Size classes are named as follows:
 
 * Regular width, regular height - "normal"
 * Regular width, compact height - "horizontal"
 * Compact width, regular height - "vertical"
 * Compact width, compact height - "minimal"
 
-If a size class-specific document is not found, `LMViewBuilder` will fall back to the default document name (e.g. _LoginViewController.xml_).
+For example, given a view named "LoginViewController" and a regular width/compact height controller, `LMViewBuilder` would first look for a document named _LoginViewController~horizontal.xml_. If a size class-specific document is not found, `LMViewBuilder` will fall back to the default document name (e.g. _LoginViewController.xml_).
 
 Further, `LMViewBuilder` will apply any size class-specific property templates to the current document. For example, if a document imports a template collection as follows:
 
@@ -489,12 +513,18 @@ Note that neither size class-specific layouts nor template properties are automa
         super.traitCollectionDidChange(previousTraitCollection)
     
         if (previousTraitCollection != nil) {
+            unbindAll()
+            
             loadView()
             viewDidLoad()
         }
     }
     
-If the owner implements the `bundleForView` method, view documents will be loaded from the bundle returned by this method. Otherwise, they will be loaded from the application's main bundle. Note that property templates and color and font tables are always loaded from the application's main bundle.
+If the owner implements a method named `bundleForView`, view documents will be loaded from the bundle returned by this method. MarkupKit adds a default implementation of `bundleForView` to `UIResponder` that returns the application's main bundle. Subclasses can override this method to provide custom view loading behavior. If the owner does not implement `bundleForView`, the main bundle will be used. 
+
+If a matching document is not found in the identified bundle, `LMViewBuilder` will look in the application's _Library/Application Support_ folder, first for a size class-specific layout, then for the default layout.
+
+Note that property templates and color and font tables are always loaded from the main bundle.
 
 ### Document Root
 The `root` parameter represents the value that will be used as the root view instance when the document is loaded. This value is often `nil`, meaning that the root view will be specified by the document itself. However, when non-`nil`, it means that the root view is being provided by the caller. In this case, the reserved `<root>` tag can be used as the document's root element to refer to this view.
@@ -541,14 +571,377 @@ The `root` argument is also commonly used when implementing custom table or coll
     + (UIColor *)colorValue:(NSString *)value;
     + (UIFont *)fontValue:(NSString *)value;
 
-These methods may also be called by application code to translate MarkupKit-encoded color and font values to `UIColor` and `UIFont` instances, respectively.
+These methods may also be called by application code to translate MarkupKit-encoded color and font values to `UIColor` and `UIFont` instances, respectively. See [LMViewBuilder.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMViewBuilder.h) for more information.
 
-See _LMViewBuilder.h_ for more information.
+## LMLayoutView
+Auto layout is an iOS feature that allows developers to create applications that automatically adapt to device size, orientation, or content changes. An application built using auto layout generally has little or no hard-coded view positioning logic, but instead dynamically arranges user interface elements based on their preferred or "intrinsic" content sizes.
 
-## LMTableView and LMTableViewCell
-The `LMTableView` and `LMTableViewCell` classes facilitate the declaration of table view content in markup. `LMTableView` is a subclass of `UITableView` that acts as its own data source and delegate, serving cells from a statically defined collection of table view sections. An `LMTableView` instance is configured to use self-sizing cells by default, allowing it to be used as a general-purpose layout device.
+Auto layout in iOS is implemented primarily via layout constraints, which, while powerful, are not particularly convenient to work with. To simplify the process, MarkupKit provides the following set of view classes, whose sole responsibility is managing the size and position of their respective subviews:
 
-`LMTableViewCell` is a subclass of `UITableViewCell` that provides a vehicle for custom cell content. It automatically applies constraints to its content to enable self-sizing behavior. MarkupKit also provides extensions to the standard `UITableViewCell` class that allow it to be used in markup. This is discussed in more detail in a later section.
+* `LMRowView` - arranges subviews in a horizontal line
+* `LMColumnView` - arranges subviews in a vertical line
+* `LMLayerView` - arranges subviews in layers, like a stack of transparencies
+* `LMAnchorView` - optionally anchors subviews to one or more edges
+
+These classes use layout constraints internally, allowing developers to easily take advantage of auto layout while eliminating the need to manage constraints directly. They can be nested to create complex layouts that automatically adjust to orientation or screen size changes.
+
+### Arranged Subviews
+All layout view types extend the abstract `LMLayoutView` class, which provides the following methods for managing its list of arranged subviews:
+    
+    - (void)addArrangedSubview:(UIView *)view;
+    - (void)insertArrangedSubview:(UIView *)view atIndex:(NSUInteger)index;
+    - (void)removeArrangedSubview:(UIView *)view;
+
+`LMLayoutView` overrides `appendMarkupElementView:` to call `addArrangedSubview:` on itself so that layout views can be constructed in markup. A read-only property that returns the current list of arranged subviews is also provided:
+
+    @property (nonatomic, readonly, copy) NSArray *arrangedSubviews;
+
+Note that, as with `UIStackView`, the `removeArrangedSubview:` method does not remove the given view as a subview of the layout view. To completely remove an arranged subview, call `removeFromSuperview` on the view.
+
+Arranged subviews whose `hidden` property is set to `true` are ignored when performing layout. Layout views listen for changes to this property on their subviews and automatically relayout as needed.
+
+### Layout Margins
+By default, the arranged subviews of a layout view are positioned relative to its layout margins. For example, the following markup creates a row view whose arranged subviews will be inset from its own edges by 12 pixels:
+
+    <LMRowView layoutMargins="12">
+        ...
+    </LMRowView>
+    
+MarkupKit adds the following properties to `UIView` to allow margin values to be set individually:
+
+    @property (nonatomic) CGFloat layoutMarginTop;
+    @property (nonatomic) CGFloat layoutMarginLeft;
+    @property (nonatomic) CGFloat layoutMarginBottom;
+    @property (nonatomic) CGFloat layoutMarginRight;
+    @property (nonatomic) CGFloat layoutMarginLeading;
+    @property (nonatomic) CGFloat layoutMarginTrailing;
+
+For example, this markup creates a layer view whose top and bottom margins are set to 8 pixels and whose leading and trailing margins are set to 16 pixels:
+
+    <LMRowView layoutMarginTop="8" layoutMarginBottom="8" layoutMarginLeading="16" layoutMarginTrailing="16">
+        ...
+    </LMRowView>
+
+In iOS 11, the `layoutMarginLeading` and `layoutMarginTrailing` properties map directly to the view's directional edge insets. In iOS 10 and earlier, they are applied dynamically based on the current text direction.
+
+#### System-Defined Margins
+A layout view's margins are initialized to zero by default. However, in iOS 10 and earlier, `UIKit` may in some cases assign system-defined, non-overridable values for a view's margins. In such cases, the following property can be used to disable margin-relative layout:
+
+    @property (nonatomic) BOOL layoutMarginsRelativeArrangement;
+
+When set to `false`, the view will ignore layout margins altogether and align subviews directly to its edges. The following properties can then be used instead to specify the amount of additional space that should be reserved at the top/bottom and leading/trailing edges of the view:
+
+    @property (nonatomic) CGFloat topSpacing;
+    @property (nonatomic) CGFloat bottomSpacing;
+    @property (nonatomic) CGFloat leadingSpacing;
+    @property (nonatomic) CGFloat trailingSpacing;
+    
+For example, a view controller might override `viewWillLayoutSubviews` to set its view's top and bottom spacing to the length of its own top and bottom layout guides, respectively, ensuring that any arranged subviews are positioned between the guides:
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        let layoutView = view as! LMLayoutView
+
+        layoutView.topSpacing = topLayoutGuide.length
+        layoutView.bottomSpacing = bottomLayoutGuide.length
+    }
+    
+In iOS 11, the top and bottom layout guide properties are deprecated, and the `viewRespectsSystemMinimumLayoutMargins` property of `UIViewController` can be used to disable system-defined margins.
+
+### Touch Interaction
+By default, layout views do not consume touch events. Touches that occur within the layout view but do not intersect with a subview are ignored, allowing the event to pass through the view. Assigning a non-`nil` background color to a layout view will cause the view to begin consuming events.
+
+See [LMLayoutView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMLayoutView.h) for more information.
+
+## LMRowView and LMColumnView
+The `LMRowView` and `LMColumnView` classes lay out subviews in a horizontal or vertical line, respectively. Both classes extend the abstract `LMBoxView` class, which itself extends `LMLayoutView` and adds the following properties:
+
+    @property (nonatomic) LMHorizontalAlignment horizontalAlignment;
+    @property (nonatomic) LMVerticalAlignment verticalAlignment;
+    
+    @property (nonatomic) CGFloat spacing;
+    
+    @property (nonatomic) BOOL alignToBaseline;
+
+The first two properties specify the horizontal and vertical alignment, respectively, of the box view's arranged subviews. Horizontal alignment options include the following:
+
+* `LMHorizontalAlignmentFill`
+* `LMHorizontalAlignmentLeading`
+* `LMHorizontalAlignmentTrailing`
+* `LMHorizontalAlignmentCenter`
+
+Vertical alignment options are as follows:
+
+* `LMVerticalAlignmentFill`
+* `LMVerticalAlignmentTop`
+* `LMVerticalAlignmentBottom`
+* `LMVerticalAlignmentCenter`
+
+Both values are set to "fill" by default, which pins subviews along both of the box view's axes and ensures that there is no ambiguity regarding any subview's placement. Other values will cause subviews to be pinned to a single edge or centered along the given axis. 
+
+For example, this markup creates a row view containing three labels that are aligned horizontally to the row's leading edge and vertically to the top of the row:
+
+    <LMRowView horizontalAlignment="leading" verticalAlignment="top">
+        <UILabel text="One"/>
+        <UILabel text="Two"/>
+        <UILabel text="Three"/>
+    </LMRowView>
+
+Spacer views can also be used to align subviews within a row or column. This is discussed in more detail later.
+
+The `spacing` property represents the amount of space reserved between successive subviews. For row views, this refers to the horizontal space between the subviews; for column views, it refers to the vertical space between the views. For example, the following markup creates a row view whose labels will each be separated by a gap of 16 pixels:
+
+    <LMRowView spacing="16">
+        <UILabel text="One"/>
+        <UILabel text="Two"/>
+        <UILabel text="Three"/>
+    </LMRowView>
+
+In iOS 10 and earlier, the default spacing value is 8. In iOS 11 and later, the system default is used.
+
+The `alignToBaseline` property can be used to manage how subviews are vertically aligned with respect to one another. This is discussed in more detail below. Baseline alignmnent is disabled by default.
+
+### LMRowView
+The `LMRowView` class arranges its subviews in a horizontal line. Subviews are laid out from leading to trailing edge in the order in which they are declared. For example, the following markup creates a row view containing three labels:
+
+    <LMRowView>
+        <UILabel text="One"/>
+        <UILabel text="Two"/>
+        <UILabel text="Three"/>
+    </LMRowView>
+
+If the row view's vertical alignment is set to "fill" (the default), the top and bottom edges of each subview will be pinned to the top and bottom edges of the row (excluding layout margins), ensuring that all of the labels are the same height. Otherwise, the subviews will be aligned according to the specified value.
+
+This markup creates a row view containing three labels with different font sizes. Because `alignToBaseline` is set to `true`, the baselines of all three labels will line up:
+
+    <LMRowView alignToBaseline="true">
+        <UILabel text="abcd" font="Helvetica 12"/>
+        <UILabel text="efg" font="Helvetica 24"/>
+        <UILabel text="hijk" font="Helvetica 48"/>
+    </LMRowView>
+
+Further, the baseline to which subviews will be aligned can be controlled by the `baseline` property. The default value is "first", meaning that subviews will be aligned to the first baseline. However, it is also possible to align subviews to the last baseline; for example:
+
+    <LMRowView alignToBaseline="true" baseline="last">
+        ...
+    </LMRowView>
+
+See [LMRowView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMRowView.h) for more information.
+
+### LMColumnView
+The `LMColumnView` class arranges its subviews in a vertical line. Subviews are laid out from top to bottom in the order in which they are declared. For example, the following markup creates a column view containing three labels:
+
+    <LMColumnView>
+        <UILabel text="One"/>
+        <UILabel text="Two"/>
+        <UILabel text="Three"/>
+    </LMColumnView>
+
+If the column view's horizontal alignment is set to "fill" (the default), the left and right edges of each subview will be pinned to the left and right edges of the column (excluding layout margins), ensuring that all of the labels are the same width. Otherwise, the subviews will be aligned according to the specified value.
+
+This markup creates a column view containing three labels with different font sizes. Because `alignToBaseline` is set to `true`, the labels will be spaced vertically according to their first and last baselines rather than their bounding rectangles:
+
+    <LMColumnView alignToBaseline="true">
+        <UILabel text="abcd" font="Helvetica 16"/>
+        <UILabel text="efg" font="Helvetica 32"/>
+        <UILabel text="hijk" font="Helvetica 24"/>
+    </LMColumnView>
+
+#### Grid Alignment
+`LMColumnView` defines the following additional property, which specifies that nested subviews should be vertically aligned in a grid, like an HTML table: 
+
+    @property (nonatomic) BOOL alignToGrid;
+
+When this property is set to `true`, non-empty subviews of the column view must be `LMRowView` instances containing the cells for each row. Cells in contiguous rows will be resized to match the width of the widest cell in the column.
+
+For example, the following markup would produce a grid containing three rows arranged in two columns:
+
+    <LMColumnView alignToGrid="true">
+        <LMRowView>
+            <UILabel text="First row"/>
+            <UILabel text="This is row number one."/>
+        </LMRowView>
+
+        <LMRowView>
+            <UILabel text="Second row"/>
+            <UILabel text="This is row number two."/>
+        </LMRowView>
+
+        <LMRowView>
+            <UILabel text="Third row"/>
+            <UILabel text="This is row number three."/>
+        </LMRowView>
+    </LMColumnView>
+
+See [LMColumnView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMColumnView.h) for more information.
+
+### Fixed Dimensions
+Although views are typically arranged based on their intrinsic content sizes, it is occasionally necessary to assign a fixed value for a particular view dimension. MarkupKit adds the following properties to `UIView` to facilitate explicit size definition:
+
+    @property (nonatomic) CGFloat width;
+    @property (nonatomic) CGFloat height;
+    
+For example, the following markup declares an image view whose `height` property is set to 240 pixels:
+
+    <UIImageView image="world.png" contentMode="scaleAspectFit" height="240"/>
+    
+If the image is smaller or larger than 240 pixels tall, it will be scaled up or down to fit within this height. Since the content mode is set to "scaleAspectFit", the width will be adjusted accordingly so that the image retains the correct aspect ratio.
+
+Alternatively, the following property can be used to allow a view's dimensions to vary while maintaining a fixed aspect ratio:
+
+    @property (nonatomic) CGFloat aspectRatio;
+    
+Note that, because they are implemented internally using layout constraints, changes to these properties can be animated. For example:
+
+    func toggleDetail() {
+        view.layoutIfNeeded()
+
+        detailView.height = detailSwitch.isOn ? 175 : 0
+
+        UIView.animate(withDuration: 0.33, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+
+### Bounded Dimensions
+MarkupKit also adds the following properties to `UIView`, which are used to define bounded values for a given dimension:
+
+    @property (nonatomic) CGFloat minimumWidth;
+    @property (nonatomic) CGFloat maximumWidth;
+    @property (nonatomic) CGFloat minimumHeight;
+    @property (nonatomic) CGFloat maximumHeight;
+
+Specifying a minimum width or height value ensures that the corresponding dimension is greater than or equal to the given value. Similarly, specifying a maximum width or height ensures that the corresponding dimension is less than or equal to the given value.
+
+For example, the following markup declares a `UILabel` instance with a `minimumWidth` value of 120 and a `maximumWidth` value of 240:
+
+    <UILabel text="Lorem ipsum dolor sit amet..." numberOfLines="0"
+        minimumWidth="120" maximumWidth="240"/>
+
+This ensures that the label will be at least 120 pixels and at most 240 pixels wide.
+
+### View Weights
+Often, a row or column view will be given more space than it needs to accommodate the intrinsic sizes of its subviews. MarkupKit adds the following property to `UIView` that is used to determine how the extra space should be allocated:
+
+    @property (nonatomic) CGFloat weight;
+
+This value specifies the amount of excess space the view would like to be given within its superview (once the sizes of all unweighted views have been determined) and is relative to all other weights specified within the superview. For row views, weight applies to the excess horizontal space, and for column views to the excess vertical space.
+
+For example, both labels below will be sized equally and given 50% of the height of the column view:
+
+    <LMColumnView>
+        <UILabel weight="0.5" text="Hello"/>
+        <UILabel weight="0.5" text="World"/>
+    </LMColumnView>
+    
+Since weights are relative to each other, this markup will produce the same results:
+
+    <LMColumnView>
+        <UILabel weight="1" text="Hello"/>
+        <UILabel weight="1" text="World"/>
+    </LMColumnView>
+
+In this example, the first label will be given one-sixth of the available space, the second one-third, and the third one-half:
+
+    <LMColumnView>
+        <UILabel weight="1" text="One"/>
+        <UILabel weight="2" text="Two"/>
+        <UILabel weight="3" text="Three"/>
+    </LMColumnView>
+
+Weights in `LMRowView` are handled similarly, but in the horizontal direction.
+
+Note that explicitly defined width and height values take priority over weights. If a view has both a weight and a fixed dimension value, the weight value will be ignored.
+
+## LMSpacer 
+A common use for weights is to add flexible space around a view. For example, the following markup centers a label vertically within a column:
+
+    <LMColumnView>
+        <UIView weight="1"/>
+        <UILabel text="Hello, World!"/>
+        <UIView weight="1"/>
+    </LMColumnView>
+
+Similarly, the following markup centers a label horizontally within a row:
+
+    <LMRowView>
+        <UIView weight="1"/>
+        <UILabel text="Hello, World!"/>
+        <UIView weight="1"/>
+    </LMRowView>
+
+Because spacer views are so common, MarkupKit provides a dedicated `UIView` subclass called `LMSpacer` for conveniently creating flexible space between other views. `LMSpacer` has a default weight of 1, so the previous example could be rewritten as follows, eliminating the "weight" attribute and improving readability:
+
+    <LMRowView>
+        <LMSpacer/>
+        <UILabel text="Hello, World!"/>
+        <LMSpacer/>
+    </LMRowView>
+
+Like layout views, spacer views do not consume touch events by default, so they will not interfere with any user interface elements that appear underneath them. Assigning a non-`nil` background color to a spacer view causes the view to begin consuming events.
+ 
+See [LMSpacer.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMSpacer.h) for more information.
+
+## LMLayerView
+The `LMLayerView` class simply arranges its subviews in layers, like a stack of transparencies. The subviews are all automatically sized to fill the layer view.
+
+For example, the following markup creates a layer view containing two subviews. The `UIImageView` instance, since it is declared first, appears beneath the `UILabel` instance, effectively creating a background for the label:
+
+    <LMLayerView>
+        <UIImageView image="world.png" contentMode="scaleAspectFit"/>
+        <UILabel text="Hello, World!" textAlignment="center"/>
+    </LMLayerView>
+
+See [LMLayerView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMLayerView.h) for more information.
+
+## LMAnchorView
+The `LMAnchorView` class optionally anchors subviews to one or more of its own edges. Although it is possible to achieve similar layouts using a combination of row, column, layer, and spacer views, anchor views may offer a simpler alternative in some cases. 
+
+Anchors are specified as a comma-separated list of edges to which the view will be anchored within its parent. Anchor options include the following:
+
+* `LMAnchorNone`
+* `LMAnchorTop`
+* `LMAnchorBottom`
+* `LMAnchorLeft`
+* `LMAnchorRight`
+* `LMAnchorLeading`
+* `LMAnchorTrailing`
+* `LMAnchorAll`
+
+For example, the following markup creates an anchor view containing four labels anchored to its top, left, right, and bottom edges. The labels will all be inset by 16 pixels:
+
+    <LMAnchorView layoutMargins="16">
+        <UILabel text="Top" anchor="top"/>
+        <UILabel text="Left" anchor="left"/>
+        <UILabel text="Right" anchor="right"/>
+        <UILabel text="Bottom" anchor="bottom"/>
+    </LMAnchorView>
+
+Subviews may also be anchored to the leading and trailing edges of the parent view to support right-to-left locales; for example:
+
+    <LMAnchorView layoutMargins="16">
+        <UILabel text="Leading" anchor="leading"/>
+        <UILabel text="Trailing" anchor="trailing"/>
+    </LMAnchorView>
+
+Additionally, subviews may be anchored to multiple edges for a given dimension. For example, the following markup creates an anchor view containing two labels, each of which will span the entire width of the anchor view:
+
+    <LMAnchorView layoutMargins="16">
+        <UILabel text="Top" anchor="top, left, right"/>
+        <UILabel text="Bottom" anchor="bottom, left, right"/>
+    </LMAnchorView>
+
+If no anchor is specified for a given dimension, the subview will be centered within the anchor view for that dimension.
+
+See [LMAnchorView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMAnchorView.h) for more information.
+
+## LMTableView, LMTableViewCell, and LMTableViewHeaderFooterView
+`LMTableView` is a subclass of `UITableView` that acts as its own data source and delegate, serving cells from a statically defined collection of table view sections. `LMTableView` enables self-sizing content by default, allowing it to be used as a general-purpose layout device.
+
+`LMTableViewCell` and `LMTableViewHeaderFooterView` are `UITableViewCell` and `UITableViewHeaderFooterView` subclasses, respectively, that provide a vehicle for custom table view content. They automatically apply constraints to their content to enable self-sizing behavior. 
+
+MarkupKit also provides extensions to the standard `UITableViewCell` class that allow it to be used in markup. This is discussed in more detail in a later section.
 
 ### Declaration
 `LMTableView` provides two factory methods that are used to construct new table view instances in markup:
@@ -556,18 +949,16 @@ The `LMTableView` and `LMTableViewCell` classes facilitate the declaration of ta
     + (LMTableView *)plainTableView;
     + (LMTableView *)groupedTableView;
 
-For example, the following markup creates a "plain"-style table view containing three rows:
+For example, the following markup creates a plain-style table view containing three rows:
 
     <LMTableView style="plainTableView">
         <UITableViewCell textLabel.text="Row 1"/>
         <UITableViewCell textLabel.text="Row 2"/>
         <UITableViewCell textLabel.text="Row 3"/>
     </LMTableView>
-    
-Note that, by default, grouped table views enable self-sizing behavior for section headers and footers, but plain table views do not.
 
 ### Section Management
-The `sectionBreak` processing instruction inserts a new section in a table view. It corresponds to a call to the `insertSection:` method of the `LMTableView` class. This markup creates a grouped table view containing two sections (the first section is created implicitly):
+The `sectionBreak` processing instruction creates a new section in a table view. It corresponds to a call to the `insertSection:` method of the `LMTableView` class. This markup creates a grouped table view containing two sections (the first section is created implicitly when the table view is initialized):
 
     <LMTableView style="groupedTableView">
         <UITableViewCell textLabel.text="Row 1a"/>
@@ -596,13 +987,10 @@ Alternatively, the `sectionHeaderView` processing instruction can be used to ass
     <LMTableView style="groupedTableView">
         <?sectionHeaderView?>
         <UITableViewHeaderFooterView textLabel.text="Section 1"/>
-
         ...
     </LMTableView>
 
-Note that, although this example uses an instance of `UITableViewHeaderFooterView` as a header view, this is not strictly required. Any `UIView` subclass can be used as a section header.
-
-Similarly, the `sectionFooter` element or the `sectionFooterView` processing instruction can be used to assign a footer title or custom footer view to the current section, respectively. As with header views, footers views are not limited to instances of any particular type; any `UIView` subclass can be used.
+Similarly, the `sectionFooter` element or the `sectionFooterView` processing instruction can be used to assign a footer title or custom footer view to the current section, respectively. 
 
 Finally, the `sectionName` processing instruction is used to associate a name with a section. It corresponds to a call to the `setName:forSection:` method of `LMTableView`. For example:
 
@@ -650,16 +1038,17 @@ For example, the following markup creates a table view that allows a user to sel
         <UITableViewCell textLabel.text="Blue" value="#0000ff"/>
     </LMTableView>
 
-The `value` property is defined by the MarkupKit extensions to the `UITableViewCell` class. It is used to associate an optional value with a cell, such as the color values shown in the previous example. MarkupKit also adds a boolean `checked` property to `UITableViewCell` which, when set, causes a checkmark to appear in the corresponding row.
+The `value` property is defined by the MarkupKit extensions to the `UITableViewCell` class. It is used to associate an optional arbitrary value with a cell. MarkupKit also adds a boolean `checked` property to `UITableViewCell` which, when set, causes a checkmark to appear in the corresponding row. 
 
-Selection state is managed via several methods that `LMTableView` inherits MarkupKit's extensions to `UITableView`. These methods are added to `UITableView` primarily so casting is not required when using an `LMTableView` instance with `UITableViewController`; however, they can also be used by other custom `UITableView` subclasses:
+In general, the `checked` property should not be set directly. Instead, its state is typically managed via the following `LMTableView` methods:
 
-    - (nullable NSString *)nameForSection:(NSInteger)section;
-    - (NSInteger)sectionWithName:(NSString *)name;
-    - (NSInteger)rowForCellWithValue:(nullable id)value inSection:(NSInteger)section;
-    - (NSInteger)rowForCheckedCellInSection:(NSInteger)section
+    - (nullable id)valueForSection:(NSInteger)section;
+    - (void)setValue:(nullable id)value forSection:(NSInteger)section;
 
-The first method, `nameForSection:`, returns the name associated with a given section, or `nil` if the section does not have a name. The second method, `sectionWithName:`, returns the index of a named section. The remaining two methods, `rowForCellWithValue:inSection:` and `rowForCheckedCellInSection:`, return the index of a row within a given section whose cell has the given value or checked state, respectively. 
+    - (NSArray *)valuesForSection:(NSInteger)section;
+    - (void)setValues:(NSArray *)values forSection:(NSInteger)section;
+
+The first two methods get and set a single selected value and are typically used with sections whose selection mode is set to "singleCheckmark". The second set of methods are used to get and set a list of selected values and are typically used with sections using the "multipleCheckmarks" selection mode.
 
 ### Accessory Views
 The `backgroundView` processing instruction can be used to assign a background view to a table view. It corresponds to a call to the `setBackgroundView:` method of the `UITableView` class. For example, this markup creates a grouped table view with a linear gradient background:
@@ -683,12 +1072,25 @@ The `tableHeaderView` and `tableFooterView` processing instructions are used to 
     </LMTableView>
 
 ### Custom Data Source/Delegate Implementations
-In order to support static content declaration, `LMTableView` acts as its own data source and delegate. However, in many cases, an application may need to host both static and dynamic content within the same table view, or respond to delegate events such as `tableView:didSelectRowAtIndexPath:`. In such cases, the table view controller can register itself as the table view's data source or delegate and forward calls to the table view implementation as needed.
+In order to support static content declaration, `LMTableView` acts as its own data source and delegate. However, in many cases, an application may need to present both static and dynamic content within the same table view, or respond to delegate events such as `tableView:didSelectRowAtIndexPath:`. In such cases, the table view controller can register itself as the table view's data source or delegate and forward calls to the table view implementation as needed. `LMTableView` implements the following methods of the `UITableViewDataSource` and `UITableViewDelegate` protocols:
 
-While it is possible for controllers to perform this delegation manually, in most cases it is not required. The `LMTableViewController` class discussed later provides default implementations of data source and delegate methods that simply delegate to the table view. As a result, view controllers that manage an `LMTableView` instance can generally just extend `LMTableViewController` and override the appropriate methods, delegating to the base class as necessary.
+    - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+    - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+    - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+    - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+
+    - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+    - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+    - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+    - (BOOL)tableView:(UITableView *)tableView canFocusRowAtIndexPath:(NSIndexPath *)indexPath
+    - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+    - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+
+While it is possible for controllers to perform this delegation manually, in most cases it is not required. The `LMTableViewController` class discussed later provides default implementations of these methods that simply delegate to the table view. As a result, view controllers that manage an `LMTableView` instance can generally just extend `LMTableViewController` and override the appropriate methods, delegating to the base class as necessary.
 
 ### Custom Cell Content
-The `LMTableViewCell` class supports the declaration of custom table view cell content in markup. It can be used when the content options provided by the default `UITableViewCell` class are not sufficient. As discussed earlier, `LMTableViewCell` automatically applies constraints to its content to enable self-sizing behavior.
+The `LMTableViewCell` class facilitates the declaration of custom table view cell content in markup. It can be used when the content options provided by the default `UITableViewCell` class are not sufficient. As discussed earlier, `LMTableViewCell` automatically applies constraints to its content to enable self-sizing behavior.
 
 For example, the following markup creates a plain table view whose single cell contains a `UIDatePicker`. The date picker will be automatically sized to fill the width and height of the cell:
 
@@ -706,7 +1108,7 @@ For example, the following markup creates a plain table view whose single cell c
         LMViewBuilder.view(withName: "CustomTableViewCell", owner: self, root: self)
     }
 
-Because the initializer passes the cell instance itself as the value of the `root` argument to `viewWithName:owner:root`, the markup declared in _CustomTableViewCell.xml_ must include a `<root>` tag to refer to this argument. Note that attributes can be applied to this element just as if it's type had been declared explicitly:
+Because the initializer passes the cell instance itself as the value of the `root` argument to `viewWithName:owner:root`, the markup declared in _CustomTableViewCell.xml_ must include a `<root>` tag to refer to this argument. Note that attributes can be applied to this element just as if its type had been declared explicitly:
 
     <root layoutMargins="12">
         <LMColumnView>
@@ -722,10 +1124,27 @@ The child of the root tag represents the cell's content. It can be any valid vie
 * `selectedBackgroundView` - sets the cell's selected background view
 * `multipleSelectionBackgroundView` - sets the cell's multiple selection background view
 
-See _LMTableView.h_ and _LMTableViewCell.h_ for more information.
+See [LMTableView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMTableView.h) and [LMTableViewCell.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMTableViewCell.h) for more information.
+
+### Custom Header/Footer Content
+The `LMTableViewHeaderFooterView` class facilitates the declaration of custom table view header and footer content in markup. Like `LMTableViewCell`, it can be used when the content options provided by the default `UITableViewHeaderFooterView` class are not sufficient. `LMTableViewHeaderFooterView` also automatically applies constraints to its content to enable self-sizing behavior.
+
+For example, the following markup declares a custom footer view containing a label and a switch:
+
+    <LMTableView style="groupedTableView">
+        ...
+        
+        <?sectionFooterView?>
+        <LMTableViewHeaderFooterView>
+            <LMRowView>
+                <UILabel weight="1" text="On/Off"/>
+                <UISwitch/>
+            </LMRowView>
+        </LMTableViewHeaderFooterView>
+    </LMTableView>
 
 ## LMTableViewController
-`LMTableViewController` is a subclass of `UITableViewController` that simplifies management of an `LMTableView` instance. By default, it delegates data source and delegate operations to the table view. Subclasses can override the default implementations to provide custom table view content or respond to table view events such as row selection and edit requests.
+`LMTableViewController` is a subclass of `UITableViewController` that simplifies management of an `LMTableView` instance. By default, it delegates data source and delegate operations to the table view itself. Subclasses can override the default implementations to provide custom table view content or respond to table view events such as row selection and edit requests.
 
 For example, the following markup declares a table view containing two sections. The first contains static content defined in markup. The second presents dynamic content provided by the controller:
 
@@ -768,6 +1187,15 @@ The controller class extends `LMViewController` and overrides `tableView:numberO
         } else {
             super.tableView(tableView, didSelectRowAt: indexPath)
         }
+    }
+
+Note that, unless the controller is defined in a storyboard, an `LMViewController` subclass must explicitly assign itself as the table view's data source and delegate in `loadView`:
+
+    override func loadView() {
+        view = LMViewBuilder.view(withName: "MyTableViewController", owner: self, root: nil)
+
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
 ## LMCollectionView and LMCollectionViewCell
@@ -829,7 +1257,7 @@ Because the initializer passes the cell instance itself as the value of the `roo
 * `backgroundView` - sets the cell's background view
 * `selectedBackgroundView` - sets the cell's selected background view
 
-See _LMCollectionView.h_ and _LMCollectionViewCell.h_ for more information.
+See [LMCollectionView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMCollectionView.h) and [LMCollectionViewCell.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMCollectionViewCell.h) for more information.
 
 ## LMPickerView
 `LMPickerView` is a subclass of `UIPickerView` that acts as its own data source and delegate, serving content from a statically-defined collection of row and component titles. For example, the following markup declares a picker view containing four rows reprenting size options:
@@ -855,7 +1283,7 @@ An optional value can also be associated with row, as shown below:
 This allows an application to present an optionally localized, human-readable value in the picker view while internally maintaining a system-level key or ID for the row.
 
 ### Component Management
-The `componentSeparator` processing instruction inserts a new component into the picker view. It corresponds to a call to the `insertComponent:` method of `LMPickerView`. The following markup declares a picker view containing two components, the first of which contains a set of size options, and the second containing color options:
+The `componentSeparator` processing instruction inserts a new component into the picker view. It corresponds to a call to the `insertComponent:` method of `LMPickerView`. The following markup declares a picker view containing two components, the first of which contains a set of size options, and the second containing color options (the first component is created implicitly when the picker view is initialized):
 
     <LMPickerView>
         <row title="Small" value="S"/>
@@ -872,7 +1300,7 @@ The `componentSeparator` processing instruction inserts a new component into the
         <row title="Purple" value="#ff00ff"/>
     </LMPickerView>
 
-The `componentName` processing instruction assigns a name to a component. It corresponds to a call to the `setName:forComponent:` method. This allows components to be identified by name rather than index, so they can be added or reordered without breaking controller code. For example:
+The `componentName` processing instruction assigns a name to a component. It corresponds to a call to the `setName:forComponent:` method of `LMPickerView`. This allows components to be identified by name rather than index, so they can be easily added or reordered without breaking controller code. For example:
 
     <LMPickerView>
         <?componentName sizes?>
@@ -891,20 +1319,35 @@ The `componentName` processing instruction assigns a name to a component. It cor
         <row title="Purple" value="#ff00ff"/>
     </LMPickerView>
 
-### Custom Data Source/Delegate Implementations
-In order to support static content declaration, `LMPickerView` acts as its own data source and delegate. However, an application-specific data source or delegate may be set on an `LMPickerView` instance to provide custom component content or handle component selection events. The implementing class should delegate to the given picker view instance as needed.
+### Selection Management
+The following `LMPickerView` methods can be used to manage selection state by component value rather than by row index:
 
-For example, the following markup declares a picker view containing static and dynamic components:
+    - (nullable id)valueForComponent:(NSInteger)component;
+    - (void)setValue:(nullable id)value forComponent:(NSInteger)component animated:(BOOL)animated;
+
+The first method returns the value associated with the selected row in a given component, and the second selects the row in the given component corresponding to the given value (the selection may optionally be animated).
+
+### Custom Data Source/Delegate Implementations
+In order to support static content declaration, `LMPickerView` acts as its own data source and delegate. However, an application-specific data source or delegate may be set on an `LMPickerView` instance to provide custom component content or handle component selection events. The implementing class should delegate to the given picker view instance as needed. `LMPickerView` implements the following data source and delegate methods:
+
+    - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
+    - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
+
+    - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+
+For example, the following markup declares a picker view containing both static and dynamic components:
 
     <LMPickerView id="pickerView">
-        <?componentName static?>
+        <?componentName sizes?>
+        ...
+
+        <?componentName colors?>
         ...
 
         <?componentName dynamic?>
-        ...
     </LMPickerView>
 
-The controller class implements `numberOfComponentsInPickerView:`, `pickerView:numberOfRowsInComponent:`, and `pickerView:titleForRow:forComponent:` to provide the content for the dynamic component. It delegates all other behavior to the picker view itself:
+The controller class implements `numberOfComponentsInPickerView:`, `pickerView:numberOfRowsInComponent:`, and `pickerView:titleForRow:forComponent:` to provide the content for the dynamic component:
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return pickerView.numberOfComponents(in: pickerView)
@@ -922,17 +1365,17 @@ The controller class implements `numberOfComponentsInPickerView:`, `pickerView:n
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let title: String
-        if (pickerView.name(forComponent: component) == "dynamic") {
-            title = customTitleForRow(row)
+        let title: String?
+        if (pickerView.name(forComponent: component) == dynamicComponentName) {
+            title = String(row + 1)
         } else {
-            title = pickerView.title(forRow: row, forComponent:component)!
+            title = pickerView.pickerView(pickerView, titleForRow: row, forComponent: component)
         }
 
         return title
     }
 
-`LMPickerView` is available in iOS only. See _LMPickerView.h_ for more information.
+`LMPickerView` is available in iOS only. See [LMPickerView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMPickerView.h) for more information.
 
 ## LMScrollView
 The `LMScrollView` class extends the standard `UIScrollView` class to simplify the definition of scroll view content in markup. It presents a single scrollable content view, optionally allowing the user to scroll in one or both directions.
@@ -957,12 +1400,12 @@ When `fitToWidth` is set to `true`, the scroll view will ensure that the width o
 
 Similarly, when `fitToHeight` is `true`, the scroll view will ensure that the height of its content matches its own height, causing the content to wrap and scroll in the horizontal direction. The vertical scroll bar will never be shown, and the horizontal scroll bar will appear when necessary.
 
-See _LMScrollView.h_ for more information.
+Note that, similar to `UIStackView`, assigning a new content view does not remove the previous content view as a subview of the scroll view. To completely remove a content view, call `removeFromSuperview` on the view.
+
+See [LMScrollView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMScrollView.h) for more information.
 
 ## LMPageView
-The `LMPageView` class extends the standard `UIScrollView` class to enable the declaration of paged scroll view content. By default, an `LMPageView` instance enables paging on itself and disables scrolling.  
-
-For example, the following markup declares a page view containing three pages. Pages appear in the order in which they are declared:
+The `LMPageView` class extends the standard `UIScrollView` class to enable the declaration of paged scroll view content. For example, the following markup declares a page view containing three pages. Pages appear in the order in which they are declared:
 
     <LMPageView>
         <UILabel text="Page 1" textAlignment="center"/>
@@ -970,299 +1413,17 @@ For example, the following markup declares a page view containing three pages. P
         <UILabel text="Page 3" textAlignment="center"/>
     </LMPageView>
 
-Page views are commonly used as the bottom layer in a layer view; a layer containing a `UIPageControl` is typically placed above the page view to reflect the current page number. MarkupKit adds a `currentPage` property to `UIScrollView` that can be used to easily synchronize the scroll view's page index with the index shown by the page control; for example:
+MarkupKit adds a `currentPage` property to `UIScrollView` that can be used to easily synchronize the scroll view's page index with the index shown by the page control; for example:
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageControl.currentPage = scrollView.currentPage
     }
-
-Layer views are discussed in more detail later.
-
-`LMPageView` is available in iOS only. See _LMPageView.h_ for more information.
-
-## LMLayoutView
-Auto layout is an iOS feature that allows developers to create applications that automatically adapt to device size, orientation, or content changes. An application built using auto layout generally has little or no hard-coded view positioning logic, but instead dynamically arranges user interface elements based on their preferred or "intrinsic" content sizes.
-
-Auto layout in iOS is implemented primarily via layout constraints, which, while powerful, are not particularly convenient to work with. To simplify the process, MarkupKit provides the following set of view classes, whose sole responsibility is managing the size and position of their respective subviews:
-
-* `LMRowView` - arranges subviews in a horizontal line
-* `LMColumnView` - arranges subviews in a vertical line
-* `LMLayerView` - arranges subviews in layers, like a stack of transparencies
-* `LMAnchorView` - optionally anchors subviews to one or more edges
-
-These classes use layout constraints internally, allowing developers to easily take advantage of auto layout while eliminating the need to manage constraints directly.
-
-All layout view types extend the abstract `LMLayoutView` class, which defines the following methods:
     
-    - (void)addArrangedSubview:(UIView *)view;
-    - (void)insertArrangedSubview:(UIView *)view atIndex:(NSUInteger)index;
-    - (void)removeArrangedSubview:(UIView *)view;
+MarkupKit's extensions to `UIScrollView` are discussed in more detail later.
 
-These methods manage the list of the layout view's "arranged subviews", which are the subviews whose size and position will be managed automatically by the layout view. A read-only property that returns the current list of arranged subviews is also provided:
+Note that, similar to `UIStackView`, the `removePage:` method does not remove the given view as a subview of the page view. To completely remove a page view, call `removeFromSuperview` on the view.
 
-    @property (nonatomic, readonly, copy) NSArray *arrangedSubviews;
-
-`LMLayoutView` additionally defines the following property:
-
-    @property (nonatomic) BOOL layoutMarginsRelativeArrangement;
-
-This value specifies that subviews will be arranged relative to the view's layout margins. The default value is `true`. However, in some cases, `UIKit` provides default non-overridable values for a view's margins. In these cases, setting this flag to `false` instructs the view to ignore margins altogether and align subviews to the layout view's edges directly. 
-
-Views whose `hidden` property is set to `true` are ignored when performing layout. Layout views listen for changes to this property on their arranged subviews and automatically relayout as needed.
-
-By default, layout views do not consume touch events. Touches that occur within the layout view but do not intersect with a subview are ignored, allowing the event to pass through the view. Assigning a non-`nil` background color to a layout view causes the view to begin consuming events.
-
-`LMLayoutView` overrides `appendMarkupElementView:` to call `addArrangedSubview:` so that layout views can be easily constructed in markup. Additionally, layout views can be nested to create complex layouts that automatically adjust to orientation or screen size changes. 
-
-All three layout view types are discussed in more detail in the following sections. See _LMLayoutView.h_ for more information.
-
-## LMRowView and LMColumnView
-The `LMRowView` and `LMColumnView` classes lay out subviews in a horizontal or vertical line, respectively. Both classes extend the abstract `LMBoxView` class, which itself extends `LMLayoutView` and adds the following property:
-
-    @property (nonatomic) CGFloat spacing;
-
-This property represents the amount of spacing between successive subviews. For row views, this refers to the horizontal space between subelements; for column views, it refers to the vertical space between subviews.
-
-Subviews are always pinned along the view's primary axis (horizontal for row views and vertical for column views). This ensures that there is no ambiguity regarding a subview's placement and allows the auto layout system to correctly calculate the view's size and position. 
-
-Spacer views can be used to align subviews within a row or column as needed. This is discussed in more detail later.
-
-### LMRowView
-The `LMRowView` class arranges its subviews in a horizontal line. Subviews are laid out from leading to trailing edge in the order in which they are declared. For example, the following markup creates a row view containing three labels:
-
-    <LMRowView>
-        <UILabel text="One"/>
-        <UILabel text="Two"/>
-        <UILabel text="Three"/>
-    </LMRowView>
-
-The top and bottom edges of each subview will be pinned to the top and bottom edges of the row (excluding layout margins), ensuring that all of the labels are the same height. 
-
-`LMRowView ` defines the following additional property, which specifies that subviews should be baseline-aligned: 
-
-    @property (nonatomic) BOOL alignToBaseline;
-
-This markup creates a row view containing three labels, all with different font sizes:
-
-    <LMRowView alignToBaseline="true">
-        <UILabel text="One" font="Helvetica 12"/>
-        <UILabel text="Two" font="Helvetica 24"/>
-        <UILabel text="Three" font="Helvetica 48"/>
-    </LMRowView>
-    
-Because `alignToBaseline` is set to `true`, the baselines of all three labels will line up.
-
-Further, the baseline to which subviews will be aligned can be controlled by the `baseline` property. The default value is "first", meaning that subviews will be aligned to the first baseline. However, it is also possible to align subviews to the last baseline; for example:
-
-    <LMRowView alignToBaseline="true" baseline="last">
-        ...
-    </LMRowView>
-
-Note that the `baseline` property requires iOS 9 or later. On iOS 8, the first baseline will always be used.
-
-See _LMRowView.h_ for more information.
-
-### LMColumnView
-The `LMColumnView` class arranges its subviews in a vertical line. Subviews are laid out from top to bottom in the order in which they are declared. For example, the following markup creates a column view containing three labels:
-
-    <LMColumnView>
-        <UILabel text="One"/>
-        <UILabel text="Two"/>
-        <UILabel text="Three"/>
-    </LMColumnView>
-
-The left and right edges of each subview will be pinned to the left and right edges of the column (excluding layout margins), ensuring that all of the labels are the same width.
-
-`LMColumnView` defines the following additional property, which specifies that nested subviews should be vertically aligned in a grid, like a spreadsheet: 
-
-    @property (nonatomic) BOOL alignToGrid;
-
-When this property is set to `true`, non-empty subviews of the column view must be `LMRowView` instances containing the cells for each row. Cells in contiguous rows will be resized to match the width of the widest cell in the column.
-
-For example, the following markup would produce a grid containing three rows arranged in two columns:
-
-    <LMColumnView alignToGrid="true">
-        <LMRowView>
-            <UILabel text="First row"/>
-            <UILabel weight="1" text="This is row number one."/>
-        </LMRowView>
-
-        <LMRowView>
-            <UILabel text="Second row"/>
-            <UILabel weight="1" text="This is row number two."/>
-        </LMRowView>
-
-        <LMRowView>
-            <UILabel text="Third row"/>
-            <UILabel weight="1" text="This is row number three."/>
-        </LMRowView>
-    </LMColumnView>
-
-The `weight` values ensure that the second label in each row is allocated all of the remaining space within the row after the size of the first label has been determined. Weights are discussed in more detail below.
-
-Finally, `LMColumnView` defines two properties that specify the amount of space that should be reserved at the top and bottom of the view, respectively:
-
-    @property (nonatomic) CGFloat topSpacing;
-    @property (nonatomic) CGFloat bottomSpacing;
-    
-These properties can be used to ensure that the column view's content is not obscured by another user interface element such as the status bar or a navigation bar. 
-
-For example, a view controller class might override the `viewWillLayoutSubviews` method to set the top spacing to the length of the controller's top layout guide, ensuring that the first subview is positioned below the guide:
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        columnView.topSpacing = topLayoutGuide.length
-    }
-
-Bottom spacing can be set similarly using the controller's bottom layout guide.
-
-See _LMColumnView.h_ for more information.
-
-### Fixed Dimensions
-Although views are typically arranged based on their intrinsic content sizes, it is occasionally necessary to assign a fixed value for a particular view dimension. MarkupKit adds the following properties to `UIView` to facilitate explicit size definition:
-
-    @property (nonatomic) CGFloat width;    
-    @property (nonatomic) CGFloat height;
-    
-For example, the following markup declares an image view whose `height` property is set to 240 pixels:
-
-    <UIImageView image="world.png" contentMode="scaleAspectFit" height="240"/>
-    
-If the image is smaller or larger than 240 pixels tall, it will be scaled up or down to fit within this height. Since the content mode is set to "scaleAspectFit", the width will be adjusted accordingly so that the image retains the correct aspect ratio.
-
-### Bounded Dimensions
-MarkupKit also adds the following properties to `UIView`, which are used to define bounded values for a given dimension:
-
-    @property (nonatomic) CGFloat minimumWidth;
-    @property (nonatomic) CGFloat maximumWidth;
-    @property (nonatomic) CGFloat minimumHeight;
-    @property (nonatomic) CGFloat maximumHeight;
-
-Specifying a minimum width or height value ensures that the corresponding dimension is greater than or equal to the given value. Similarly, specifying a maximum width or height ensures that the corresponding dimension is less than or equal to the given value.
-
-For example, the following markup declares a `UILabel` instance with a minimum width of 120 and a maximum width of 240:
-
-    <UILabel text="Lorem ipsum dolor sit amet..." numberOfLines="0"
-        minimumWidth="120" maximumWidth="240"/>
-        
-This ensures that the label will be at least 120 pixels and at most 240 pixels wide.
-
-### View Weights
-Often, a row or column view will be given more space than it needs to accommodate the intrinsic sizes of its subviews. MarkupKit adds the following property to `UIView` that is used to determine how the extra space should be allocated:
-
-    @property (nonatomic) CGFloat weight;
-
-This value specifies the amount of excess space the view would like to be given within its superview (once the sizes of all unweighted views have been determined) and is relative to all other weights specified within the superview. For row views, weight applies to the excess horizontal space, and for column views to the excess vertical space.
-
-For example, since it has a weight of "1", the label in the following example will be assigned the entire vertical space of the column view:
-
-    <LMColumnView>
-        <UILabel weight="1" text="Hello, World!"/>
-    </LMColumnView>
-    
-Since weights are relative, this example will produce identical output:
-
-    <LMColumnView>
-        <UILabel weight="100" text="Hello, World!"/>
-    </LMColumnView>
-
-In the following example, each label will be given 50% of the height of the column view:
-
-    <LMColumnView>
-        <UILabel weight="0.5" text="Hello"/>
-        <UILabel weight="0.5" text="World"/>
-    </LMColumnView>
-    
-Again, since weights are relative, this markup will also produce equally sized labels:
-
-    <LMColumnView>
-        <UILabel weight="1" text="Hello"/>
-        <UILabel weight="1" text="World"/>
-    </LMColumnView>
-
-In this example, the first label will be given one-sixth of the available space, the second one-third, and the third one-half:
-
-    <LMColumnView>
-        <UILabel weight="1" text="One"/>
-        <UILabel weight="2" text="Two"/>
-        <UILabel weight="3" text="Three"/>
-    </LMColumnView>
-
-Weights in `LMRowView` are handled similarly, but in the horizontal direction.
-
-Note that explicitly defined width and height values take priority over weights. If a view has both a weight and a fixed dimension value, the weight value will be ignored.
-
-## LMSpacer 
-A common use for weights is to add flexible space around a view. For example, the following markup centers a label vertically within a column:
-
-    <LMColumnView>
-        <UIView weight="1"/>
-        <UILabel text="Hello, World!"/>
-        <UIView weight="1"/>
-    </LMColumnView>
-
-Similarly, the following markup centers a label horizontally within a row:
-
-    <LMRowView>
-        <UIView weight="1"/>
-        <UILabel text="Hello, World!"/>
-        <UIView weight="1"/>
-    </LMRowView>
-
-Because spacer views are so common, MarkupKit provides a dedicated `UIView` subclass called `LMSpacer` for conveniently creating flexible space between other views. `LMSpacer` has a default weight of 1, so the previous example could be rewritten as follows, eliminating the "weight" attribute and improving readability:
-
-    <LMRowView>
-        <LMSpacer/>
-        <UILabel text="Hello, World!"/>
-        <LMSpacer/>
-    </LMRowView>
-
-Like layout views, spacer views do not consume touch events by default, so they will not interfere with any user interface elements that appear underneath them. Assigning a non-`nil` background color to a spacer view causes the view to begin consuming events.
- 
-See _LMSpacerView.h_ for more information.
-
-## LMLayerView
-The `LMLayerView` class simply arranges its subviews in layers, like a stack of transparencies. The subviews are all automatically sized to fill the layer view.
-
-For example, the following markup creates a layer view containing two subviews. The `UIImageView` instance, since it is declared first, appears beneath the `UILabel` instance, effectively creating a background for the label:
-
-    <LMLayerView>
-        <UIImageView image="world.png" contentMode="scaleAspectFit"/>
-        <UILabel text="Hello, World!" textAlignment="center"/>
-    </LMLayerView>
-
-See _LMLayerView.h_ for more information.
-
-## LMAnchorView
-The `LMAnchorView` class optionally anchors subviews to one or more of its own edges. Although it is possible to achieve similar layouts using a combination of row, column, layer, and spacer views, anchor views may offer a simpler alternative in some cases. 
-
-Anchors are specified as a comma-separated list of edges to which the view will be anchored within its parent. For example, the following markup creates an anchor view containing four labels anchored to its top, left, right, and bottom edges. The labels will all be inset by 16 pixels:
-
-    <LMAnchorView layoutMargins="16">
-        <UILabel text="Top" anchor="top"/>
-        <UILabel text="Left" anchor="left"/>
-        <UILabel text="Right" anchor="right"/>
-        <UILabel text="Bottom" anchor="bottom"/>
-    </LMAnchorView>
-
-Subviews may also be anchored to the leading and trailing edges of the parent view to support right-to-left locales; for example:
-
-    <LMAnchorView layoutMargins="16">
-        <UILabel text="Leading" anchor="leading"/>
-        <UILabel text="Trailing" anchor="trailing"/>
-    </LMAnchorView>
-
-Additionally, subviews may be anchored to multiple edges for a given dimension. For example, the following markup creates an anchor view containing two labels, each of which will span the entire width of the anchor view:
-
-    <LMAnchorView layoutMargins="16">
-        <UILabel text="Top" anchor="top, left, right"/>
-        <UILabel text="Bottom" anchor="bottom, left, right"/>
-    </LMAnchorView>
-
-If no anchor is specified for a given dimension, the subview will be centered within the anchor view for that dimension.
-
-See _LMAnchorView.h_ for more information.
+`LMPageView` is available in iOS only. See [LMPageView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMPageView.h) for more information.
 
 ## LMGradientView
 `LMGradientView` is the base class for views that facilitate the declaration of gradient effects. The gradient is automatically sized to fill the entire view.
@@ -1298,7 +1459,7 @@ For example, the following markup creates a linear gradient view whose color val
 
     <LMLinearGradientView colors="#ff0000, #00ff00, #0000ff" locations="0.0, 0.5, 1.0"/>
     
-See _LMLinearGradientView.h_ for more information.
+See [LMLinearGradientView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMLinearGradientView.h) for more information.
 
 ### LMRadialGradientView
 The `LMRadialGradientView ` class displays a radial gradient effect. It adds the following properties to the to the `colors` and `locations` properties defined by the base class:
@@ -1315,7 +1476,7 @@ For example, the following markup creates a radial gradient view whose color val
 
     <LMRadialGradientView colors="#ff0000, #00ff00, #0000ff" locations="0.0, 0.5, 1.0"/>
 
-See _LMRadialGradientView.h_ for more information.
+See [LMRadialGradientView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMRadialGradientView.h) for more information.
 
 ## LMPlayerView
 `LMPlayerView` is a `UIView` subclass that presents an AV player. It is essentially just a thin wrapper around the `AVPlayerLayer` instance it uses as a core animation layer. It overrides the `layer` property to return an `AVPlayerLayer` so callers can access the properties and methods of this class without a cast:
@@ -1328,10 +1489,10 @@ It also defines a delegate protocol, `LMPlayerViewDelegate`, that can be used to
 
 This protocol is simply a strongly typed wrapper around the player layer's `readyForDisplay` property, which uses key-value observing to notify listeners of state changes.
 
-See _LMPlayerView.h_ for more information.
+See [LMPlayerView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMPlayerView.h) for more information.
 
 ## UIKit Extensions
-MarkupKit extends several UIKit classes to enhance their behavior or adapt them for use in markup. For example, as discussed earlier, some classes define a custom initializer and must be instantiated via factory methods. Additionally, features of some standard UIKit classes are not exposed as properties that can be set via KVC. MarkupKit adds the factory methods and property definitions required to allow these classes to be used in markup. These extensions are documented below.
+MarkupKit provides extensions to several UIKit classes to enhance their behavior or adapt them for use in markup. For example, as discussed earlier, some classes define a custom initializer and must be instantiated via factory methods. Additionally, features of some standard UIKit classes are not exposed as properties that can be set via KVC. MarkupKit adds the factory methods and property definitions required to allow these classes to be used in markup. These extensions are documented below.
 
 ### UIView
 MarkupKit adds the following properties to `UIView`, which are used to define fixed or bounded values for a given dimension:
@@ -1358,6 +1519,8 @@ The following properties are added to allow the components of a view's layout ma
     @property (nonatomic) CGFloat layoutMarginLeft;
     @property (nonatomic) CGFloat layoutMarginBottom;
     @property (nonatomic) CGFloat layoutMarginRight;
+    @property (nonatomic) CGFloat layoutMarginLeading;
+    @property (nonatomic) CGFloat layoutMarginTrailing;
 
 Finally, the `processMarkupInstruction:data` and `appendMarkupElementView:` methods are added to support markup processing, as discussed earlier:
 
@@ -1371,13 +1534,14 @@ MarkupKit adds the following methods to `UIResponder` to support declarative dat
     - (void)bind:(NSString *)property toView:(UIView *)view withKeyPath:(NSString *)keyPath;
     - (void)unbindAll;
 
-The first method establishes a two-way binding between the owner and an associated view instance. The second releases all bindings and must be called before the owner is deallocated, as well as any time the document is reloaded.
+The first method establishes a binding between the owner and an associated view instance. The second releases all bindings and must be called before the owner is deallocated, as well as any time the document is reloaded.
 
 MarkupKit also adds these methods to `UIResponder` to allow a document owner to customize the bundles from which view documents, images, and localized string values are loaded:
 
     - (NSBundle *)bundleForView;
     - (NSBundle *)bundleForImages;
     - (NSBundle *)bundleForStrings;
+    - (nullable NSString *)tableForStrings;
 
 ### UIButton
 Instances of `UIButton` are created programmtically using the `buttonWithType:` method of `UIButton`. MarkupKit adds the following factory methods to `UIButton` to allow buttons to be declared in markup:
@@ -1387,12 +1551,14 @@ Instances of `UIButton` are created programmtically using the `buttonWithType:` 
     + (UIButton *)infoLightButton;
     + (UIButton *)infoDarkButton;
     + (UIButton *)contactAddButton;
+    + (UIButton *)plainButton;
 
 Button content is programmatically configured using methods such as `setTitle:forState:`, `setImage:forState:`, etc. MarkupKit adds the following properties to `UIButton` to allow this content to be defined in markup:
 
     @property (nonatomic, nullable) NSString *title;
     @property (nonatomic, nullable) UIColor *titleColor;
     @property (nonatomic, nullable) UIColor *titleShadowColor;
+    @property (nonatomic, nullable) NSAttributedString *attributedTitle;
     @property (nonatomic, nullable) UIImage *image;
     @property (nonatomic, nullable) UIImage *backgroundImage;
 
@@ -1485,15 +1651,27 @@ For example, the following markup creates a label with a shadow offset width and
         shadowColor="red" 
         shadowOffsetWidth="3" 
         shadowOffsetHeight="3"/>
-        
+
+### UIImageView
+In tvOS 11 and later, MarkupKit provides support for declaring image view overlay content:
+
+    <UIImageView id="imageView" contentMode="scaleAspectFit" tintColor="black">
+        <?case tvOS?>
+        <?overlayContent?>
+        <UILabel id="label" textColor="red" textAlignment="center" font="System-Bold 24"/>
+        <?end?>
+    </UIImageView>
+
+The content is automatically sized to match the image view's bounds.
+
 ### UIPickerView
 MarkupKit adds the following instance methods to the `UIPickerView` class. These methods are added to `UIPickerView` primarily so casting is not required when using an `LMPickerView` instance in markup. They also provide parity with similar methods added to `UITableView`:
 
     - (NSString *)nameForComponent:(NSInteger)component;
     - (NSInteger)componentWithName:(NSString *)name;
-    - (NSString *)titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-    - (id)valueForRow:(NSInteger)row forComponent:(NSInteger)component;
-    - (NSInteger)rowWithValue:(id)value inComponent:(NSInteger)component;
+    
+    - (nullable id)valueForComponent:(NSInteger)component;
+    - (void)setValue:(nullable id)value forComponent:(NSInteger)component animated:(BOOL)animated;
 
 ### UIProgressView
 Instances of `UIProgressView` are created programmatically using the `initWithProgressViewStyle:` method. MarkupKit adds the following factory methods to `UIProgressView` to allow progress views to be declared in markup:
@@ -1506,28 +1684,30 @@ For example, the following markup declares an instance of a default-style `UIPro
     <UIProgressView style="defaultProgressView"/>
 
 ### UIToolbar
-Toolbars are populated using the `items` property of `UIToobar`. MarkupKit overrides the `processMarkupElement:properties:` method to allow toolbar content to be configured in markup. The `item` element is used to add an item to a toolbar. The "title" attribute of the `item` tag can be used to specify an items's title:
+Toolbars are populated using the `items` property of `UIToolbar`. MarkupKit overrides the `processMarkupElement:properties:` method to allow toolbar content to be configured in markup. 
 
-    <UIToobar>
+The `item` element is used to add an item to a toolbar. The "title" attribute of the `item` tag can be used to specify an items's title:
+
+    <UIToolbar>
         <item title="OK"/>
         <item title="Cancel"/>
-    </UIToobar>
+    </UIToolbar>
 
 Similarly, the "image" attribute can be used to specify an image for an item:
 
-    <UIToobar>
+    <UIToolbar>
         <item image="ok.png"/>
         <item image="cancel.png"/>
-    </UIToobar>
+    </UIToolbar>
 
 Finally, the "type" attribute can be used to create a system-type toolbar item; for example:
 
-    <UIToobar>
+    <UIToolbar>
         <item type="play"/>
         <item type="pause"/>
         <item type="rewind"/>
         <item type="fastForward"/>        
-    </UIToobar>
+    </UIToolbar>
     
 The "action" attribute of the `item` tag can be used to associate an action with a toolbar item:
 
@@ -1545,6 +1725,41 @@ The action is not assigned to a specific target, so it will propagate up the res
 
     @IBAction func done(_ sender: UIBarButtonItem) {
         // User tapped done item
+    }
+
+### UITabBar and UITabBarItem
+Tab bars are populated using the `items` property of `UITabBar`. MarkupKit overrides the `processMarkupElement:properties:` method to allow tab bar content to be configured in markup. 
+
+The `item` element is used to add an item to a tab bar. The "title", "image", and "selectedImage" attributes of the `item` tag can be used to specify the corresponding item properties:
+
+    <UITabBar>
+        <item title="Home" image="home.png" selectedImage="home_selected.png"/>
+        <item title="About" image="about.png" selectedImage="about_selected.png"/>
+        <item title="Contact Us" image="contact_us.png" selectedImage="contact_us_selected.png"/>
+    </UIToolbar>
+
+Additionally, the "type" attribute can be used to create a system-type tab bar item; for example:
+
+    <UITabBar>
+        <item type="featured"/>
+        <item type="recents"/>
+        <item type="bookmarks"/>
+    </UITabBar>
+
+Finally, MarkupKit adds a `name` property to the `UITabBarItem` class so selected tabs can be identified at run time:
+
+    <UILabel id="tabLabel" textAlignment="center"/>
+    
+    <UITabBar id="tabBar">
+        <item type="featured" name="featured"/>
+        <item type="recents" name="recents"/>
+        <item type="bookmarks" name="bookmarks"/>
+    </UITabBar>
+
+For example:
+
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        tabLabel.text = String(format: "You selected the \"%@\" tab.", item.name)
     }
 
 ### UIStackView
@@ -1567,19 +1782,31 @@ MarkupKit adds the following properties to `UIScrollView` to allow the scroll vi
     @property (nonatomic) CGFloat contentInsetBottom;
     @property (nonatomic) CGFloat contentInsetRight;
 
-Additionally, MarkupKit adds this property to help simplify interaction with paged scroll views: 
+Additionally, MarkupKit adds this property and method to help simplify interaction with paged scroll views (including `LMPageView`): 
 
-    @property (nonatomic, readonly) NSInteger currentPage;
+    @property (nonatomic) NSInteger currentPage;
+    
+    - (void)setCurrentPage:(NSInteger)currentPage animated:(BOOL)animated;
 
-If the scroll view is in paging mode, the property returns the index of the current page. Otherwise, it returns 0.
+Finally, the `refreshControl` processing instruction can be used to declaratively associate a refresh control with a scroll view instance; for example:
+
+    <LMScrollView fitToWidth="true">
+        <?refreshControl?>
+        <UIRefreshControl onValueChanged="refresh:"/>
+        ...
+    </LMScrollView>
 
 ### UITableView
 MarkupKit adds the following instance methods to the `UITableView` class. These methods are added to `UITableView` primarily so casting is not required when using an `LMTableView` instance with `UITableViewController`:
 
     - (NSString *)nameForSection:(NSInteger)section;
     - (NSInteger)sectionWithName:(NSString *)name;
-    - (NSInteger)rowForCellWithValue:(id)value inSection:(NSInteger)section;
-    - (NSInteger)rowForCheckedCellInSection:(NSInteger)section
+    
+    - (nullable id)valueForSection:(NSInteger)section;
+    - (void)setValue:(nullable id)value forSection:(NSInteger)section;
+
+    - (NSArray *)valuesForSection:(NSInteger)section;
+    - (void)setValues:(NSArray *)values forSection:(NSInteger)section;
 
 ### UITableViewCell 
 Instances of `UITableViewCell` are created programmatically using the `initWithStyle:reuseIdentifier:` method of `UITableViewCell`. MarkupKit adds the following factory methods to `UITableViewCell` to allow table view cells to be declared in markup:
@@ -1589,7 +1816,7 @@ Instances of `UITableViewCell` are created programmatically using the `initWithS
     + (UITableViewCell *)value2TableViewCell;
     + (UITableViewCell *)subtitleTableViewCell;
 
-For example, the following markup declares an instance of `LMTableView` that contains three "subtitle"-style `UITableViewCell` instances:
+For example, the following markup declares an instance of `LMTableView` that contains three subtitle-style `UITableViewCell` instances:
 
     <LMTableView style="plainTableView">
         <UITableViewCell style="subtitleTableViewCell" textLabel.text="Row 1" detailTextLabel.text="This is the first row."/>

@@ -14,9 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="#ffffff">
+<LMLayerView layoutMarginsRelativeArrangement="false" backgroundColor="white">
     <LMColumnView layoutMargins="20">
         <LMPickerView id="pickerView">
+            <?componentName sizes?>
             <row title="Small" value="S"/>
             <row title="Medium" value="M"/>
             <row title="Large" value="L"/>
@@ -24,6 +25,7 @@ limitations under the License.
 
             <?componentSeparator?>
 
+            <?componentName colors?>
             <row title="Red" value="#ff0000"/>
             <row title="Yellow" value="#ffff00"/>
             <row title="Green" value="#00ff00"/>
@@ -31,13 +33,12 @@ limitations under the License.
             <row title="Purple" value="#ff00ff"/>
 
             <?componentSeparator?>
-
+            
             <?componentName dynamic?>
         </LMPickerView>
 
         <LMRowView layoutMarginTop="10" layoutMarginBottom="10"
-            layer.borderColor="#cccccc"
-            layer.borderWidth="0.5">
+            layer.borderWidth="0.5" layer.borderColor="#cccccc">
             <UILabel id="sizeLabel" font="caption1" textAlignment="center" weight="1"/>
             <UILabel id="colorLabel" font="caption1" textAlignment="center" weight="1"/>
             <UILabel id="numberLabel" font="caption1" textAlignment="center" weight="1"/>

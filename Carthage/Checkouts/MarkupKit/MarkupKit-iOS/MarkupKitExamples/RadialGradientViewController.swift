@@ -31,7 +31,7 @@ class RadialGradientViewController: UIViewController {
         edgesForExtendedLayout = UIRectEdge()
     }
 
-    func done() {
+    @objc func done() {
         navigationController!.popToRootViewController(animated: true)
     }
 }

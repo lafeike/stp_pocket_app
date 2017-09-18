@@ -16,7 +16,7 @@ import UIKit
 import WebKit
 import MarkupKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var webView: WKWebView!
     @IBOutlet var urlTextField: UITextField!
     
@@ -30,6 +30,8 @@ class WebViewController: UIViewController {
         title = "Web View"
 
         edgesForExtendedLayout = UIRectEdge()
+
+        urlTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,15 +39,8 @@ class WebViewController: UIViewController {
         
         let defaultNotificationCenter = NotificationCenter.default
         
-        defaultNotificationCenter.addObserver(self,
-            selector: #selector(keyboardWillShow(_:)),
-            name: NSNotification.Name.UIKeyboardWillShow,
-            object: nil)
-
-        defaultNotificationCenter.addObserver(self,
-            selector: #selector(keyboardWillHide(_:)),
-            name: NSNotification.Name.UIKeyboardWillHide,
-            object: nil)
+        defaultNotificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        defaultNotificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
         
         urlTextField.becomeFirstResponder()
     }
@@ -55,16 +50,29 @@ class WebViewController: UIViewController {
         
         let defaultNotificationCenter = NotificationCenter.default
         
-        defaultNotificationCenter.removeObserver(self, name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        defaultNotificationCenter.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        defaultNotificationCenter.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        defaultNotificationCenter.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        loadURL()
+
+        return false
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let layoutView = view as! LMLayoutView
+        let frame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
+
+        layoutView.bottomSpacing = frame.height
     }
     
-    func keyboardWillShow(_ notification: Notification) {
-        (view as! LMColumnView).bottomSpacing = ((notification as NSNotification).userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size.height
-    }
-    
-    func keyboardWillHide(_ notification: Notification) {
-        (view as! LMColumnView).bottomSpacing = 0
+    @objc func keyboardWillHide(_ notification: Notification) {
+        let layoutView = view as! LMLayoutView
+
+        layoutView.bottomSpacing = 0
     }
     
     @IBAction func loadURL() {

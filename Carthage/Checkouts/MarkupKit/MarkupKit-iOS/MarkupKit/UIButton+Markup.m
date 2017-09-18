@@ -41,6 +41,11 @@
     return [UIButton buttonWithType:UIButtonTypeContactAdd];
 }
 
++ (UIButton *)plainButton
+{
+    return [UIButton buttonWithType:UIButtonTypePlain];
+}
+
 - (NSString *)title
 {
     return [self titleForState:UIControlStateNormal];
@@ -69,6 +74,16 @@
 - (void)setTitleShadowColor:(UIColor *)titleShadowColor
 {
     [self setTitleShadowColor:titleShadowColor forState:UIControlStateNormal];
+}
+
+- (NSAttributedString *)attributedTitle
+{
+    return [self attributedTitleForState:UIControlStateNormal];
+}
+
+- (void)setAttributedTitle:(NSAttributedString *)attributedTitle
+{
+    [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 }
 
 - (UIImage *)image
