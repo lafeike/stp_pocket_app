@@ -23,12 +23,12 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        debugPrint("topic start.")
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140;
 
-        navigationItem.title = "TOPICS"
         self.navigationController?.navigationBar.topItem!.title = "Back"
         
         sdPickerViewController.modalPresentationStyle = .popover
@@ -96,6 +96,7 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
         
         // create request
         let apiURL: String = Constants.URL_END_POINT + "Topics?acronym=\(acronym!)&userid=\(StpVariables.userID!)"
+        debugPrint("url: " + apiURL)
         guard let api = URL(string: apiURL) else {
             print("Error: cannot create URL")
             return
@@ -118,7 +119,7 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("error is \(error), \(response.debugDescription)")
+                print("error is \(String(describing: error)), \(response.debugDescription)")
                 //self.loginSuccess(userId: nil, error: error.debugDescription)
                 return
             }
@@ -132,8 +133,11 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
     func extract_topics(jsonData: Data){
         
         guard let pub = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else{
+            debugPrint("no data for topic.")
             return
         }
+        
+        debugPrint("extract topic...")
         
         // Save publication.
         StpVariables.states = ["None"]
@@ -150,7 +154,7 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
                 let topicKey = item["topicKey"] as? Int
                 let topic = item["topic"] as? String
                 
-                //debugPrint(topic)
+                debugPrint(topic)
                 TableData.append(topic!)
                 topicKeyArray.append(topicKey!)
             }

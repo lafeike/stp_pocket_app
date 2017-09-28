@@ -213,7 +213,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             
             guard  error == nil else{
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 self.loginSuccess(userId: nil, error: error?.localizedDescription)
                 return
             }
@@ -226,7 +226,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("error is \(error), \(response.debugDescription)")
+                print("error is \(String(describing: error)), \(response.debugDescription)")
                 self.loginSuccess(userId: nil, error: error.debugDescription)
                 return
             }

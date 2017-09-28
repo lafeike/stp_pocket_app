@@ -10,12 +10,18 @@
 import UIKit
 import MarkupKit
 
-class ParaTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class ParaCell: UITableViewCell {
+    @IBOutlet weak var headerText: UITextView!
     
+    
+}
+
+class ParaTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+   
     var sectionKey: Int? // sectionKey will be passed from section controller.
     var offline: Bool = false // offline will be passed from section controller.
     var paraKey: Int?
-    
+    var headerText: UITextField!
     var paraNumArray: Array<String> = Array<String>()
     var paraKeyArray: Array<Int> = Array<Int>()
     var questionArray: Array<String> = Array<String>()
@@ -23,7 +29,6 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
     var citationArray: Array<String> = Array<String>()
     
     var rowTapped: Int?
-    var tableOffsetY: CGFloat = 0.0
     
     let sdPickerViewController = StatePickerViewController()
     let dynamicComponentName = "dynamic"
@@ -41,8 +46,6 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionHeaderHeight = 25;
         
-        tableOffsetY = tableView.contentOffset.y
-
         navigationItem.title = "Paragraph"
         self.navigationController?.navigationBar.topItem!.title = "Back"
         
@@ -259,34 +262,50 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
         
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sdType = ["Audit", "Applicability", "External", "Info"]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ParaCell
         cell.textLabel?.numberOfLines = 0
         cell.layoutMargins = UIEdgeInsets.zero
+        
+        // The first row shows the detail of the paragraph item.
+        // A UITextView is used in the first row to display the contents,
+        // because there maybe some external links in the content which are clickable,
+        // while the other rows use a default UILabel for tableview cell.
         if indexPath.row == 0 {
-            cell.textLabel?.textColor = UIColor(white: 114/225, alpha: 1)
-            cell.backgroundColor = UIColor.white
+            cell.textLabel?.isHidden = true
+            cell.headerText.isHidden = false
+            cell.headerText.sizeToFit()
+            cell.headerText.isScrollEnabled = false
+            var cellText = ""
+            
             if let row = rowTapped { // The first row will show the contents of the tapped row
                 if row != 0 {
+                    
                     if (sdType.contains(questionArray[row - 1])) {
-                            cell.textLabel?.text = StpVariables.states[StpVariables.stateSelected] + "\n"
-                            cell.textLabel?.text = (cell.textLabel?.text!)! + guideNoteArray[row - 1]
+                        cellText = StpVariables.states[StpVariables.stateSelected] + "\n"
+                        cellText = cellText + guideNoteArray[row - 1]
                     } else {
-                            cell.textLabel?.text = paraNumArray[row - 1] + " " + questionArray[row - 1]
-                            cell.textLabel?.text = (cell.textLabel?.text!)! + "\n\n" + guideNoteArray[row - 1]
+                            cellText = paraNumArray[row - 1] + " " + questionArray[row - 1]
+                            cellText = cellText + "<br><br>" + guideNoteArray[row - 1]
+                        
                     }
                 }
             } else { // display the first row when no row is tapped.
                 if paraNumArray.count > 0 {
                         if (sdType.contains(questionArray[0])) { // do not show StateDiff in the first row.
-                            cell.textLabel?.text = paraNumArray[1] + " " + questionArray[1] + "\n\n" + guideNoteArray[1]
-                    } else {
-                            cell.textLabel?.text = paraNumArray[0] + " " + questionArray[0] + "\n\n" + guideNoteArray[0]
-                    }
+                            cellText = paraNumArray[1] + " " + questionArray[1] + "<br><br>" + guideNoteArray[1]
+                        } else {
+                            cellText = paraNumArray[0] + " " + questionArray[0] + "<br><br>" + guideNoteArray[0]
+                        }
                 } else {
-                    cell.textLabel?.text = "No data."
+                    cellText = "No data."
                 }
             }
+            cell.headerText.attributedText = stringFromHtml(string: cellText)
         } else {
+            cell.headerText.isHidden = true
+            cell.headerText.text = ""
+            cell.textLabel?.isHidden = false
+            
             if (sdType.contains(questionArray[indexPath.row - 1])) {
                     cell.textLabel?.textColor = UIColor(white: 50/225, alpha: 1)
                     cell.textLabel?.text = StpVariables.states[StpVariables.stateSelected] + "-"
@@ -299,11 +318,26 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
             }
             if (indexPath.row == rowTapped) {
                 cell.backgroundColor = UIColor(hex: StpColor.Orange)
-            }else {
+            } else {
                 cell.backgroundColor = UIColor.white
             }
         }
         return cell
+    }
+    
+    
+    private func stringFromHtml(string: String) -> NSAttributedString? {
+        do {
+            let modifiedFont = NSString(format: "<span style=\"font-family: '-apple-system', 'HelveticaNeue'; font-size: 16\">%@</span>", string) as String
+            let data = modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            if let d = data {
+                let str = try NSAttributedString(data: d, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+                return str
+            }
+        } catch {
+        
+        }
+        return nil
     }
     
     

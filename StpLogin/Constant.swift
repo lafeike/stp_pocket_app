@@ -9,7 +9,8 @@
 import Foundation
 
 struct Constants {
-    static let URL_END_POINT = "http://stponline.stpub.com/appmobile/api/"
+    static let URL_END_POINT = "http://stponline.stpub.com/appmobile/api/" // for release
+    //static let URL_END_POINT = "http://10.1.48.195:9001/api/" // for developing environment
     static let SESSION = 7.0  // how many days can the users browse the offline data after their last login.
     static let TITLE = "POCKET REFERENCE"
 }

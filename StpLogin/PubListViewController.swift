@@ -108,7 +108,7 @@ class PubListViewController: UITableViewController {
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("error is \(error), \(response.debugDescription)")
+                print("error is \(String(describing: error)), \(response.debugDescription)")
                 return
             }
             // parse the result as JSON
@@ -267,7 +267,7 @@ class PubListViewController: UITableViewController {
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("error is \(error), \(response.debugDescription)")
+                print("error is \(String(describing: error)), \(response.debugDescription)")
                 //self.loginSuccess(userId: nil, error: error.debugDescription)
                 completionHandler(false)
                 return
