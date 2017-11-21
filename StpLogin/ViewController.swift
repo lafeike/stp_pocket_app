@@ -327,7 +327,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
         if offline == false {
-            debugPrint("sign out, delete key chain.")
+            //debugPrint("sign out, delete key chain.")
             deleteLogin(username: emailText.text)
             emailText.text = ""
             passwordText.text = ""

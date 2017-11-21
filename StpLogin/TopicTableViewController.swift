@@ -9,7 +9,13 @@
 import UIKit
 
 class TopicTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-   
+    
+    
+    @IBAction func switchToPublication(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "unwindSegueToPublciation", sender: self)
+    }
+    
+    
     var acronym: String? // passed from publication controller
     var publicationTitle: String? // passed from publication controller
     var offline: Bool = false // passed from publication controller
@@ -23,13 +29,13 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        debugPrint("topic start.")
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140;
 
         self.navigationController?.navigationBar.topItem!.title = "Back"
+        self.navigationController?.setToolbarHidden(false, animated: true)
         
         sdPickerViewController.modalPresentationStyle = .popover
         
@@ -49,6 +55,18 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
     }
     
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //self.navigationController?.setToolbarHidden(true, animated: animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setToolbarHidden(false, animated: animated)
+        self.navigationItem.title = "Topic"
+    }
+    
+    
     func showSDPicker() {
         let sdPickerPresentationController = sdPickerViewController.presentationController as! UIPopoverPresentationController
         sdPickerPresentationController.barButtonItem = navigationItem.rightBarButtonItem
@@ -64,10 +82,7 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.title = "Topic"
-    }
+    
     
     // The number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -77,7 +92,6 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
     
     // browse publications in local database
     func browseLocal() {
-        debugPrint("browse local topics...")
         let items = StpDB.instance.getTopics(aym: acronym!)
         
         for item in items {
@@ -96,7 +110,6 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
         
         // create request
         let apiURL: String = Constants.URL_END_POINT + "Topics?acronym=\(acronym!)&userid=\(StpVariables.userID!)"
-        debugPrint("url: " + apiURL)
         guard let api = URL(string: apiURL) else {
             print("Error: cannot create URL")
             return
@@ -137,7 +150,7 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
             return
         }
         
-        debugPrint("extract topic...")
+        //debugPrint("extract topic...")
         
         // Save publication.
         StpVariables.states = ["None"]
@@ -154,7 +167,6 @@ class TopicTableViewController: UITableViewController, UIPopoverPresentationCont
                 let topicKey = item["topicKey"] as? Int
                 let topic = item["topic"] as? String
                 
-                debugPrint(topic)
                 TableData.append(topic!)
                 topicKeyArray.append(topicKey!)
             }

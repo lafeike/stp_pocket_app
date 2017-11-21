@@ -52,10 +52,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        let defaultNotificationCenter = NotificationCenter.default
-        
-        defaultNotificationCenter.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        defaultNotificationCenter.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

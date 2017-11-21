@@ -161,7 +161,6 @@ class StpDB {
                 insert = topic.insert(releaseNum <- release, acronym <- cacronym, topicKey <- ctopicKey, topicName <- ctopic)
                 
             } else {
-                print("insert topic without releaseNum")
                 insert = topic.insert(acronym <- cacronym, topicKey <- ctopicKey, topicName <- ctopic)
             }
             
@@ -183,7 +182,6 @@ class StpDB {
                 insert = rulebook.insert(summary <- smy, rbName <- crbName, topicKey <- ctopicKey, rbKey <- crbKey)
                 
             } else {
-                print("insert rulebook without summary")
                 insert = topic.insert(rbName <- crbName, topicKey <- ctopicKey, rbKey <- crbKey)
             }
             

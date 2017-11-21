@@ -42,6 +42,17 @@ typedef enum {
     return self;
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    UIView *view = [super hitTest:point withEvent:event];
+    
+    if (view == [self contentView] && [self selectionStyle] == UITableViewCellSelectionStyleNone) {
+        view = nil;
+    }
+
+    return view;
+}
+
 - (void)processMarkupInstruction:(NSString *)target data:(NSString *)data
 {
     if ([target isEqual:kBackgroundViewTarget]) {

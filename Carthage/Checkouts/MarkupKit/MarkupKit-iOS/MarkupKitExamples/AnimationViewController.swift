@@ -20,7 +20,7 @@ class AnimationViewController: UIViewController {
     @IBOutlet var detailSwitch: UISwitch!
 
     override func loadView() {
-        view = LMViewBuilder.view(withName:"AnimationViewController", owner: self, root: nil)
+        view = LMViewBuilder.view(withName: "AnimationViewController", owner: self, root: nil)
     }
 
     override func viewDidLoad() {

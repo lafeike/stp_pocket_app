@@ -10,6 +10,9 @@ import UIKit
 
 class RulebookTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
+    @IBAction func switchToPublication(_ sender: UIBarButtonItem) {
+         performSegue(withIdentifier: "unwindSegueToPublication", sender: self)
+    }
     var topicKey: Int? // topicKey will be passed from topic controller.
     var topic: String? // topic will be passed from topic controller.
     var rbKey: Int? // rbKey will be passed to section controller.
@@ -29,6 +32,7 @@ class RulebookTableViewController: UITableViewController, UIPopoverPresentationC
             tableView.estimatedRowHeight = 140;
             
             self.navigationController?.navigationBar.topItem!.title = "Back"
+            self.navigationController?.setToolbarHidden(false, animated: true)
         
             sdPickerViewController.modalPresentationStyle = .popover
         
@@ -49,6 +53,13 @@ class RulebookTableViewController: UITableViewController, UIPopoverPresentationC
             
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setToolbarHidden(false, animated: animated)
+        self.navigationItem.title = "Rule Book"
+    }
+    
     func showSDPicker() {
         let sdPickerPresentationController = sdPickerViewController.presentationController as! UIPopoverPresentationController
         
@@ -64,12 +75,6 @@ class RulebookTableViewController: UITableViewController, UIPopoverPresentationC
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
-   
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.title = "Rule Book"
-    }
     
     
     func signOut() {
@@ -79,7 +84,6 @@ class RulebookTableViewController: UITableViewController, UIPopoverPresentationC
     
     // browse publications in local database
     func browseLocal() {
-        debugPrint("browse local rulebooks..")
         let items = StpDB.instance.getRulebooks(key: topicKey!)
         
         for item in items {

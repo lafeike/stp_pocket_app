@@ -17,7 +17,10 @@ class ParaCell: UITableViewCell {
 }
 
 class ParaTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-   
+    @IBAction func switchToPublication(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "unwindSegueToPublication", sender: self)
+    }
+    
     var sectionKey: Int? // sectionKey will be passed from section controller.
     var offline: Bool = false // offline will be passed from section controller.
     var paraKey: Int?
@@ -46,8 +49,8 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionHeaderHeight = 25;
         
-        navigationItem.title = "Paragraph"
         self.navigationController?.navigationBar.topItem!.title = "Back"
+        self.navigationController?.setToolbarHidden(false, animated: true)
         
         sdPickerViewController.modalPresentationStyle = .popover
         sdPickerViewController.tableView.delegate = self
@@ -65,6 +68,13 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Exit", style: .plain, target: self, action: #selector(signOut))
             browseLocal()
         }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setToolbarHidden(false, animated: true)
+        self.navigationItem.title = "Paragraph"
     }
 
     

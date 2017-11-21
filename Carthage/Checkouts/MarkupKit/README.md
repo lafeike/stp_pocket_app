@@ -520,7 +520,7 @@ Note that neither size class-specific layouts nor template properties are automa
         }
     }
     
-If the owner implements a method named `bundleForView`, view documents will be loaded from the bundle returned by this method. MarkupKit adds a default implementation of `bundleForView` to `UIResponder` that returns the application's main bundle. Subclasses can override this method to provide custom view loading behavior. If the owner does not implement `bundleForView`, the main bundle will be used. 
+If the owner implements a method named `bundleForView`, the view document will be loaded from the bundle returned by this method. MarkupKit adds a default implementation of `bundleForView` to `UIResponder` that returns the application's main bundle. Subclasses can override this method to provide custom view loading behavior. If the owner does not implement `bundleForView`, the main bundle will be used. 
 
 If a matching document is not found in the identified bundle, `LMViewBuilder` will look in the application's _Library/Application Support_ folder, first for a size class-specific layout, then for the default layout.
 
@@ -1123,6 +1123,8 @@ The child of the root tag represents the cell's content. It can be any valid vie
 * `backgroundView` - sets the cell's background view
 * `selectedBackgroundView` - sets the cell's selected background view
 * `multipleSelectionBackgroundView` - sets the cell's multiple selection background view
+
+When the `selectionStyle` property of an `LMTableViewCell` instance is set to "none", the cell will not consume touch events. Touches that occur within the cell but do not intersect with a subview are ignored, preventing selection.
 
 See [LMTableView.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMTableView.h) and [LMTableViewCell.h](https://github.com/gk-brown/MarkupKit/blob/master/MarkupKit-iOS/MarkupKit/LMTableViewCell.h) for more information.
 

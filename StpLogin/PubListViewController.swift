@@ -22,6 +22,7 @@ class PubListViewController: UITableViewController {
 
         navigationItem.title = Constants.TITLE
         navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.setToolbarHidden(false, animated: true)
         
         if offline ==  false {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
@@ -36,6 +37,11 @@ class PubListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = Constants.TITLE
+        self.navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
+    @IBAction func unwindToPublication(segue: UIStoryboardSegue){
+        
     }
     
     

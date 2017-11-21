@@ -20,7 +20,7 @@ class BarsViewController: UIViewController, UITabBarDelegate {
     @IBOutlet var tabBar: UITabBar!
     
     override func loadView() {
-        view = LMViewBuilder.view(withName:"BarsViewController", owner: self, root: nil)
+        view = LMViewBuilder.view(withName: "BarsViewController", owner: self, root: nil)
     }
 
     override func viewDidLoad() {

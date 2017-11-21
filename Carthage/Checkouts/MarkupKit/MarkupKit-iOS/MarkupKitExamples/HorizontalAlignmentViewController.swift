@@ -17,7 +17,7 @@ import MarkupKit
 
 class HorizontalAlignmentViewController: UIViewController {
     override func loadView() {
-        view = LMViewBuilder.view(withName:"HorizontalAlignmentViewController", owner: self, root: nil)
+        view = LMViewBuilder.view(withName: "HorizontalAlignmentViewController", owner: self, root: nil)
     }
 
     override func viewDidLoad() {

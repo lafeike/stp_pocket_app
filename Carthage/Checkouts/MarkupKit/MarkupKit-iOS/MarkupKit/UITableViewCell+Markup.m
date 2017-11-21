@@ -38,8 +38,6 @@ static NSDictionary *tableViewCellSelectionStyleValues;
 
     tableViewCellSelectionStyleValues = @{
         @"none": @(UITableViewCellSelectionStyleNone),
-        @"blue": @(UITableViewCellSelectionStyleBlue),
-        @"gray": @(UITableViewCellSelectionStyleGray),
         @"default": @(UITableViewCellSelectionStyleDefault)
     };
 }

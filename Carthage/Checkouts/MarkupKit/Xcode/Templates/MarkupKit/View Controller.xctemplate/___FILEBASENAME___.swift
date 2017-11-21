@@ -3,7 +3,7 @@
 //  ___PROJECTNAME___
 //
 //  Created by ___FULLUSERNAME___ on ___DATE___.
-//___COPYRIGHT___
+//  ___COPYRIGHT___
 //
 
 import UIKit
@@ -15,7 +15,7 @@ class ___FILEBASENAMEASIDENTIFIER___: UIViewController {
     }
 
     override func loadView() {
-        view = LMViewBuilder.view(withName:"___FILEBASENAMEASIDENTIFIER___", owner: self, root: nil)
+        view = LMViewBuilder.view(withName: "___FILEBASENAMEASIDENTIFIER___", owner: self, root: nil)
     }
 
     override func viewDidLoad() {

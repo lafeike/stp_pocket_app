@@ -131,12 +131,14 @@ limitations under the License.
     <LMTableViewCell selectionStyle="none">
         <LMRowView>
             <LMSpacer/>
-                <UISegmentedControl>
-                    <segment title="@small"/>
-                    <segment title="@medium"/>
-                    <segment title="@large"/>
-                    <segment title="@extraLarge"/>
-                </UISegmentedControl>
+            
+            <UISegmentedControl>
+                <segment title="@small"/>
+                <segment title="@medium"/>
+                <segment title="@large"/>
+                <segment title="@extraLarge"/>
+            </UISegmentedControl>
+            
             <LMSpacer/>
         </LMRowView>
     </LMTableViewCell>
