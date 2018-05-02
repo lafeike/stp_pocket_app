@@ -13,6 +13,8 @@ class PubListViewController: UITableViewController {
     var acronym: String?
     var offline = false
     var publicationTitle: String?
+    let searchController = UISearchController(searchResultsController: nil)
+    var filterPubs = [String]()
     
 
     override func viewDidLoad() {
@@ -23,6 +25,18 @@ class PubListViewController: UITableViewController {
         navigationItem.title = Constants.TITLE
         navigationItem.setHidesBackButton(true, animated: false)
         self.navigationController?.setToolbarHidden(false, animated: true)
+        
+        searchController.searchResultsUpdater = self
+        if #available(iOS 9.1, *) {
+            searchController.obscuresBackgroundDuringPresentation = false
+        }
+        searchController.searchBar.placeholder = "Search Publications"
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            // Fallback on earlier versions
+        }
+        definesPresentationContext = true
         
         if offline ==  false {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
@@ -38,6 +52,17 @@ class PubListViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.navigationItem.title = Constants.TITLE
         self.navigationController?.setToolbarHidden(false, animated: true)
+        if #available(iOS 11.0, *){
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //searchController.isActive = true
+        if #available(iOS 11.0, *){
+            navigationItem.hidesSearchBarWhenScrolling = true
+        }
     }
     
     @IBAction func unwindToPublication(segue: UIStoryboardSegue){
@@ -178,6 +203,10 @@ class PubListViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filterPubs.count
+        }
+        
         return TableData.count
     }
 
@@ -185,7 +214,12 @@ class PubListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let pubs = localPubList()
-        cell.textLabel?.text = TableData[indexPath.row]
+        if isFiltering() {
+            cell.textLabel?.text = filterPubs[indexPath.row]
+        } else {
+            cell.textLabel?.text = TableData[indexPath.row]
+        }
+        
         cell.textLabel?.numberOfLines = 0
         if pubs.contains((cell.textLabel?.text)!){
             cell.textLabel?.textColor = UIColor(white: 1/225, alpha: 1)
@@ -399,7 +433,7 @@ class PubListViewController: UITableViewController {
         }
     }
     
-    
+    /*
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableCell(withIdentifier: "header")
         
@@ -418,7 +452,7 @@ class PubListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
-    
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueTopic" {
             if let destination = segue.destination as? TopicTableViewController {
@@ -434,15 +468,44 @@ class PubListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let row = indexPath.row
-        let cellValue = TableData[row]
+        var cellValue:String
+        
+        if isFiltering(){
+            cellValue = filterPubs[row]
+        } else{
+            cellValue = TableData[row]
+        }
         let range1 = cellValue.range(of: ":") // get acroynm from the cell data like 'CALO: OSHA Auditing: California Occupational'
         let endInt = range1?.lowerBound
         
         acronym = cellValue.substring(to: endInt!)
         publicationTitle = cellValue.substring(from: cellValue.index(after: endInt!))
-        
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "segueTopic", sender: self)
         }
+    }
+    
+    // functions for search publication
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All"){
+        filterPubs = TableData.filter({ (tableDate: String) -> Bool in
+            return tableDate.lowercased().contains(searchText.lowercased())
+        })
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    
+}
+
+extension PubListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }

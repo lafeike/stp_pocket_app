@@ -22,6 +22,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
     }
     
     var sectionKey: Int? // sectionKey will be passed from section controller.
+    var sectionName: String? // sectionName will be passed from section controller
     var offline: Bool = false // offline will be passed from section controller.
     var paraKey: Int?
     var headerText: UITextField!
@@ -341,7 +342,8 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
             let modifiedFont = NSString(format: "<span style=\"font-family: '-apple-system', 'HelveticaNeue'; font-size: 16\">%@</span>", string) as String
             let data = modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)
             if let d = data {
-                let str = try NSAttributedString(data: d, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+                let str = try NSAttributedString(data: d, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                                    NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
                 return str
             }
         } catch {
@@ -356,7 +358,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
         
             let title = UILabel()
             title.font = UIFont(name: "Myriad Pro", size: 18)!
-            title.text = "Choose a paragraph to show detail"
+            title.text = sectionName
             title.textColor = UIColor.white
         
             header?.textLabel?.font = title.font

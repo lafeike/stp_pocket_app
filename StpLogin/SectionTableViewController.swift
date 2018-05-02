@@ -19,6 +19,7 @@ class SectionTableViewController: UITableViewController, UIPopoverPresentationCo
     var TableData: Array<String> = Array<String>()
     var sectionKeyArray: Array<Int> = Array<Int>()
     var rbName: String?
+    var sectionName: String?
     
     let sdPickerViewController = StatePickerViewController()
 
@@ -162,6 +163,7 @@ class SectionTableViewController: UITableViewController, UIPopoverPresentationCo
         
         let row = indexPath.row
         sectionKey = sectionKeyArray[row]
+        sectionName = TableData[row]
         
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "segueParalist", sender: self)
@@ -222,6 +224,7 @@ class SectionTableViewController: UITableViewController, UIPopoverPresentationCo
         if segue.identifier == "segueParalist" {
             if let destination = segue.destination as? ParaTableViewController {
                 destination.sectionKey = sectionKey
+                destination.sectionName = sectionName
                 destination.offline = offline
             }
         }
