@@ -33,7 +33,7 @@ class SectionTableViewController: UITableViewController, UIPopoverPresentationCo
         tableView.estimatedRowHeight = 140;
         
         self.navigationController?.navigationBar.topItem!.title = "Back"
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        //self.navigationController?.setToolbarHidden(false, animated: true)
         
         
         sdPickerViewController.modalPresentationStyle = .popover
@@ -55,7 +55,7 @@ class SectionTableViewController: UITableViewController, UIPopoverPresentationCo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: animated)
+        //self.navigationController?.setToolbarHidden(false, animated: animated)
         self.navigationItem.title = "Section"
     }
     

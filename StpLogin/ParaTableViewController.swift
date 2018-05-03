@@ -51,7 +51,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
         tableView.estimatedSectionHeaderHeight = 25;
         
         self.navigationController?.navigationBar.topItem!.title = "Back"
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        //self.navigationController?.setToolbarHidden(false, animated: true)
         
         sdPickerViewController.modalPresentationStyle = .popover
         sdPickerViewController.tableView.delegate = self
@@ -74,7 +74,7 @@ class ParaTableViewController: UITableViewController, UIPopoverPresentationContr
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        //self.navigationController?.setToolbarHidden(false, animated: true)
         self.navigationItem.title = "Paragraph"
     }
 

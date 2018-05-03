@@ -24,7 +24,7 @@ class PubListViewController: UITableViewController {
 
         navigationItem.title = Constants.TITLE
         navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        //self.navigationController?.setToolbarHidden(false, animated: true)
         
         searchController.searchResultsUpdater = self
         if #available(iOS 9.1, *) {
@@ -51,7 +51,7 @@ class PubListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = Constants.TITLE
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        //self.navigationController?.setToolbarHidden(false, animated: true)
         if #available(iOS 11.0, *){
             navigationItem.hidesSearchBarWhenScrolling = false
         }

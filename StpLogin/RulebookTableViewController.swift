@@ -32,7 +32,7 @@ class RulebookTableViewController: UITableViewController, UIPopoverPresentationC
             tableView.estimatedRowHeight = 140;
             
             self.navigationController?.navigationBar.topItem!.title = "Back"
-            self.navigationController?.setToolbarHidden(false, animated: true)
+            //self.navigationController?.setToolbarHidden(false, animated: true)
         
             sdPickerViewController.modalPresentationStyle = .popover
         
@@ -56,7 +56,7 @@ class RulebookTableViewController: UITableViewController, UIPopoverPresentationC
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: animated)
+        //self.navigationController?.setToolbarHidden(false, animated: animated)
         self.navigationItem.title = "Rule Book"
     }
     
